@@ -21,7 +21,7 @@ nav {
 	background: #384047;
 	height: 60px;
 	padding: 0 5px 0;
-	text-align: center;
+	text-align: left;
 }
 
 nav ul {
@@ -103,7 +103,7 @@ article p {
 
 #intro p {
 	font-family: 'Archivo Black', sans-serif;
-    font-size: 3.5em;
+    font-size: 2em;
 }
 
 @media (min-width: 320px) and (max-width: 568px) {
