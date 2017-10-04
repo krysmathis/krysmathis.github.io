@@ -15,28 +15,28 @@ nav {
 	text-align: center;
 }
 
-ul {
+nav ul {
 	list-style: none;
 }
 
-ul li {
+nav ul li {
 	display: inline-block;
 	width: 84px;
 	text-align: center;
 }
 
-ul li a {
+nav ul li a {
 	color: #fff;
 	width: 100%;
 	line-height: 60px;
 	text-decoration: none;
 }
 
-ul li.selected {
+nav ul li.selected {
 	background: #fff;
 }
 
-ul li.selected a {
+nav ul li.selected a {
 	color: #384047;
 }
 
