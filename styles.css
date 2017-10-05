@@ -35,6 +35,7 @@ nav ul li {
 	text-align: center;
 }
 
+
 nav ul li a {
 	color: #fff;
 	width: 100%;
@@ -80,7 +81,7 @@ section { height: 100vh;}
 
 article {
 	
-    width: 90%;
+	width: 90%;
     text-align: left;
     margin-top: 10px;
     margin-left: 20px;
@@ -89,10 +90,18 @@ article {
 }
 
 article p {
-    padding-bottom: 10px;
+	padding-bottom: 10px;
 }
 
 /* --- Class Level Attributes --- */
+.article-header {
+	background-color: inherit;
+	color: inherit;
+	font-family: 'Archivo Black', sans-serif;
+	font-size: 1.5em;
+	height: inherit;
+	padding-bottom: 10px;
+} 
 
 .social-img {
 	
