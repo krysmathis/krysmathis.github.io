@@ -121,6 +121,13 @@ article p {
 	font-size: 1.4em;
 }
 
+.main-header {
+	background-color: black;
+	font-size: 4em;
+	font-family: 'Oswald', sans-serif;
+	padding-left: 10px;
+}
+
 #social-links li {
 	display: inline-block;
 	margin-left: 20px;
