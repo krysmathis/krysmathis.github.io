@@ -14,7 +14,7 @@ font-family: 'Archivo Black', sans-serif;
 
 body {
 	font-family: 'Roboto', sans-serif;
-	background: #fff;
+	background: #D4D3D3;
 }
 
 nav {
@@ -178,6 +178,43 @@ article p {
 	border-radius: 50%;
 }
 
+/* <----- Blog Specific Styles ------> */
+
+.blog-post {
+	padding: 10px;
+	margin-bottom: 30px;
+}
+
+.blog-header {
+	padding: 0; margin: 0;
+	border-bottom: solid 1px black;
+	width: 100%;
+	padding-bottom: 10px;
+	
+	
+}
+
+.blog-title {
+	display: inline-block;
+	width: 80%;
+	font-family: 'Archivo Black', sans-serif;
+	font-size: 1.5em;
+	
+}
+.blog-date {
+	padding: 0;
+	display: inline-block;
+	width: 15%
+}
+
+.blog-content {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.blog-footer {
+	border-top: solid 1px black;
+}
 .social-img {
 	
 	width: 50px;
