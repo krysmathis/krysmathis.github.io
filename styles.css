@@ -19,8 +19,9 @@ body {
 
 nav {
 	background: #384047;
-	height: 60px;
+	height: 40px;
 	padding: 0 5px 0;
+	padding-top: 0px;
 	text-align: left;
 }
 
@@ -37,7 +38,7 @@ nav ul li {
 nav ul li a {
 	color: #fff;
 	width: 100%;
-	line-height: 60px;
+	line-height: 40px;
 	text-decoration: none;
 }
 
@@ -54,22 +55,28 @@ select {
 	margin: 11px  0 11px 2%;
 	float: left;
 }
-
 header {
+	height: 100px;
+	background-color: black;
+	color: white;
+}
 
-    font-weight: bold;
+#brand {
+	font-weight: bold;
     padding: 0px 0;
     margin-top: 20px;
     margin-left: 20px;
     text-align: left;
     font-size: 1.5em; 
 }
+
 h1 {
 	margin: 40px 0 10px;
 	text-align: center;
 	color: #384047;
 }
 
+section { height: 100vh;}
 
 article {
 	
@@ -85,6 +92,8 @@ article p {
     padding-bottom: 10px;
 }
 
+/* --- Class Level Attributes --- */
+
 .social-img {
 	
 	width: 50px;
@@ -94,11 +103,15 @@ article p {
 	margin-top: 10px;
 }
 
+.first-line:first-line {
+	font-weight: bold;
+	font-size: 1.4em;
+}
+
 #social-links li {
 	display: inline-block;
 	margin-left: 20px;
 }
-
 
 
 #intro p {
