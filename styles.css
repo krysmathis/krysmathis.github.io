@@ -125,12 +125,57 @@ article p {
 	border: solid 1px black;
 	background-color: white;
 	box-shadow: 10px 5px 5px black;
-	padding: 10px;
+	padding-top: 0px;	
+	padding-left: 100px;
+	width: 85%;
+	min-height: 80px;
+	padding-bottom: 10px;
+
 }
+.project-tag ul li{
+	margin: 0;
+	text-align: center;
+}
+
+.project-tag li {
+	display: inline-block;
+	list-style-type: none;
+	border: solid 1px #999898;
+	text-align: center;
+	vertical-align: bottom;
+	background-color: black;
+	width: 80px;
+	border-radius: 5px;
+	color: white;
+}
+
+.javascript {
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-size: 80px;
+	background-image: url("images/js.png");
+}
+
+.css {
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-size: 80px;
+	background-image: url("images/css.png");
+}
+
 
 .project-detail li {
 	list-style-position: outside;
 	margin-left: 1em;
+	
+
+}
+
+.project-detail img {
+	float: left;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
 }
 
 .social-img {
