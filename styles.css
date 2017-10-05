@@ -87,6 +87,10 @@ article {
     border-top: 1px solid #B3B3B3;
 }
 
+article ul {
+	list-style-position: inside;
+}
+
 article p {
 	padding-bottom: 10px;
 }
@@ -97,14 +101,36 @@ article p {
 	color: inherit;
 	font-family: 'Archivo Black', sans-serif;
 	font-size: 1.5em;
-	height: inherit;
+	font-weight: bold;
+	height: 30px;
 	padding-bottom: 10px;
+	border-bottom: 1px solid black;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
 } 
 
 .professional-experience {
 	border: solid 1px black;
 	background-color: white;
 	box-shadow: 10px 5px 5px black;
+	padding: 10px;
+}
+
+.professional-experience li {
+	list-style-position: outside;
+	margin-left: 1em;
+}
+
+.project-detail {
+	border: solid 1px black;
+	background-color: white;
+	box-shadow: 10px 5px 5px black;
+	padding: 10px;
+}
+
+.project-detail li {
+	list-style-position: outside;
+	margin-left: 1em;
 }
 
 .social-img {
