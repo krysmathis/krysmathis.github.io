@@ -272,9 +272,11 @@ article p {
 	text-align: left;
 	height: 40px;
 	font-size: .8em;
+	background: rgb(56, 64, 71);
+	/*
 	background: 	url("images/linkedin.png") 250px 0px/40px 40px no-repeat,	
-					rgb(56, 64, 71)  url("images/twitter.png") 200px 0px/40px 40px no-repeat;
-					
+					  url("images/twitter.png") 200px 0px/40px 40px no-repeat;
+	*/				
 }
 
 /*
