@@ -251,12 +251,32 @@ article p {
 	font-size: 1.4em;
 }
 
+/* <---- HEADERS -----> */
+
 .main-header {
 	background-color: black;
 	font-size: 4em;
 	font-family: 'Oswald', sans-serif;
 	padding-left: 10px;
 }
+
+/*
+.float {
+	-webkit-transition:all .2s ease-out;
+	-moz-transition:all .2s ease-out;
+	-ms-transition:all .2s ease-out;
+	-o-transition:all .2s ease-out;
+	transition:all .2s ease-out;
+  }
+
+.float:hover {
+	-webkit-transform:translate(0px,-5px);
+	-moz-transform:translate(0px,-5px);
+	-ms-transform:translate(0px,-5px);
+	-o-transform:translate(0px,-5px);
+	transform:translate(0px,-5px);
+  }
+*/
 
 #social-links li {
 	display: inline-block;
