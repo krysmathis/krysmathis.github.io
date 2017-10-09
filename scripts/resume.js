@@ -17,6 +17,11 @@ var job = {
     "skills": [],
     "companyLogoImg": "",
 }
+
+var education = {
+    "degree": "";
+    "school": ;
+}
 */
 
 const demandPlanningDir = {
