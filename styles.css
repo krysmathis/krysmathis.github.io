@@ -270,7 +270,6 @@ article p {
 }
 
 .brand::before {
-	content: "Krys Mathis | Software Developer";
 	font-size: 1.5em;
 	padding-left: 10px;
 	height: 25px;
