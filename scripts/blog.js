@@ -22,7 +22,7 @@ const blogEntry20171006 = {
     "author": "Krys Mathis",
     "imgHeader": "images/journeybegins.jpg",
     "tags": ["footer","html"],
-    "content": "Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same goal.  Seems to be a lot of memes and animated GIFs going on around. Must mean we'll need a sense of humor too.",
+    "content": "Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.",
 };
 
 // "imgHeader": 
