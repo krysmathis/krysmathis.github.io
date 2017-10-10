@@ -274,7 +274,6 @@ article p {
 	font-size: 1em;
 	font-family: 'Roboto', sans-serif;
 	text-shadow: 2px 2px 10px #5A5A5A;
-	
 }
 
 .brand {
@@ -292,6 +291,8 @@ article p {
 	height: 40px;
 	font-size: .8em;
 	background: rgb(56, 64, 71);
+	width: 100%;
+	/* position: fixed; */
 	/*
 	background: 	url("images/linkedin.png") 250px 0px/40px 40px no-repeat,	
 					  url("images/twitter.png") 200px 0px/40px 40px no-repeat;
@@ -353,5 +354,5 @@ article p {
 }
 
 .wrap {
-	min-height: calc(100vh - 40px);
+	min-height: calc(100vh - 90px);
 }
