@@ -205,7 +205,12 @@ article p {
 	padding-bottom: 10px;
 }
 
-.blog-title {
+.blog-img-header {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.blog-headline {
 	display: inline-block;
 	width: 80%;
 	font-family: 'Archivo Black', sans-serif;
@@ -271,7 +276,7 @@ article p {
 
 .brand {
 	font-size: 1.5em; 
-	padding-left: 10px;
+	padding-left: 10px;ƒ
 }
 
 
