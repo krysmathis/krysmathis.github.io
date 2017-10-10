@@ -269,13 +269,11 @@ article p {
 	
 }
 
-.brand::before {
-	font-size: 1.5em;
+.brand {
+	font-size: 1.5em; 
 	padding-left: 10px;
-	height: 25px;
-
-
 }
+
 
 /* <---- FOOTERS -----> */
 .main-footer {

@@ -33,3 +33,9 @@ let Blog = {
 }
 
 localStorage.setItem("blog", JSON.stringify(Blog));
+
+const blogDB = localStorage.getItem("blog");
+
+for (let key in blogDB) {
+    const currentKey = blogDB[key];
+}
