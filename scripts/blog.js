@@ -20,7 +20,7 @@ const blogEntry20171006 = {
     "headline": "First Week at NSS",
     "dateAdded": "2017-10-06",
     "author": "Krys Mathis",
-    "imgHeader": "http://media2.giphy.com/media/jrC5zowLdpw5y/giphy.gif",
+    "imgHeader": "images/journeybegins.jpg",
     "tags": ["footer","html"],
     "content": "Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same goal.  Seems to be a lot of memes and animated GIFs going on around. Must mean we'll need a sense of humor too.",
 };
@@ -43,10 +43,10 @@ const blogs = document.getElementById("blog-posts");
 
 for (let key in blogDB) {
     const currentKey = blogDB[key];
-    console.log(key);
+
     for (var i = 0; i < currentKey.length; i++) {
         var entry = currentKey[i];
-        console.log(entry);
+
         let html =  `
             <article class="blog-post">
                 <div class="blog-header">
@@ -72,7 +72,6 @@ for (let key in blogDB) {
         
        html += "</ul></div></article>";
         blogs.innerHTML += html;  
-        console.log(blogs.innerHTML);
   
     }
 }
