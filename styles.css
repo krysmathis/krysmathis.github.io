@@ -190,6 +190,13 @@ article p {
 	background-image: url("images/css.png");
 }
 
+.html {
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-size: 80px;
+	background-image: url("images/js.png");
+
+}
 
 .project-detail li {
 	list-style-position: outside;
