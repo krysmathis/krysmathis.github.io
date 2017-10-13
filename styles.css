@@ -352,13 +352,13 @@ article p {
   }
 */
 
-#social-links h2 {
+.social-links-header {
 	font-family: 'Bungee Shade', sans-serif;
 	padding: 30px 0px 30px 0px;
 	text-align: center;
 }
 
-#social-links li {
+#social-links div {
 	text-align: center;
 	display: block;
 	margin-left: 20px;

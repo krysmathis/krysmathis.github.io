@@ -9,11 +9,19 @@ const social-media-type = {
 */
 
 const email = {
-    "service-name": "email",
+    "service-name": "Email",
     "handle": "krysmathis",
-    "url": "mailto:krysmathis@gmail.com",
+    "url": "mailto:krysmathis@test.com",
     "icon": "images/email.png",
-    "icon-alt": "email icon"
+    "iconAlt": "email icon"
+};
+
+const github = {
+    "service-name": "GitHub",
+    "handle": "krysmathis",
+    "url": "https://github.com/krysmathis",
+    "icon": "images/email.png",
+    "iconAlt": "github icon"
 };
 
 const linkedIn = {
@@ -21,7 +29,7 @@ const linkedIn = {
     "handle": "krysmathis",
     "url": "https://www.linkedin.com/in/krysmathis/",
     "icon": "images/linkedin.png", 
-    "icon-alt": "linkedin"
+    "iconAlt": "linkedin"
 };
 
 const twitter = {
@@ -29,12 +37,12 @@ const twitter = {
     "handle": "coldbuckets",
     "url": "https://twitter.com/coldbuckets",
     "icon": "images/twitter.png",
-    "icon-alt": "twitter bird"
+    "iconAlt": "twitter bird"
 };
 
 
 let contactMethods = [];
-contactMethods.push(email,twitter,linkedIn);
+contactMethods.push(github,twitter,linkedIn, email);
 
 let Contact = {
     "method": contactMethods
@@ -42,4 +50,24 @@ let Contact = {
 
 
 localStorage.setItem("contact", JSON.stringify(Contact));
+
+// --- get items from local storage and adjust page
+const contactsDB = JSON.parse(localStorage.getItem("contact"));
+
+const socialLinks = document.getElementById("social-links");
+
+for(let key in contactsDB){
+    let currentKey = contactsDB[key];
+
+    for (var i = 0; i < currentKey.length; i++) {
+        var contactType = currentKey[i];
+        
+        socialLinks.innerHTML += 
+        `
+            <div><a href="${contactType.url}"><img src="${contactType.icon}" alt="${contactType.iconAlt}" class="social-img"></a></div>
+        `
+
+    }
+
+}
 
