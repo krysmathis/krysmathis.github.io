@@ -12,7 +12,7 @@ const email = {
     "service-name": "Email",
     "handle": "krysmathis",
     "url": "mailto:krysmathis@test.com",
-    "icon": "images/email.png",
+    "icon": "./images/email.png",
     "iconAlt": "email icon"
 };
 
@@ -20,7 +20,7 @@ const github = {
     "service-name": "GitHub",
     "handle": "krysmathis",
     "url": "https://github.com/krysmathis",
-    "icon": "images/email.png",
+    "icon": "./images/github.png",
     "iconAlt": "github icon"
 };
 
@@ -28,7 +28,7 @@ const linkedIn = {
     "service-name": "LinkedIn" ,
     "handle": "krysmathis",
     "url": "https://www.linkedin.com/in/krysmathis/",
-    "icon": "images/linkedin.png", 
+    "icon": "./images/linkedin.png", 
     "iconAlt": "linkedin"
 };
 
@@ -36,7 +36,7 @@ const twitter = {
     "service-name": "Twitter" ,
     "handle": "coldbuckets",
     "url": "https://twitter.com/coldbuckets",
-    "icon": "images/twitter.png",
+    "icon": "./images/twitter.png",
     "iconAlt": "twitter bird"
 };
 
