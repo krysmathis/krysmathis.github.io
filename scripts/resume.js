@@ -30,13 +30,13 @@ const demandPlanningDir = {
     "startDate": new Date("2013-01-01"),
     "endDate": new Date("2017-09-27"),
     "title": "Director of Demand Planing",
-    "responsibilities": [
+    "accomplishments": [
        "The department improved forecast accuracy by 12% during my time leading the department.",
        "Led an 8 person analytical team in providing planned and ad hoc analysis and recommendations to stakeholders ranging from Sr. Executives to Analysts.",
        "Developed custom software application using Python and C# to cluster items based on seasonal trends which enables faster, more frequent review of item seasonality and supports advanced strategies for improving in-stock and inventory turns during seasonal periods." 
         ],
     "skills": ["Leadershipt", "Forecasting", "Demand Planning"],
-    "companyLogoImg": "",
+    "companyLogoImg": "images/dollargeneral.png",
 }
 
 var projectManager = {
@@ -50,7 +50,7 @@ var projectManager = {
         "Led GOLD user training for 200 employees from the Store Support Center and the Hong Kong office, which was highly rated by participants, based on post-event feedback surveys, and supported the timely rollout of the SCS project."
         ],
     "skills": ["Project Management", "User Acceptance Testing", "Design", "Training and Development"],
-    "companyLogoImg": "",
+    "companyLogoImg": "images/dollargeneral.png",
 }
 
 var strategicPlanningAndAnalysis = {
@@ -64,7 +64,7 @@ var strategicPlanningAndAnalysis = {
         "Led the company’s Out-of-Stock Reduction initiative which worked cross-functionally to develop, test and implement solutions aimed at improving store in-stocks and increasing sales by $41.5 million."
     ],
     "skills": ["A B Testing", "Analysis", "Financial Planning", "ROI IRR Analysis"],
-    "companyLogoImg": "",
+    "companyLogoImg": "images/dollargeneral.png",
 }
 
 let jobs = [];
@@ -80,12 +80,33 @@ const resumeDB = JSON.parse(localStorage.getItem("resume"));
 
 // I would use specific formatting for jobs
 // and would pull it specifically
-const jobs = resumeDB.jobs;
-
+const jobsFromDB = resumeDB.jobs;
+const jobsSection = document.getElementById("resume-jobs");
 // loop through the array of job objects
-for (let i = 0; i < jobs.length; i++) {
-    let job = jobs[i];
+for (let i = 0; i < jobsFromDB.length; i++) {
+    let job = jobsFromDB[i];
 
+    let resumeBullets="";
+    console.log(job.accomplishments.length)
+    for (let accompTracker = 0; accompTracker < job.accomplishments.length; accompTracker++) {
+        resumeBullets += 
+        `<li>${job.accomplishments[accompTracker]}</li>`;
+    }
+    
+    console.log(resumeBullets);
+
+    jobsSection.innerHTML += `
+    <article class="professional-experience">
+      <header class="article-header">
+        ${job.headline}
+      </header>
+      <img src="${job.companyLogoImg}"
+      <h3>${job.title}<h3>
+      <ul>
+        ${resumeBullets}
+      </ul>
+      </article>
+    `
     
 }
 
