@@ -19,9 +19,9 @@ const email = {
 const github = {
     "service-name": "GitHub",
     "handle": "krysmathis",
-    "url": "https://github.com/krysmathis",
+    "url": "https://www.github.com/krysmathis",
     "icon": "./images/github.png",
-    "iconAlt": "github icon"
+    "iconAlt": "email icon"
 };
 
 const linkedIn = {
