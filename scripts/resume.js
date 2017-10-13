@@ -87,17 +87,15 @@ for (let i = 0; i < jobsFromDB.length; i++) {
     let job = jobsFromDB[i];
 
     let resumeBullets="";
-    console.log(job.accomplishments.length)
+
     for (let accompTracker = 0; accompTracker < job.accomplishments.length; accompTracker++) {
         resumeBullets += 
         `<li>${job.accomplishments[accompTracker]}</li>`;
     }
-    
-    console.log(resumeBullets);
 
     jobsSection.innerHTML += `
     <article class="professional-experience">
-      <header class="article-header">
+      <header class="article-header resume-header">
         ${job.headline}
       </header>
       <img src="${job.companyLogoImg}"

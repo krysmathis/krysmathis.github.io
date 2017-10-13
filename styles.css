@@ -128,6 +128,9 @@ article p {
 	position: relative;
 }
 
+.resume-jobs{
+	display: flex;
+}
 .profesional-experiece h3 {
 	padding: 10px 0px 10px 0px;
 	font-weight: bold;
@@ -379,9 +382,13 @@ article p {
 }
 
 
-@media (min-width: 568px) {
+@media (max-width: 769px) {
   #menu select, #menu button {
     display: none;
+  }
+
+  .article-header {
+	  height: auto;
   }
 }
 

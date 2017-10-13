@@ -71,8 +71,6 @@ for(let key in projectsDB) {
             teammates += `<a href="${teammate.personalSite}">${teammate.name}</a>`;
         }
 
-        console.log(teammates);
-
         //let html = "";
         projectsHTML.innerHTML += `
             <article class="project-detail ${technology.toLowerCase()}">
@@ -89,10 +87,7 @@ for(let key in projectsDB) {
             </article>
         `
 
-        
-        
-        //+= html;
-        console.log(projectsHTML.innerHTML);
+
     }
 
 }
