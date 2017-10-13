@@ -75,3 +75,17 @@ let Resume = {
 }
 
 localStorage.setItem("resume", JSON.stringify(Resume));
+
+const resumeDB = JSON.parse(localStorage.getItem("resume"));
+
+// I would use specific formatting for jobs
+// and would pull it specifically
+const jobs = resumeDB.jobs;
+
+// loop through the array of job objects
+for (let i = 0; i < jobs.length; i++) {
+    let job = jobs[i];
+
+    
+}
+
