@@ -1,7 +1,7 @@
 #about-wrap {
     display: grid;
     min-height: 100vh;
-    grid-template-rows: 75px minmax(500px, 1fr) 50px; 
+    grid-template-rows: 68px minmax(500px, 1fr) 50px; 
     grid-template-columns: 1fr;
     grid-template-areas: 
     "header"
@@ -20,8 +20,10 @@
 }
 
 #about-container {
+    height: 100vh;
     display: grid;
     grid-area: about-container;
+    grid-template-rows: 300px 2fr 2fr;
     grid-template-areas: 
     "image intro intro"
     "history history history"
@@ -29,12 +31,23 @@
 
 }
 
+#about-headshot {
+    text-align: center;
+    height: 200px;
+    width: auto;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
 #about-image {
     grid-area: image;
+    text-align: center;
+    padding-top: 10%;
 }
 
 #intro {
     grid-area: intro;
+    padding-top: 30px;
 }
 
 #history {
@@ -51,4 +64,9 @@
 
 #about-resume {
     grid-area: resume;
+}
+
+#intro p {
+	font-family: 'Archivo Black', sans-serif;
+    font-size: 1.25em;
 }

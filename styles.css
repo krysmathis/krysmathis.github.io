@@ -105,6 +105,16 @@ article p {
 }
 
 /* --- Class Level Attributes --- */
+.card {
+	padding: 10px;
+	margin-bottom: 30px;
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px #1D1D1D;
+	border: solid 5px white;
+}
+
+
 .article-header {
 	background-color: inherit;
 	color: inherit;
@@ -372,10 +382,7 @@ article p {
 }
 
 
-#intro p {
-	font-family: 'Archivo Black', sans-serif;
-    font-size: 2em;
-}
+
 
 @media (min-width: 320px) and (max-width: 568px) {
   #menu ul {
