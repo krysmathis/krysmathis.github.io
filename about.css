@@ -1,0 +1,54 @@
+#about-wrap {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: 75px minmax(500px, 1fr) 50px; 
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "header"
+    "about-container"
+    "footer";
+    
+    
+}
+
+.main-header {
+    grid-area: header;
+}
+
+.main-footer {
+    grid-area: footer;
+}
+
+#about-container {
+    display: grid;
+    grid-area: about-container;
+    grid-template-areas: 
+    "image intro intro"
+    "history history history"
+    "blog projects resume"; 
+
+}
+
+#about-image {
+    grid-area: image;
+}
+
+#intro {
+    grid-area: intro;
+}
+
+#history {
+    grid-area: history;
+}
+
+#about-blog {
+    grid-area: blog;
+}
+
+#about-blog {
+    grid-area: projects;
+}
+
+#about-resume {
+    grid-area: resume;
+}
