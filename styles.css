@@ -93,7 +93,7 @@ article {
     margin-top: 10px;
     margin-left: 20px;
     padding-top: 20px;
-    border-top: 1px solid #B3B3B3;
+    /* border-top: 1px solid #B3B3B3; */
 }
 
 article ul {
