@@ -18,6 +18,10 @@ body {
 	background: #D4D3D3;
 }
 
+.section-background {
+	background: green;
+}
+
 nav {
 	background: #384047;
 	height: 40px;
