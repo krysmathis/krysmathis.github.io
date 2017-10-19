@@ -341,7 +341,8 @@ article p {
 /* <---- FOOTERS -----> */
 .main-footer {
 	padding-top: 15px;
-	padding-left: 10px;
+	/* padding-left: 10px;
+	padding-right: 0px; */
 	color: white;
 	text-align: left;
 	height: 40px;
@@ -353,6 +354,10 @@ article p {
 	background: 	url("images/linkedin.png") 250px 0px/40px 40px no-repeat,	
 					  url("images/twitter.png") 200px 0px/40px 40px no-repeat;
 	*/				
+}
+
+.main-footer span {
+	padding-left: 50px;
 }
 
 /*

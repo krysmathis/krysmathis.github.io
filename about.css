@@ -7,8 +7,6 @@
     "header"
     "about-container"
     "footer";
-    
-    
 }
 
 .main-header {
@@ -20,15 +18,17 @@
 }
 
 #about-container {
+    margin: 0;
+    padding: 40px;
     display: grid;
     grid-area: about-container;
     grid-template-rows: .25fr 1fr 1fr;
     grid-auto-flow: column;
     grid-template-columns: repeat(6, 1fr);
     grid-template-areas: 
-    "image image intro intro intro ."
-    "history history history history history history"
-    "containercards containercards containercards containercards containercards containercards"; 
+    "intro intro intro intro intro intro"
+    "containercards containercards containercards containercards containercards containercards"
+    "history history history history history history";
 
 }
 
@@ -39,8 +39,8 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-auto-columns: 1fr;
     grid-auto-flow: column;
+    margin-left: 40px;
     grid-gap: 20px;
-    padding: 5px 30px 5px 30px;
     text-align: center;
 }
 
@@ -51,33 +51,43 @@
 
 #about-headshot {
     text-align: center;
-    height: 100px;
-    width: auto;
     border: 1px solid black;
     border-radius: 50%;
+    height: 100%;
+    width: 100%;
 }
 
 #about-image {
     grid-area: image;
     text-align: center;
     padding-top: 10px;
-    visibility: hidden;
+    margin-left: 50px;
+    /* background-image: url("./images/sm-headshot.jpg"); */
+    text-align: center;
+    /* border: 1px solid black; */
+    /* border-radius: 50%; */
+    height: 100%;
+    width: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+
 }
+
 
 #intro {
     grid-area: intro;
     padding-top: 30px;
     text-align: center;
+    width: 100%;
 }
 
 #history {
+    width: 100%;
     grid-area: history;
-    padding-bottom: 20px;
-    padding-right: 0px;
-    margin-left: 50px;
-    padding-left: 50px;
-    margin-bottom: 50px;
-    margin-right: 10px;
+}
+
+#history p {
+    padding: 20px;
 }
 
 .about-card-icon {
@@ -99,20 +109,26 @@
 }
 
 #about-blog {
-    grid-column: 3 / 4;
+    /* grid-column: 3 / 4; */
     animation: 3s ease-out 0s 1 slideInFromLeft;
     text-align: center;
 }
 
 
 #about-projects {
-    animation: 1s ease-out 0s 1 slideInFromLeft;
+    /* animation: 1s ease-out 0s 1 slideInFromLeft; */
     grid-column: 1 / 2;
 }
 
 #about-resume {
-    animation: 2s ease-out 0s 1 slideInFromLeft;
+    /* animation: 2s ease-out 0s 1 slideInFromLeft; */
     grid-column: 2 / 3;
+}
+
+#about-projects, 
+#about-blog,
+#about-resume {
+    display: none;
 }
 
 @keyframes slideInFromLeft {
