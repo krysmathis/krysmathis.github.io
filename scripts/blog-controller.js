@@ -1,6 +1,5 @@
 // TODO: verify the database exists
-// 1. In HTML, create a section with an id=displayer and a section to hold the pagination id=paginator
-// 2. In pagination.js:
+
 // 2.0 Pull in the database and check how many articles are there
 const blogDB = JSON.parse(localStorage.getItem("blog"));
 const numberOfItems = blogDB.blogEntries.length;
@@ -30,7 +29,7 @@ blogPaginationEl.innerHTML = pagination;
  // 2.2.4 Capture the new <  and > elements in a variable (we'll use it later)
 const previousEl = document.getElementById("blog-previous");
 const nextEl = document.getElementById("blog-next");
-
+const pageNums = document.getElementsByClassName("blog-paginate-link")
 
 // 2.3  Function for update page that takes an event, the user will click on the span or li
 //      to update the page
@@ -46,22 +45,26 @@ function updateBlogPage( event ) {
                     if (cl.startsWith("blogpage-")) return cl;
                 }).split("-")[1]);
 
-            console.log(pageNumber);
-                
+            Array.from(pageNums).forEach(function(element) {
+                element.classList.remove("blog-selected");
+            }, this);
+
+            
+            pageNums[pageNumber - 1].className += " blog-selected";
             // 2.3.3 update the arrows with the current page and control the formatting
 
             if (pageNumber === 1) {
-                previousEl.style.display = "none";
+                previousEl.style.visibility = "hidden";
             } else {
-                previousEl.style.display = "";
-                previousEl.className = `blog-paginate-link blogpage-${pageNumber-1}`;
+                previousEl.style.visibility = "";
+                previousEl.className = `blogpage-${pageNumber-1}`;
             }
 
             if (pageNumber + 1 > numberOfPages) {
-                nextEl.style.display = "none";
+                nextEl.style.visibility = "hidden";
             } else {
-                nextEl.style.display = "";
-                nextEl.className = `blog-paginate-link blogpage-${pageNumber+1}`;
+                nextEl.style.visibility = "";
+                nextEl.className = `blogpage-${pageNumber+1}`;
             }
             // 2.3.4 determine which items to display by slicing the array based on PAGENUMBER -1 * 2
             const itemsToDisplay = blogDB.blogEntries.slice(
@@ -104,7 +107,7 @@ function updateBlogPage( event ) {
 }       
 // 2.4  Programmically assign event listeners on the spans to check when they are clicked
 //      and send that to the function is 2.3
-    const pageNums = document.getElementsByClassName("blog-paginate-link")
+    
     for (let i = 0; i < pageNums.length; i++) {
         let element = pageNums[i];
         element.addEventListener("click", updateBlogPage,false);
