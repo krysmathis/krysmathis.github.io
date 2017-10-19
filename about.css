@@ -20,14 +20,13 @@
 }
 
 #about-container {
-    min-height: 100vh;
     display: grid;
     grid-area: about-container;
-    grid-template-rows: .25fr auto 1fr;
+    grid-template-rows: .25fr 1fr 1fr;
     grid-auto-flow: column;
     grid-template-columns: repeat(6, 1fr);
     grid-template-areas: 
-    "image image intro intro intro intro"
+    "image image intro intro intro ."
     "history history history history history history"
     "containercards containercards containercards containercards containercards containercards"; 
 
@@ -42,9 +41,13 @@
     grid-auto-flow: column;
     grid-gap: 20px;
     padding: 5px 30px 5px 30px;
-
+    text-align: center;
 }
 
+.about-card {
+    padding: 0px;
+    height: 120px;
+}
 
 #about-headshot {
     text-align: center;
@@ -57,43 +60,71 @@
 #about-image {
     grid-area: image;
     text-align: center;
-    padding-top: 10%;
+    padding-top: 10px;
     visibility: hidden;
 }
 
 #intro {
     grid-area: intro;
     padding-top: 30px;
+    text-align: center;
 }
 
 #history {
     grid-area: history;
     padding-bottom: 20px;
     padding-right: 0px;
-    margin-left: 30px;
+    margin-left: 50px;
     padding-left: 50px;
     margin-bottom: 50px;
-    margin-right: 0;
+    margin-right: 10px;
 }
 
+.about-card-icon {
+    text-align: center;
+    font-size: 2em;
+    padding: 10px;
+}
 
+.about-card-heading {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    background-color: rgba(0,0,0,.25);
+}
+
+.about-card-description {
+    text-align: left;
+    font-size: .8em;
+}
 
 #about-blog {
-    grid-column: 1 / 2;
-    height: 30px;
+    grid-column: 3 / 4;
+    animation: 3s ease-out 0s 1 slideInFromLeft;
+    text-align: center;
 }
 
+
 #about-projects {
-    grid-column: 2 / 3;
-    height: 60px;
+    animation: 1s ease-out 0s 1 slideInFromLeft;
+    grid-column: 1 / 2;
 }
 
 #about-resume {
-    grid-column: 3 / 4;
-    height: 80px;
+    animation: 2s ease-out 0s 1 slideInFromLeft;
+    grid-column: 2 / 3;
 }
 
+@keyframes slideInFromLeft {
+    /* 0% {
+      transform: translateY(150%);
+    }
+    100% {
+      transform: translateY(0);
+    } */
+  }
+
 #intro p {
-	font-family: 'Archivo Black', sans-serif;
-    font-size: 1.25em;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.50em;
 }
