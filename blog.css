@@ -2,19 +2,33 @@
     display: inline;
 }
 
+
+
 #blog-pagination > span {
-    margin: 10px 20px 10px 20px;
-    padding-bottom: 10px;
+    background: white;
+    display: inline-block;
+    margin: 10px;
+    height: auto; width: 25px;
+    padding: 10px;
+    /* border: 1px solid #0096FF; */
+    border-radius: 50%;
 }
 
-#blog-pagination > span:hover { cursor: pointer; }
+#blog-pagination > span:hover { 
+    cursor: pointer; 
+    background: #0096FF;
+    color: white;
+}
 
 #blog-pagination {
     text-align: center;
     font-size: 1.25em;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
-.blog-selected {
-    color: grey;
+
+.blog-paginate-link.blog-selected {
+    color: white;
+    background: #0096FF !important;
+    
 }

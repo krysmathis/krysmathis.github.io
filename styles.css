@@ -22,6 +22,10 @@ body {
 	background-color: #52bab3;
 }
 
+.main-content {
+	margin-top: 85px;
+}
+
 nav {
 	background: #384047;
 	height: 40px;
@@ -335,8 +339,16 @@ article p {
 .brand {
 	font-size: 1.5em; 
 	padding-left: 10px;
+	color: white;
+
 }
 
+.fixed {
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	margin-top: 0px;
+}
 
 /* <---- FOOTERS -----> */
 .main-footer {
