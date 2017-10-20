@@ -1,7 +1,7 @@
 #about-wrap {
     display: grid;
-    height: 100vh;
-    grid-template-rows: 68px minmax(300px, 1fr) 50px; 
+    min-height: 100vh; 
+    grid-template-rows: 50px minmax(300px, 1fr) 50px; 
     grid-template-columns: 1fr;
     grid-template-areas: 
     "header"
@@ -10,22 +10,27 @@
 }
 
 .main-header {
+    grid-row: 1 / 2;
     grid-area: header;
-    }
+}
 
 .main-footer {
-    grid-area: footer;
+    /* grid-area: footer; */
+    grid-row: 3 / -1;
 }
+
 
 #about-container {
     margin: 0;
-    padding: 40px;
+    padding: 0px;
+    min-height: 100vh;
     display: grid;
-    grid-area: about-container;
-    grid-template-rows: .25fr 1fr 1fr;
+    grid-row: 2 / 3;
+    grid-template-rows: 400px  auto;
     grid-auto-flow: column;
     grid-template-columns: repeat(6, 1fr);
     grid-template-areas: 
+    "image image image image image image"
     "intro intro intro intro intro intro"
     "containercards containercards containercards containercards containercards containercards"
     "history history history history history history";
@@ -58,17 +63,13 @@
 }
 
 #about-image {
+    margin: 0px; padding: 0px;
+    width: 100%;
     grid-area: image;
     text-align: center;
-    padding-top: 10px;
-    margin-left: 50px;
-    /* background-image: url("./images/sm-headshot.jpg"); */
-    text-align: center;
-    /* border: 1px solid black; */
-    /* border-radius: 50%; */
-    height: 100%;
-    width: auto;
-    background-size: contain;
+    background-image: url("images/deer.jpg");
+    background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
 
 }
@@ -109,7 +110,7 @@
 }
 
 #about-blog {
-    /* grid-column: 3 / 4; */
+    grid-column: 3 / 4;
     animation: 3s ease-out 0s 1 slideInFromLeft;
     text-align: center;
 }
