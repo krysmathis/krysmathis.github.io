@@ -8,16 +8,36 @@ const social-media-type = {
 }
 */
 
-const email = {
-    "service-name": "Email",
-    "handle": "krysmathis",
-    "url": "mailto:krysmathis@test.com",
-    "icon": "./images/email.png",
-    "iconAlt": "email icon"
+const contactIdGenerator = function* () {
+    let i = 0;
+    while(true) {
+        yield i;
+        i++;
+    }
+}
+
+let contactIdFactory = contactIdGenerator();
+
+const contact = function(serviceName, handle, url, icon, iconAlt) {
+    return Object.create({},{
+        "contactId": {value: contactIdFactory.next().value, enumerable: true},
+        "service": {value: serviceName, enumerable: true},
+        "handle": {value: handle, enumerable: true},
+        "url": {value: url, enumerable: true},
+        "icon": {value: icon, enumerable: true},
+        "iconAlt": {value: iconAlt, enumerable: true},
+        getService: {value: function(){
+            return this.contactId;
+        }, enumerable: true}
+    });
 };
 
+const email = contact("Email", "krysmathis", "mailto:krysmathis@test.com","./images/email.png", "email icon" );
+
+console.log("email service: ", email.getService());
+
 const github = {
-    "service-name": "GitHub",
+    "service": "GitHub",
     "handle": "krysmathis",
     "url": "https://www.github.com/krysmathis",
     "icon": "./images/github.png",
@@ -25,7 +45,7 @@ const github = {
 };
 
 const linkedIn = {
-    "service-name": "LinkedIn" ,
+    "service": "LinkedIn" ,
     "handle": "krysmathis",
     "url": "https://www.linkedin.com/in/krysmathis/",
     "icon": "./images/linkedin.png", 
@@ -33,7 +53,7 @@ const linkedIn = {
 };
 
 const twitter = {
-    "service-name": "Twitter" ,
+    "service": "Twitter" ,
     "handle": "coldbuckets",
     "url": "https://twitter.com/coldbuckets",
     "icon": "./images/twitter.png",

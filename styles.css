@@ -126,7 +126,7 @@ article p {
 .article-header {
 	background-color: inherit;
 	color: inherit;
-	font-family: 'Archivo Black', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-size: 1.5em;
 	font-weight: bold;
 	height: 30px;
@@ -337,9 +337,11 @@ article p {
 }
 
 .brand {
-	font-size: 1.5em; 
+	font-size: 1.5em;
+	padding-top: 10px; 
 	padding-left: 10px;
 	color: white;
+	height: 40px;
 
 }
 

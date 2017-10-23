@@ -1,4 +1,5 @@
-// TODO: verify the database exists
+
+{// TODO: verify the database exists
 
 // 2.0 Pull in the database and check how many articles are there
 const blogDB = JSON.parse(localStorage.getItem("blog"));
@@ -124,10 +125,7 @@ updateBlogPage({
 });
 
 
-
-
-
-
+}
 
 
 
