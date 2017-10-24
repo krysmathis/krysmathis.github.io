@@ -23,7 +23,7 @@ body {
 }
 
 .main-content {
-	margin-top: 85px;
+	margin-top: 110px;
 }
 
 nav {
@@ -91,7 +91,6 @@ header {
 h1 {
 	margin: 40px 0 10px;
 	text-align: center;
-	color: #384047;
 }
 
 article {
@@ -99,8 +98,8 @@ article {
 	width: 90%;
     text-align: left;
     margin-top: 10px;
-    margin-left: 20px;
-    padding-top: 20px;
+    /*margin-left: 20px; */
+    /* padding-top: 20px; */
     /* border-top: 1px solid #B3B3B3; */
 }
 

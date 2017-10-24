@@ -1,7 +1,7 @@
 #about-wrap {
     display: grid;
     min-height: 100vh; 
-    grid-template-rows: 50px minmax(300px, 1fr) auto  50px; 
+    grid-template-rows: 50px 50vh auto  50px; 
     grid-template-columns: 1fr;
     grid-template-areas: 
     "header"
@@ -20,19 +20,15 @@
     grid-row: 4 / -1;
 }
 
+#intro h1 {
+    padding: 10px 0px 10px 0px;
+    margin: 0;
+}
 
 #about-container {
     margin: 0;
     padding: 0;
-    display: grid;
     grid-row: 3 / 4;
-    grid-template-rows: 1fr auto;
-    grid-auto-flow: column;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-areas: 
-    "intro intro intro intro intro intro"
-    "containercards containercards containercards containercards containercards containercards"
-    "history history history history history history";
 
 }
 
@@ -64,22 +60,49 @@
     margin: 0px; padding: 0px;
     width: 100%;
     grid-area: image;
-    grid-row: 2 / 3;
     text-align: center;
     position: relative;
-    background-image: url("images/deer.jpg");
+    height: 100%;
+    background-image: url("images/background.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 
+    /* Display the content in the middle of the div using flexbox*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
+.about-image-textblock {
+    display: block;
+    text-align: left;
+    position: absolute;
+    padding: 20px;
+    color: white;
+    background-color: rgba(0,0,0,.45);
+    box-shadow: 10px 10px 10px rgba(0,0,0,.45);
+
+}
+
+#text-block-brand {
+    font-size: 3em;
+    border-bottom: 1px solid rgba(255,255,255,.45);
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+
+#text-block-tagline {
+    padding-top: 5px;
+}
 
 #intro {
     grid-area: intro;
-    padding-top: 30px;
     text-align: center;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 #history {
