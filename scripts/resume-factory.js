@@ -36,7 +36,7 @@ const uniqueResumeIdFactory = uniqueResumeIdGenerator();
 
 const professionalExperience = function(headline, company, startDate, endDate, title, accomplishments, skills, logo){
     return Object.create({},{
-        "uniqueId": uniqueResumeIdFactory.next().value,
+        "id": uniqueResumeIdFactory.next().value,
         "headline": {value: headline, enumerable: true},
         "company": {value: company, enumerable: true},
         "startDate": {value: startDate, enumerable: true},

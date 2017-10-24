@@ -26,6 +26,7 @@ const uniqueProjectIdFactory = uniqueProjectIdGenerator();
 
 const project = function(name, description, dateCompleted, technologies, teammates, href, repository){
     return Object.create({},{
+        "id": uniqueProjectIdFactory.next().value,
         "name": {value: name, enumerable: true},
         "description": {value: description, enumerable: true},
         "dateCompleted": {value: dateCompleted, enumerable: true},

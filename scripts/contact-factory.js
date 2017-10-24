@@ -10,7 +10,7 @@ let contactIdFactory = contactIdGenerator();
 
 const contact = function(serviceName, handle, url, icon, iconAlt) {
     return Object.create({},{
-        "contactId": {value: contactIdFactory.next().value, enumerable: true},
+        "id": {value: contactIdFactory.next().value, enumerable: true},
         "service": {value: serviceName, enumerable: true},
         "handle": {value: handle, enumerable: true},
         "url": {value: url, enumerable: true},

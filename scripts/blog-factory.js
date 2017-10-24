@@ -41,7 +41,7 @@ const blogIdFactory = blogIdGenerator();
 
 const blogObjectFactory = function (headline, dateAdded, author, imgHeader, content, ...tags) {
     return Object.create({},{
-        "id": {value: blogIdFactory.next().value, enumerable: true},
+        "idd": {value: blogIdFactory.next().value, enumerable: true},
         "headline": {value: headline, enumerable: true},
         "dateAdded": {value: dateAdded, enumerable: true},
         "author": {value: dateAdded, enumerable: true},
