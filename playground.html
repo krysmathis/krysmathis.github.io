@@ -3,6 +3,7 @@
     <head>
         <title>Welcome to my personal site</title>
         <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" type="text/css" href="css/playground.css">
     </head>
     <div class="wrap">
     <body>
@@ -18,17 +19,17 @@
             </ul>
         </nav>
     </header>
-    <main class="main-content">
-    <h2 class="social-links-header">Reach out to me</h2>
-    <main id="social-links">
-           <!-- populated from db -->
-     </main>
-    </div> <!-- wrap -->    
+    <main class="main-content relative">
+        <div id="popup" class="popup">
+            <input type="range" id="popup-range" class="popup">
+            <div class="popup" id="popup-value">5</div>
+        </div>
+        <div id="popup-area" class="popup centered"></div>
     </main>
+    </div> <!-- wrap -->    
     <footer class="main-footer">
             &copy;2017 Krys Mathis
     </footer>
-    <script src="scripts/contact-factory.js"></script>
-    <script src="scripts/contact.js"></script>
+    <script src="scripts/playground.js"></script>
     </body>
 </html>

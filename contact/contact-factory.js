@@ -23,10 +23,10 @@ const contact = function(serviceName, handle, url, icon, iconAlt) {
 };
 
 // --- Generate the contact objects
-const email = contact("Email", "krysmathis", "mailto:krysmathis@test.com","./images/email.png", "email icon" );
-const github = contact("GitHub", "krysmathis", "https://www.github.com/krysmathis", "./images/github.png","email icon");
-const linkedIn = contact("LinkedIn","krysmathis","https://www.linkedin.com/in/krysmathis/","./images/linkedin.png", "linkedin");
-const twitter = contact("Twitter" ,"coldbuckets","https://twitter.com/coldbuckets","./images/twitter.png","twitter bird");
+const email = contact("Email", "krysmathis", "mailto:krysmathis@test.com","../images/email.png", "email icon" );
+const github = contact("GitHub", "krysmathis", "https://www.github.com/krysmathis", "../images/github.png","email icon");
+const linkedIn = contact("LinkedIn","krysmathis","https://www.linkedin.com/in/krysmathis/","../images/linkedin.png", "linkedin");
+const twitter = contact("Twitter" ,"coldbuckets","https://twitter.com/coldbuckets","../images/twitter.png","twitter bird");
 
 // --- hold the contact objects in an array
 let contactMethods = [];

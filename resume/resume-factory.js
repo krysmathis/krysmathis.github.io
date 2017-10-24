@@ -34,9 +34,9 @@ const uniqueResumeIdGenerator = function*() {
 
 const uniqueResumeIdFactory = uniqueResumeIdGenerator();
 
-const professionalExperience = function(headline, company, startDate, endDate, title, accomplishments, skills, logo){
+let professionalExperience = function(headline, company, startDate, endDate, title, accomplishments, skills, logo){
     return Object.create({},{
-        "id": uniqueResumeIdFactory.next().value,
+        "id": {value: uniqueResumeIdFactory.next().value, enumerable: false},
         "headline": {value: headline, enumerable: true},
         "company": {value: company, enumerable: true},
         "startDate": {value: startDate, enumerable: true},
@@ -45,7 +45,7 @@ const professionalExperience = function(headline, company, startDate, endDate, t
         "accomplishments": {value: accomplishments, enumerable: true},
         "skills": {value: skills, enumerable: true},
         "companyLogoImg": {value: logo, enumerable: true}
-    })
+    });
 }
 
 const demandPlanningDir = professionalExperience (
@@ -60,7 +60,7 @@ const demandPlanningDir = professionalExperience (
         "Developed custom software application using Python and C# to cluster items based on seasonal trends which enables faster, more frequent review of item seasonality and supports advanced strategies for improving in-stock and inventory turns during seasonal periods." 
     ],
     ["Leadership", "Forecasting", "Demand Planning"],
-    "images/dollargeneral.png",
+    "../../images/dollargeneral.png",
 );
 
 
@@ -75,7 +75,7 @@ var projectManager = professionalExperience(
         "Led GOLD user training for 200 employees from the Store Support Center and the Hong Kong office, which was highly rated by participants, based on post-event feedback surveys, and supported the timely rollout of the SCS project."
         ],
     ["Project Management", "User Acceptance Testing", "Design", "Training and Development"],
-    "images/dollargeneral.png",
+    "../../images/dollargeneral.png",
 );
 
 var strategicPlanningAndAnalysis = professionalExperience(
@@ -89,7 +89,7 @@ var strategicPlanningAndAnalysis = professionalExperience(
         "Led the company’s Out-of-Stock Reduction initiative which worked cross-functionally to develop, test and implement solutions aimed at improving store in-stocks and increasing sales by $41.5 million."
     ],
     ["A B Testing", "Analysis", "Financial Planning", "ROI IRR Analysis"],
-    "images/dollargeneral.png",
+    "../../images/dollargeneral.png",
 );
 
 let jobs = [];

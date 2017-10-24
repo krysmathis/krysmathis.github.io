@@ -85,7 +85,7 @@ function updateBlogPage( event ) {
                         <div class="blog-date">${(entry.dateAdded)}</div>
                     </div>
                     <div class="blog-img-header">
-                        <img src="${entry.imgHeader}">
+                        <img src="../${entry.imgHeader}">
                     </div>
                     <div class="blog-content">
                         ${entry.content}
