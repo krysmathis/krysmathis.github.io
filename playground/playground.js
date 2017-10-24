@@ -72,3 +72,5 @@ function positionPopupOnPage( evt ) {
     popup.style.top = intPopupOffsetTop + 'px';
     popup.style.left = intPopupOffsetLeft + 'px';
     }   // end fn positionPopupOnPage
+
+    console.log(moment()); 

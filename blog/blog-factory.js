@@ -28,17 +28,6 @@ const blogIdGenerator = function* () {
 
 const blogIdFactory = blogIdGenerator();
 
-// Factory function that returns a blog article object
-// const blogObjectFactory = function (title, entry, ...tags) {
-//     return Object.create(null, {
-//         "id": { value: blogIdFactory.next().value, enumerable: true },
-//         "title": { value: title, enumerable: true },
-//         "body": { value: entry, enumerable: true },
-//         "tags": { value: tags, enumerable: true },
-//         "published": { value: Date.now(), enumerable: true }
-//     })
-// }
-
 const blogObjectFactory = function (headline, dateAdded, author, imgHeader, content, ...tags) {
     return Object.create({},{
         "id": {value: blogIdFactory.next().value, enumerable: true},
@@ -47,14 +36,17 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
         "author": {value: dateAdded, enumerable: true},
         "imgHeader": {value: imgHeader, enumerable: true},
         "content": {value: content, enumerable: true},
-        "tags": {value: tags, enumerable: true}
+        "tags": {value: tags, enumerable: true},
+        "getDate": {value: function() {
+            return moment(dateAdded).format("YYYY-MM-DD");
+        }, enumerable: false}
     });
 }
 
 
     const blogEntry20171006 = blogObjectFactory(
         "First Week at NSS",
-        "2017-10-06",
+        moment("2017-10-16").format("YYYY-MM-DD"),
         "Krys Mathis",
         "images/journeybegins.jpg",
         "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
@@ -63,16 +55,16 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
 
     const blogEntry2 = blogObjectFactory(
         "Second Blog Entry",
-        "2017-10-06",
+        moment("2017-10-07").format("YYYY-MM-DD"),
         "Krys Mathis",
         "images/journeybegins.jpg",
-        "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
+        "<p>Brocolli! Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
         "footer", "html", "css"
     );
 
     const blogEntry3 = blogObjectFactory(
         "3",
-        "2017-10-06",
+        moment("2017-10-08").format("YYYY-MM-DD"),
         "Krys Mathis",
         "images/journeybegins.jpg",
         "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
@@ -81,7 +73,7 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
 
     const blogEntry4 = blogObjectFactory(
         "4",
-        "2017-10-06",
+        moment("2017-10-09").format("YYYY-MM-DD"),
         "Krys Mathis",
         "images/journeybegins.jpg",
         "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
@@ -90,7 +82,7 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
 
     const blogEntry5 = blogObjectFactory(
         "5",
-        "2017-10-06",
+        moment("2017-10-10").format("YYYY-MM-DD"),
         "Krys Mathis",
         "images/journeybegins.jpg",
         "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
@@ -99,7 +91,7 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
 
     const blogEntry6 = blogObjectFactory(
         "6",
-        "2017-10-06",
+        moment("2017-10-11").format("YYYY-MM-DD"),
         "Krys Mathis",
         "images/journeybegins.jpg",
         "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
@@ -117,6 +109,7 @@ blogEntries.push(blogEntry6);
 
 // The blog object
 let Blog = {
+    // add the blog as a sorted object
     "blogEntries": blogEntries
 }
 

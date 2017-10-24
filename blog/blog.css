@@ -102,3 +102,29 @@
     background: #0096FF !important;
     
 }
+
+/* Seach bar criteria */
+#blog-search-container {
+	margin: 0 auto;
+	display: flex;
+	justify-content: flex-start;
+	width: 90%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	align-items: center;
+	border: 1px solid black;
+	padding: 10px;
+}
+
+#blog-search-container input {
+	width: 100%;
+	height: 25px;
+	padding: 5px;
+	margin-left: 5px;
+	font-size: 1em;
+}
+
+
+
+
+
