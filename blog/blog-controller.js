@@ -28,16 +28,22 @@ const getBlogs = function (searchCriteria) {
 
 const paginator = function (blogs) {
 
-
     const numberOfItems = blogs.length;
     // 2.1 Establish the constraints and calcs for the pagination
     const itemsPerPage = 5; // constant value
     const numberOfPages = Math.ceil(numberOfItems / itemsPerPage);
-
+    
     // 2.2 Programically generate the pagination section
     const blogsEl = document.getElementById("blog-posts");
     const blogPaginationEl = document.getElementById("blog-pagination");
-
+    
+    if (blogs.length < 1) {
+        blogsEl.innerHTML = "No blogs found...";
+        blogPaginationEl.style.visibility = "hidden";
+        return;
+    } else {
+        blogPaginationEl.style.visibility = "visible";
+    }
     // 2.2.1 Assign the < and > elements with unique classes, we'll store the current
     //       page inside the class as 'page-#'
     // for the previous arrow
@@ -57,9 +63,11 @@ const paginator = function (blogs) {
     const previousEl = document.getElementById("blog-previous");
     const nextEl = document.getElementById("blog-next");
     const pageNums = document.getElementsByClassName("blog-paginate-link")
-
+    
     // 2.3  Function for update page that takes an event, the user will click on the span or li
     //      to update the page
+    
+    
     function updateBlogPage(event) {
 
         // 2.3.1 Clear the innerHTML of the "displayer"
@@ -80,7 +88,7 @@ const paginator = function (blogs) {
         // in the instance that there is only one page or zero pages
         // do not populate the pagination
 
-        if (pageNums.length > 1) {
+        
 
             pageNums[pageNumber - 1].className += " blog-selected";
             // 2.3.3 update the arrows with the current page and control the formatting
@@ -136,10 +144,14 @@ const paginator = function (blogs) {
                 html += "</ul></div></article>";
                 blogsEl.innerHTML += html;
             }
-        } else {
-            previousEl.style.visibility = "hidden";
-            nextEl.style.visibility = "hidden";
-        }
+            
+            if (pageNums < 2) {
+                // hide the pagination in the event there is only 1 page
+                paginationEl.style.visibility = "hidden";
+                previousEl.style.visibility = "hidden";
+                nextEl.style.visibility = "hidden";
+            }
+            
     }
     // 2.4  Programmically assign event listeners on the spans to check when they are clicked
     //      and send that to the function is 2.3
