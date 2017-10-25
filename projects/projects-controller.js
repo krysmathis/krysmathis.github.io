@@ -1,13 +1,34 @@
-const projectsDB = JSON.parse(localStorage.getItem("projects"));
 
-const projectsHTML = document.getElementById("projects");
+let getProjects = function(searchString) {
 
-for(let key in projectsDB) {
+    const projectsDB = JSON.parse(localStorage.getItem("projects")) || {};
 
-    let currentKey = projectsDB[key];
+    if (searchString === undefined) {
+        return projectsDB.projects || [];
+        
+    } else {
+        return projectsDB.projects.filter(function(proj){
+            return proj.description.toLowerCase().includes(searchString) || proj.name.toLowerCase().includes(searchString);
+        }) || [];
+    }
 
-    for (let i = 0; i < currentKey.length; i++) {
-        let project = currentKey[i];
+}
+
+/*
+Sort the projects in descending order according to the dateCompleted property
+*/
+function updateProjectsInDOM(searchString) {
+    
+    const projectsHTML = document.getElementById("projects");
+    projectsHTML.innerHTML = "";
+    
+    let sortedProjects = getProjects(searchString).sort((a,b) => moment(b.dateCompleted) - moment(a.dateCompleted));
+
+    let projects = sortedProjects || [];
+
+
+    for (let i = 0; i < projects.length; i++) {
+        let project = projects[i];
         
         // grab the first technology listed
         const technology = project.technologies.length>0 ? project.technologies[0] : "";
@@ -31,7 +52,7 @@ for(let key in projectsDB) {
             <article class="project-detail ${technology.toLowerCase()}">
                 <h3 class="project-title">${project.name}</h3>
                 <p class="project-description">${project.description}</p>
-                <p class="project-completed-date">Date completed: ${project.dateCompleted}</p>
+                <p class="project-completed-date">Date completed: ${moment(project.dateCompleted).format("YYYY-MM-DD")}</p>
                 <br class="project-href"><a href="${project.href}">link</a> | <a href="${project.repository}">repository</a>
                 <div class="project-tag">
                     <p></p>
@@ -44,5 +65,8 @@ for(let key in projectsDB) {
 
 
     }
-
 }
+
+updateProjectsInDOM();
+
+
