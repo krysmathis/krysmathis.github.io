@@ -1,81 +1,86 @@
 // TODO: verify the database exists
 
-    // 2.0 Pull in the database and check how many articles are there
+// 2.0 Pull in the database and check how many articles are there
+
+// function to return the blogs to show
+const getBlogs = function (searchCriteria) {
+
     const blogDB = JSON.parse(localStorage.getItem("blog"));
 
-    // function to return the blogs to show
-    let filteredBlogs = [];
-
-    const getBlogs = function (searchCriteria) {
-
-        const sortedBlogEntries = blogDB.blogEntries.sort((a, b) => moment(b.dateAdded) - moment(a.dateAdded))
-
+    const sortedBlogEntries = blogDB.blogEntries.sort((a, b) => moment(b.dateAdded) - moment(a.dateAdded))
+    try {
         if (searchCriteria === undefined) {
-            return sortedBlogEntries;
+            return sortedBlogEntries || [];
         } else {
             const filteredBlogEntries =
                 sortedBlogEntries.filter(function (blog) {
                     return blog.headline.toLowerCase().includes(searchCriteria) ||
                         blog.content.toLowerCase().includes(searchCriteria);
-                });
+                }) || [];
 
-            return filteredBlogEntries;
+            return filteredBlogEntries || [];
         }
+    } catch (e) {
+        console.log(e);
     }
+}
 
-    filteredBlogs = getBlogs();
 
-    const blogs = filteredBlogs;
+const paginator = function (blogs) {
 
-    const paginator = function (blogs) {
-        
-        const numberOfItems = blogs.length;
-        // 2.1 Establish the constraints and calcs for the pagination
-        const itemsPerPage = 5; // constant value
-        const numberOfPages = Math.ceil(numberOfItems / itemsPerPage);
 
-        // 2.2 Programically generate the pagination section
-        const blogsEl = document.getElementById("blog-posts");
-        const blogPaginationEl = document.getElementById("blog-pagination");
+    const numberOfItems = blogs.length;
+    // 2.1 Establish the constraints and calcs for the pagination
+    const itemsPerPage = 5; // constant value
+    const numberOfPages = Math.ceil(numberOfItems / itemsPerPage);
 
-        // 2.2.1 Assign the < and > elements with unique classes, we'll store the current
-        //       page inside the class as 'page-#'
-        // for the previous arrow
-        let pagination = `<span class="" id="blog-previous">&lt</span>`;
+    // 2.2 Programically generate the pagination section
+    const blogsEl = document.getElementById("blog-posts");
+    const blogPaginationEl = document.getElementById("blog-pagination");
 
-        // 2.2.2 Loop through the number of pages and write a span or li for each one with the
-        //       class of "blog-page-link"
-        for (let i = 0; i < numberOfPages; i++) {
-            pagination += `<span class="blog-paginate-link blogpage-${i+1}">${i+1}</span>`;
-        }
-        // code for the next arrow
-        pagination += `<span class="blogpage-2" id="blog-next">&gt</span>`;
-        // 2.2.3 Update the innerHTML
-        blogPaginationEl.innerHTML = pagination;
+    // 2.2.1 Assign the < and > elements with unique classes, we'll store the current
+    //       page inside the class as 'page-#'
+    // for the previous arrow
+    let pagination = `<span class="" id="blog-previous">&lt</span>`;
 
-        // 2.2.4 Capture the new <  and > elements in a variable (we'll use it later)
-        const previousEl = document.getElementById("blog-previous");
-        const nextEl = document.getElementById("blog-next");
-        const pageNums = document.getElementsByClassName("blog-paginate-link")
+    // 2.2.2 Loop through the number of pages and write a span or li for each one with the
+    //       class of "blog-page-link"
+    for (let i = 0; i < numberOfPages; i++) {
+        pagination += `<span class="blog-paginate-link blogpage-${i+1}">${i+1}</span>`;
+    }
+    // code for the next arrow
+    pagination += `<span class="blogpage-2" id="blog-next">&gt</span>`;
+    // 2.2.3 Update the innerHTML
+    blogPaginationEl.innerHTML = pagination;
 
-        // 2.3  Function for update page that takes an event, the user will click on the span or li
-        //      to update the page
-        function updateBlogPage(event) {
-            // 2.3.1 Clear the innerHTML of the "displayer"
-            blogsEl.innerHTML = "";
-            // 2.3.2 which page are we on? get PAGENUMBER here we're going to loop through the classList 
-            //          and find a class that starts with page-
+    // 2.2.4 Capture the new <  and > elements in a variable (we'll use it later)
+    const previousEl = document.getElementById("blog-previous");
+    const nextEl = document.getElementById("blog-next");
+    const pageNums = document.getElementsByClassName("blog-paginate-link")
 
-            const pageNumber = parseInt(
-                Array.from(event.target.classList)
-                .find(cl => {
-                    if (cl.startsWith("blogpage-")) return cl;
-                }).split("-")[1]);
+    // 2.3  Function for update page that takes an event, the user will click on the span or li
+    //      to update the page
+    function updateBlogPage(event) {
 
-            Array.from(pageNums).forEach(function (element) {
-                element.classList.remove("blog-selected");
-            }, this);
+        // 2.3.1 Clear the innerHTML of the "displayer"
+        blogsEl.innerHTML = "";
+        // 2.3.2 which page are we on? get PAGENUMBER here we're going to loop through the classList 
+        //          and find a class that starts with page-
 
+        const pageNumber = parseInt(
+            Array.from(event.target.classList)
+            .find(cl => {
+                if (cl.startsWith("blogpage-")) return cl;
+            }).split("-")[1]);
+
+        Array.from(pageNums).forEach(function (element) {
+            element.classList.remove("blog-selected");
+        }, this);
+
+        // in the instance that there is only one page or zero pages
+        // do not populate the pagination
+
+        if (pageNums.length > 1) {
 
             pageNums[pageNumber - 1].className += " blog-selected";
             // 2.3.3 update the arrows with the current page and control the formatting
@@ -131,27 +136,31 @@
                 html += "</ul></div></article>";
                 blogsEl.innerHTML += html;
             }
-
+        } else {
+            previousEl.style.visibility = "hidden";
+            nextEl.style.visibility = "hidden";
         }
-        // 2.4  Programmically assign event listeners on the spans to check when they are clicked
-        //      and send that to the function is 2.3
+    }
+    // 2.4  Programmically assign event listeners on the spans to check when they are clicked
+    //      and send that to the function is 2.3
 
-        for (let i = 0; i < pageNums.length; i++) {
-            let element = pageNums[i];
-            element.addEventListener("click", updateBlogPage, false);
-
-        }
-        //      2.4.1 add event listeners to the <  and > buttons seperately
-        previousEl.addEventListener("click", updateBlogPage, false);
-        nextEl.addEventListener("click", updateBlogPage, false);
-
-        // 2.5  Programically launch the first page using a fake event (variable that has the 
-        //       necessary elements)
-        updateBlogPage({
-            "target": {
-                "classList": ["blogpage-1"]
-            }
-        });
+    for (let i = 0; i < pageNums.length; i++) {
+        let element = pageNums[i];
+        element.addEventListener("click", updateBlogPage, false);
 
     }
-    paginator(blogs);
+    //      2.4.1 add event listeners to the <  and > buttons seperately
+    previousEl.addEventListener("click", updateBlogPage, false);
+    nextEl.addEventListener("click", updateBlogPage, false);
+
+    // 2.5  Programically launch the first page using a fake event (variable that has the 
+    //       necessary elements)
+    updateBlogPage({
+        "target": {
+            "classList": ["blogpage-1"]
+        }
+    });
+
+}
+
+paginator(getBlogs());

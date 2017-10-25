@@ -28,7 +28,7 @@ function updateProjectsInDOM(searchString) {
 
 
     for (let i = 0; i < projects.length; i++) {
-        let project = projects[i];
+        let project = projects[i];  
         
         // grab the first technology listed
         const technology = project.technologies.length>0 ? project.technologies[0] : "";
