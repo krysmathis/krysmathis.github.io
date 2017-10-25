@@ -1,7 +1,6 @@
-lib/
-.vscode/
+.vscode
 .DS_Store
-images/
+images
 template.html
 questions.js
 scripts/playground.js
