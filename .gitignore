@@ -1,3 +1,9 @@
-.DS_Store
-.vscode
 lib/
+.vscode/
+.DS_Store
+images/
+template.html
+questions.js
+scripts/playground.js
+playground.html
+css/playground.css
