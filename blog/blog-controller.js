@@ -5,9 +5,10 @@
 // function to return the blogs to show
 const getBlogs = function (searchCriteria) {
 
-    const blogDB = JSON.parse(localStorage.getItem("blog"));
+    const blogDB = JSON.parse(localStorage.getItem("blog")) || {};
+    const blogEntries = blogDB.blogEntries || [];
 
-    const sortedBlogEntries = blogDB.blogEntries.sort((a, b) => moment(b.dateAdded) - moment(a.dateAdded))
+    const sortedBlogEntries = blogEntries.sort((a, b) => moment(b.dateAdded) - moment(a.dateAdded))
     try {
         if (searchCriteria === undefined) {
             return sortedBlogEntries || [];
