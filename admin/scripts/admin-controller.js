@@ -20,7 +20,7 @@ document.querySelector(".blogForm__gotoBlog").addEventListener("click", function
 
         const newBlogArticle = blogObjectFactory (
             document.querySelector(".blogForm__headline").value, //headline
-            new moment().format("YYYY-MM-DD"), // date added
+            new moment(), // date added
             document.querySelector(".blogForm__author").value, //author
             document.querySelector(".blogForm__image").value, // imgheader
             document.querySelector(".blogForm__content").value, //content

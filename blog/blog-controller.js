@@ -123,7 +123,7 @@ const paginator = function (blogs) {
                 <article class="blog-post">
                     <div class="blog-header">
                         <div class="blog-headline">${entry.headline}</div>
-                        <div class="blog-date">${(entry.dateAdded)}</div>
+                        <div class="blog-date">${moment(entry.dateAdded).format("YYYY-MM-DD")}</div>
                     </div>
                     <div class="blog-img-header">
                         <img src="${imageSrc}">
