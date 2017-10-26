@@ -32,11 +32,11 @@ const paginator = function (blogs) {
     // 2.1 Establish the constraints and calcs for the pagination
     const itemsPerPage = 5; // constant value
     const numberOfPages = Math.ceil(numberOfItems / itemsPerPage);
-    
+
     // 2.2 Programically generate the pagination section
     const blogsEl = document.getElementById("blog-posts");
     const blogPaginationEl = document.getElementById("blog-pagination");
-    
+
     if (blogs.length < 1) {
         blogsEl.innerHTML = "No blogs found...";
         blogPaginationEl.style.visibility = "hidden";
@@ -63,11 +63,11 @@ const paginator = function (blogs) {
     const previousEl = document.getElementById("blog-previous");
     const nextEl = document.getElementById("blog-next");
     const pageNums = document.getElementsByClassName("blog-paginate-link")
-    
+
     // 2.3  Function for update page that takes an event, the user will click on the span or li
     //      to update the page
-    
-    
+
+
     function updateBlogPage(event) {
 
         // 2.3.1 Clear the innerHTML of the "displayer"
@@ -88,44 +88,44 @@ const paginator = function (blogs) {
         // in the instance that there is only one page or zero pages
         // do not populate the pagination
 
+
+
+        pageNums[pageNumber - 1].className += " blog-selected";
+        // 2.3.3 update the arrows with the current page and control the formatting
+
+        if (pageNumber === 1) {
+            previousEl.style.visibility = "hidden";
+        } else {
+            previousEl.style.visibility = "";
+            previousEl.className = `blogpage-${pageNumber-1}`;
+        }
+
+        if (pageNumber + 1 > numberOfPages) {
+            nextEl.style.visibility = "hidden";
+        } else {
+            nextEl.style.visibility = "";
+            nextEl.className = `blogpage-${pageNumber+1}`;
+        }
+
+        // 2.3.4 determine which items to display by slicing the array based on PAGENUMBER -1 * 2
+        const itemsToDisplay = blogs.slice(
+            (pageNumber - 1) * itemsPerPage,
+            pageNumber * itemsPerPage
+        );
+
+        // 2.3.5 Update the page html from the array
+        //     for (let i = 0; i < currentKey.length; i++) {
         
-
-            pageNums[pageNumber - 1].className += " blog-selected";
-            // 2.3.3 update the arrows with the current page and control the formatting
-
-            if (pageNumber === 1) {
-                previousEl.style.visibility = "hidden";
-            } else {
-                previousEl.style.visibility = "";
-                previousEl.className = `blogpage-${pageNumber-1}`;
-            }
-
-            if (pageNumber + 1 > numberOfPages) {
-                nextEl.style.visibility = "hidden";
-            } else {
-                nextEl.style.visibility = "";
-                nextEl.className = `blogpage-${pageNumber+1}`;
-            }
-
-            // 2.3.4 determine which items to display by slicing the array based on PAGENUMBER -1 * 2
-            const itemsToDisplay = blogs.slice(
-                (pageNumber - 1) * itemsPerPage,
-                pageNumber * itemsPerPage
-            );
-
-            // 2.3.5 Update the page html from the array
-            //     for (let i = 0; i < currentKey.length; i++) {
-            for (let i = 0; i < itemsToDisplay.length; i++) {
-                let entry = itemsToDisplay[i];
-
-                let html = `
+        itemsToDisplay.forEach(function (entry) {
+            let imageSrc = entry.imgHeader.startsWith("images") ? "../" + entry.imgHeader : entry.imgHeader;
+            let html = `
                 <article class="blog-post">
                     <div class="blog-header">
                         <div class="blog-headline">${entry.headline}</div>
                         <div class="blog-date">${(entry.dateAdded)}</div>
                     </div>
                     <div class="blog-img-header">
-                        <img src="../${entry.imgHeader}">
+                        <img src="${imageSrc}">
                     </div>
                     <div class="blog-content">
                         ${entry.content}
@@ -133,25 +133,23 @@ const paginator = function (blogs) {
                 
             `;
 
-                html += `<div class="blog-footer project-tag"><ul>`;
+            html += `<div class="blog-footer project-tag"><ul>`;
 
-                let tags = entry.tags;
-                for (let i = 0; i < tags.length; i++) {
-                    let currentTag = tags[i];
-                    html += `<li>${currentTag}</li>`
-                }
+            entry.tags.forEach((currentTag) => html += `<li>${currentTag}</li>`)
 
-                html += "</ul></div></article>";
-                blogsEl.innerHTML += html;
-            }
-            
-            if (pageNums < 2) {
-                // hide the pagination in the event there is only 1 page
-                paginationEl.style.visibility = "hidden";
-                previousEl.style.visibility = "hidden";
-                nextEl.style.visibility = "hidden";
-            }
-            
+
+            html += "</ul></div></article>";
+            blogsEl.innerHTML += html;
+
+        });
+
+        if (pageNums < 2) {
+            // hide the pagination in the event there is only 1 page
+            paginationEl.style.visibility = "hidden";
+            previousEl.style.visibility = "hidden";
+            nextEl.style.visibility = "hidden";
+        }
+
     }
     // 2.4  Programmically assign event listeners on the spans to check when they are clicked
     //      and send that to the function is 2.3

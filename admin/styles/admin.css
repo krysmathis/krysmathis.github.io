@@ -17,3 +17,20 @@
    padding: 10px 0px 10px 0px;
    margin-bottom: 10px;
 }
+
+.blogForm__content {
+  height: 200px;
+  width: 600px;
+}
+
+.blogForm__submit {
+  width: 200px;
+  height: 50px;
+}
+
+.blogForm label,
+.blogForm input {
+  display: block;
+  padding: 5px;
+  width: 400px; 
+}

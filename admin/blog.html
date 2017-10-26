@@ -1,15 +1,36 @@
 <html lang='en'>
 <head>
   <meta charset='utf-8'>
-  <title>untitled</title>
+  <title>Admin - Blog</title>
   <link rel='stylesheet' href='./styles/admin.css'>
 </head>
   <body>
     <nav></nav>
     <main class='main-content'>
-      <header></header>  
-      <article></article>
+      <h1>Create a Blog Entry</h1>
+      <section class="blogForm">
+        <label>Define your headline</label>
+        <input type="text" value="Attention Grabber!" name="blog-headline" class="blogForm__headline">
+
+        <label>Author</label>
+        <input type="text" value="Krys Mathis" name="blog-author" class="blogForm__author">
+
+        <label>Content</label>
+        <textarea value="Enter contents here. HTML is OK."name="blog-content" class="blogForm__content"></textarea>
+
+        <label>Image</label>
+        <input type="text" value="href of image file" name="blog-image" class="blogForm__image">
+
+        <label>Tags</label>
+        <input type="text" value="tags" name="blog-tags" class="blogForm__tags">
+
+        <button class="blogForm__submit">Submit</button>
+        <button class="blogForm__gotoBlog">Go To Blogs</button>
+
+      </section>
     </main>
     <footer></footer>
+  <script src="../lib/moment.js"></script>
+  <script src='../blog/blog-factory.js'></script>
   <script src='./scripts/admin-controller.js'></script>
 </html>

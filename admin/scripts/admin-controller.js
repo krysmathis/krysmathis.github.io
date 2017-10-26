@@ -1,41 +1,39 @@
-console.log('connected...')
+{
 
-const getMaxBlogId = function() {
+// get the database from local storage, or empty object if null
+const blog = JSON.parse(localStorage.getItem("blog")) || {};
 
-    /*
-        1.  Capture the current blog database
-        2.  Sort the blog entries held in the database descending
-        3.  Capture the first entry of the sorted list and extract
-            the id column. If it doesn't exist return a new object
-            with an id of 0
-    */
-    const blog = JSON.parse(localStorage.getItem("blog")) || {};
-    const sortedDescBlogs = blog.blogEntries.sort((previous,next)=> next.id-previous.id);
-    return sortedDescBlogs[0].id || {id: 0}
+// get the blog entries or empty object if null
+blog.blogEntries = blog.blogEntries || [];
 
-}
+document.querySelector(".blogForm__gotoBlog").addEventListener("click", function(e){
+    window.location.href="../blog/index.html";
+});
 
-const blogUIDGenerator = function* (start) {
-    let i = 1;
-    while(true){
-        yield start + i;
-        i++
-    }
-}
+// Add event listener to the submit button
+    document.querySelector(".blogForm__submit").addEventListener("click", function(e){
+        /*
+            Collect the input elements
+            const blogObjectFactory = function (headline, dateAdded, author, imgHeader, content, ...tags) {
+        */
+        const tags = document.querySelector(".blogForm__tags").value.split(" ")
 
-const blogUIDFactory = blogUIDGenerator(getMaxBlogId());
+        const newBlogArticle = blogObjectFactory (
+            document.querySelector(".blogForm__headline").value, //headline
+            new moment().format("YYYY-MM-DD"), // date added
+            document.querySelector(".blogForm__author").value, //author
+            document.querySelector(".blogForm__image").value, // imgheader
+            document.querySelector(".blogForm__content").value, //content
+            tags
 
-const blogObjectFactory = function (headline, dateAdded, author, imgHeader, content, ...tags) {
-    return Object.create({},{
-        "id": {value: blogUID.next().value, enumerable: true},
-        "headline": {value: headline, enumerable: true},
-        "dateAdded": {value: dateAdded, enumerable: true},
-        "author": {value: dateAdded, enumerable: true},
-        "imgHeader": {value: imgHeader, enumerable: true},
-        "content": {value: content, enumerable: true},
-        "tags": {value: tags, enumerable: true},
-        "getDate": {value: function() {
-            return moment(dateAdded).format("YYYY-MM-DD");
-        }, enumerable: false}
-    });
+        )
+
+        /*         
+            Add the article to the blog array, then add it to the db in
+            Add it to local storage 
+        */
+        blog.blogEntries.unshift(newBlogArticle);
+        localStorage.setItem("blog",JSON.stringify(blog))
+
+    })
 }

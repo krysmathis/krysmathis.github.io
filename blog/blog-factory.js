@@ -16,21 +16,40 @@ const blogEntry = {
 }
 */
 
+const blog = JSON.parse(localStorage.getItem("blog")) || {};
+
+const getMaxBlogId = function() {
+        /*
+            1.  Capture the current blog database
+            2.  Sort the blog entries held in the database descending
+            3.  Capture the first entry of the sorted list and extract
+                the id column. If it doesn't exist return a new object
+                with an id of 0
+        */
+        const blogEntries = blog.blogEntries || [];
+        const sortedDescBlogs = blogEntries.sort((previous,next)=> next.id-previous.id);
+        return sortedDescBlogs[0] || {id: 0}
+    
+}
+
+const maxBlogId = getMaxBlogId().id;
+
 // generate an unique id for each blog article
-const blogIdGenerator = function* () {
+const blogIdGenerator = function* (start) {
     let id = 1;
 
     while (true) {
-        yield id;
+        yield id + start;
         id++;
     }
 }
 
-const blogIdFactory = blogIdGenerator();
+const blogIdFactory = blogIdGenerator(maxBlogId);
 
-const blogObjectFactory = function (headline, dateAdded, author, imgHeader, content, ...tags) {
+const blogObjectFactory = function (headline, dateAdded, author, imgHeader, content, tags) {
+    const currentId = blogIdFactory.next().value;
     return Object.create({},{
-        "id": {value: blogIdFactory.next().value, enumerable: true},
+        "id": {value: currentId, enumerable: true},
         "headline": {value: headline, enumerable: true},
         "dateAdded": {value: dateAdded, enumerable: true},
         "author": {value: dateAdded, enumerable: true},
@@ -50,7 +69,7 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
         "Krys Mathis",
         "images/journeybegins.jpg",
         "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
-        "footer", "html", "css"
+        ["footer", "html", "css"]
     );
 
     const blogEntry2 = blogObjectFactory(
@@ -59,7 +78,7 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
         "Krys Mathis",
         "images/journeybegins.jpg",
         "<p>Brocolli! Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
-        "footer", "html", "css"
+        ["footer", "html", "css"]
     );
 
     const blogEntry3 = blogObjectFactory(
@@ -68,7 +87,7 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
         "Krys Mathis",
         "images/journeybegins.jpg",
         "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
-        "footer", "html", "css"
+        ["footer", "html", "css"]
     );
 
     const blogEntry4 = blogObjectFactory(
@@ -77,7 +96,7 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
         "Krys Mathis",
         "images/journeybegins.jpg",
         "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
-        "footer", "html", "css"
+        ["footer", "html", "css"]
     );
 
     const blogEntry5 = blogObjectFactory(
@@ -86,7 +105,7 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
         "Krys Mathis",
         "images/journeybegins.jpg",
         "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
-        "footer", "html", "css"
+        ["footer", "html", "css"]
     );
 
     const blogEntry6 = blogObjectFactory(
@@ -95,17 +114,17 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
         "Krys Mathis",
         "images/journeybegins.jpg",
         "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
-        "footer", "html", "css"
+        ["footer", "html", "css"]
     ); 
 
 
 blogEntries = [];
-blogEntries.push(blogEntry20171006);
-blogEntries.push(blogEntry2);
-blogEntries.push(blogEntry3);
-blogEntries.push(blogEntry4);
-blogEntries.push(blogEntry5);
-blogEntries.push(blogEntry6);
+blogEntries.unshift(blogEntry20171006);
+blogEntries.unshift(blogEntry2);
+blogEntries.unshift(blogEntry3);
+blogEntries.unshift(blogEntry4);
+blogEntries.unshift(blogEntry5);
+blogEntries.unshift(blogEntry6);
 
 // The blog object
 let Blog = {
@@ -113,5 +132,15 @@ let Blog = {
     "blogEntries": blogEntries
 }
 
-// store the blog database in local storage
-localStorage.setItem("blog", JSON.stringify(Blog));
+
+/* 
+    Check if the database exists already and that it has the same id #'s as
+    the ones here
+*/
+if (maxBlogId < Blog.blogEntries.length) {
+    localStorage.setItem("blog", JSON.stringify(Blog));
+    console.log('generated the database');
+} else {
+    console.log('db is up to date');
+}
+
