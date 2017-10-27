@@ -90,12 +90,12 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
         );
 
         const blogEntry2 = blogObjectFactory(
-            "Second Blog Entry",
-            moment("2017-10-07").format("YYYY-MM-DD"),
+            "Inside the Grid",
+            moment("2017-10-27").format("YYYY-MM-DD"),
             "Krys Mathis",
-            "images/journeybegins.jpg",
-            "<p>Brocolli! Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
-            ["footer", "html", "css"]
+            "images/grid.png",
+            "<p>Spent some time experimenting with the css grid over the weekend. My hope is that it will make laying out webpages simpler. So far it's been a big time sink with rather frustrating results.</p><p>You can see the results here: <a href='https://github.com/krysmathis/experiments/tree/master/grid-transforms'>link</a>",
+            ["css"]
         );
 
         const blogEntry3 = blogObjectFactory(

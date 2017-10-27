@@ -4,23 +4,15 @@
 <head>
     <title>Welcome to my personal site</title>
     <link rel="stylesheet" type="text/css" href="../styles.css">
+    <link rel="stylesheet" type="text/css" href="../navbar/styles/navbar.css">
     <link rel="stylesheet" type="text/css" href="styles/search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body>
+<body class="page__project">
     <div class="wrap">
         <header class="main-header fixed">
-            <div class="brand">Krys Mathis | Software Developer</div>
-            <nav>
-                <ul>
-                    <li class="float"><a href="../index.html">My Story</a></li>
-                    <li class="float selected"><a href="../projects/index.html">Projects</a></li>
-                    <li class="float"><a href="../resume/index.html">Resume</a></li>
-                    <li class="float"><a href="../blog/index.html">Blog</a></li>
-                    <li class="float"><a href="/contact/index.html">Contact</a></li>
-                </ul>
-            </nav>
+            <nav class="nav"></nav>
         </header>
         <main class="main-content">           
             <section class="searchBar">
@@ -36,6 +28,7 @@
         &copy;2017 Krys Mathis
     </footer>
     <script src="../lib/moment.js"></script>
+    <script src="../navbar/scripts/navbar.js"></script>
     <script src="projects-factory.js"></script>
     <script src="projects-controller.js"></script>
     <script src="projects-search.js"></script>

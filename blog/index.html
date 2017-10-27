@@ -3,21 +3,14 @@
     <head>
         <title>Welcome to my personal site</title>
         <link rel="stylesheet" type="text/css" href="../styles.css">
-        <link rel="stylesheet" type="text/css" href="blog.css">
+        <link rel="stylesheet" type="text/css" href="../navbar/styles/navbar.css">
+        <link rel="stylesheet" type="text/css" href="./styles/blog.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <body>
+    <body class="page__blog">
         <div class="wrap">
         <header class="main-header fixed">
-        <div class="brand">Krys Mathis | Software Developer</div>
-        <nav>
-            <ul>
-                <li class="float"><a href="../index.html">My Story</a></li>
-                <li class="float"><a href="../projects/index.html">Projects</a></li>
-                <li class="float"><a href="../resume/index.html">Resume</a></li>
-                <li class="float selected"><a href="../blog/index.html">Blog</a></li>
-                <li class="float"><a href="/contact/index.html">Contact</a></li>
-            </ul>
+        <nav class="nav">
         </nav>
         </header>
         <main class="main-content">
@@ -36,8 +29,9 @@
                 &copy;2017 Krys Mathis
         </footer>
         <script src="../lib/moment.js"></script>
-        <script src="blog-factory.js"></script>
-        <script src="blog-controller.js"></script>
-        <script src="blog-search.js"></script>
+        <script src="../navbar/scripts/navbar.js"></script>
+        <script src="./scripts/blog-factory.js"></script>
+        <script src="./scripts/blog-controller.js"></script>
+        <script src="./scripts/blog-search.js"></script>
     </body>
 </html>
