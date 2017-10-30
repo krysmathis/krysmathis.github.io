@@ -11,6 +11,7 @@ searchInput.addEventListener("keyup", function(event) {
     let searchString = event.target.value.toLowerCase();
     if (searchString.length >=3) {
         writeBlogs(getBlogs(searchString),1);
+        
     } else {
         writeBlogs(getBlogs(""),1);
     }

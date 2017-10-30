@@ -1,8 +1,8 @@
 // TODO: verify the database exists
 
-// 2.0 Pull in the database and check how many articles are there
 let currentBlogs = [];
 let itemsPerPage = 5;
+
 // function to return the blogs to show
 const getBlogs = function (searchCriteria) {
 
@@ -24,23 +24,18 @@ const getBlogs = function (searchCriteria) {
     }
             // set the global    
             currentBlogs = filteredBlogEntries;
-            const numberOfItems = currentBlogs.length;
-            const numberOfPages = Math.ceil(numberOfItems / itemsPerPage);
-            
-            setPagination(numberOfPages,1);
-            document.querySelector(".pagination__page").className = "pagination__page--selected";
+            setInitialPagination();
             return filteredBlogEntries || [];
         
 }
 
-
-const paginationSelector = document.querySelectorAll("[class^='pagination__'");
-console.log(paginationSelector);
-paginationSelector.forEach(function(page){
-    page.addEventListener("click", function(e) {
-        alert("clicked");
-    });
-})
+const setInitialPagination = function() {
+    const numberOfItems = currentBlogs.length;
+    const numberOfPages = Math.ceil(numberOfItems / itemsPerPage);
+    
+    setPagination(numberOfPages,1);
+    document.querySelector(".pagination__page").className = "pagination__page--selected";
+}
 
 const isValidPagination = function(event) {
     const validElements = ["pagination__page", "pagination__page--selected", "pagination__previous", "pagination__next"]
@@ -60,7 +55,7 @@ document.querySelector('.pagination').addEventListener("click", function(e) {
 
         const pageNumber = e.target.dataset.pageNum;
         writeBlogs(currentBlogs, pageNumber);
-    });
+});
 
 
 
