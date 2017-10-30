@@ -15,8 +15,8 @@ const populateNavBar = (function(){
     navs.set("Home", {"label": "Home", "link": "../index.html"}),
     navs.set("Projects", {"label": "Projects", "link": "../projects"}),
     navs.set("Blog", {"label": "Blog", "link": "../blog"}),
-    navs.set("Contact", {"label": "Contact", "link": "../contact"}),
-    navs.set("Resume", {"label": "Resume", "link": "../resume"})
+    navs.set("Resume", {"label": "Resume", "link": "../resume"}),
+    navs.set("Contact", {"label": "Contact", "link": "../contact"})
 
     // navs.set("Home", {"label": "Home", "link": "#"}),
     // navs.set("Projects", {"label": "Projects", "link": "#"}),
@@ -41,8 +41,7 @@ const populateNavBar = (function(){
         nav => {
             // create a new list element
             let newNavItem = document.createElement("li")
-            let classAssignment = window.location.pathname.includes(nav.link.split("/")[1].toLowerCase()) ? "nav__link--selected" : "nav__link";
-            newNavItem.className = classAssignment;
+            newNavItem.className = "nav__link";
 
             let newNavItemLabel = document.createTextNode(nav.label);
             newNavItem.appendChild(newNavItemLabel);
@@ -53,10 +52,17 @@ const populateNavBar = (function(){
 
             newList.appendChild(newNavItem);
 
-            
         }
     )
     navBar.appendChild(newList);
     
 })()
 
+const updateNavBar = function(pageName) {
+    document.querySelectorAll('.nav__link').forEach(
+        nav=> {
+            nav.textContent.toLowerCase() == pageName.toLowerCase() ? nav.className = "nav__link--selected" : nav.className = "nav__link";
+            x = 1;
+        }
+    )
+};

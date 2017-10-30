@@ -1,0 +1,1 @@
+updateNavBar("resume");

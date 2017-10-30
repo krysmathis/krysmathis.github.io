@@ -1,4 +1,5 @@
-
+// navbar update
+updateNavBar("contact");
 
 // --- get items from local storage and adjust page
 const contactsDB = JSON.parse(localStorage.getItem("contact"));
