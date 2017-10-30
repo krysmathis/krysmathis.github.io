@@ -1,59 +1,10 @@
 console.log('connected...')
 
-// takes a number of pages to display
-
-// const numberOfItems = blogs.length;
-// // 2.1 Establish the constraints and calcs for the pagination
-// const itemsPerPage = 5; // constant value
-// const numberOfPages = Math.ceil(numberOfItems / itemsPerPage);
-
-// blog stuff
-
-const blogCreator = function() {
-
-    if (blogs.length < 1) {
-        blogsEl.innerHTML = "No blogs found...";
-    }
-
-    // 2.3.1 Clear the innerHTML of the "displayer"
-    blogsEl.innerHTML = "";
-
-    const itemsToDisplay = blogs.slice(
-        (pageNumber - 1) * itemsPerPage,
-        pageNumber * itemsPerPage
-    );
-
-    itemsToDisplay.forEach(function (entry) {
-        let imageSrc = entry.imgHeader.startsWith("images") ? "../" + entry.imgHeader : entry.imgHeader;
-        let html = `
-            <article class="blog-post">
-                <div class="blog-header">
-                    <div class="blog-headline">${entry.headline}</div>
-                    <div class="blog-date">${moment(entry.dateAdded).format("YYYY-MM-DD")}</div>
-                </div>
-                <div class="blog-img-header">
-                    <img src="${imageSrc}">
-                </div>
-                <div class="blog-content">
-                    ${entry.content}
-                </div>
-            
-        `;
-
-        html += `<div class="blog-footer project-tag"><ul>`;
-
-        entry.tags.forEach((currentTag) => html += `<li>${currentTag}</li>`)
-
-
-        html += "</ul></div></article>";
-        blogsEl.innerHTML += html;
-
-    });
-
-    
-
-}
-
+/*
+    REQUIREMENTS: 
+        HTML: a <section> with the class of "pagination". 
+        JS: You'll need to send in the number of pages to display
+*/
 
 
 const setPagination = function (numberOfPages) {
@@ -81,27 +32,35 @@ const setPagination = function (numberOfPages) {
         // set the previous page selector to invisible
         document.querySelector(".pagination__previous").style.visibility = "hidden";
         
-        if (numberOfPages < 2) {
-            paginationEl.style.visibility = "hidden"
+        // if (numberOfPages < 2) {
+        //     paginationEl.style.visibility = "hidden"
             
-        } else {
-            paginationEl.style.visibility = "visible"
-        }
+        // } else {
+        //     paginationEl.style.visibility = "visible"
+        // }
     
 }
     
-setPagination(5,5);
 
-document.querySelector('.pagination').addEventListener("click",function(event) {
-    updatePagination(event);
-    console.log("clicked.");    
-});
+
 
 // this updates which element gets the --selected modifier
 // and update the previous and next data values for pageNum
 const updatePagination = function(event) {
     
+    const validElements = ["pagination__page", "pagination__page--selected", "pagination__previous", "pagination__next"]
+    let isValid = false;
+
+    validElements.forEach(function(element){
+       if (event.target.className === element) { isValid = true}
+    })
     
+    console.log("isValid",isValid)
+    if (!isValid) {
+        // Do nothing!
+        return;
+    }
+
     // capture the pageNum value from clicked element
     const clickedPageNumber = parseInt(event.target.dataset.pageNum);
     
@@ -143,3 +102,8 @@ const updatePagination = function(event) {
     
     return;
 }
+
+setPagination(4);
+document.querySelector(".pagination__page").className = "pagination__page--selected";
+
+document.querySelector('.pagination').addEventListener("click",updatePagination);

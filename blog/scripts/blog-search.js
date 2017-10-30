@@ -10,8 +10,8 @@ searchInput.addEventListener("focus", function(event) {
 searchInput.addEventListener("keyup", function(event) {
     let searchString = event.target.value.toLowerCase();
     if (searchString.length >=3) {
-        paginator(getBlogs(searchString));
+        writeBlogs(getBlogs(searchString),1);
     } else {
-        paginator(getBlogs(""));
+        writeBlogs(getBlogs(""),1);
     }
 })

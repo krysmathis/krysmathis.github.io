@@ -1,177 +1,114 @@
 // TODO: verify the database exists
 
 // 2.0 Pull in the database and check how many articles are there
-
+let currentBlogs = [];
+let itemsPerPage = 5;
 // function to return the blogs to show
 const getBlogs = function (searchCriteria) {
 
     const blogDB = JSON.parse(localStorage.getItem("blog")) || {};
     const blogEntries = blogDB.blogEntries || [];
 
+    // sort in descending order
     const sortedBlogEntries = blogEntries.sort((a, b) => moment(b.dateAdded) - moment(a.dateAdded))
-    try {
-        if (searchCriteria === undefined) {
-            return sortedBlogEntries || [];
-        } else {
-            const filteredBlogEntries =
-                sortedBlogEntries.filter(function (blog) {
-                    return blog.headline.toLowerCase().includes(searchCriteria) ||
-                        blog.content.toLowerCase().includes(searchCriteria);
-                }) || [];
-
-            return filteredBlogEntries || [];
-        }
-    } catch (e) {
-        console.log(e);
+    let filteredBlogEntries = [];
+        
+    if (searchCriteria === undefined || searchCriteria === "") {
+            filteredBlogEntries = sortedBlogEntries;
+    } else {
+            filteredBlogEntries =
+            sortedBlogEntries.filter(function (blog) {
+                return blog.headline.toLowerCase().includes(searchCriteria) ||
+                blog.content.toLowerCase().includes(searchCriteria);
+            }) || [];
     }
+            // set the global    
+            currentBlogs = filteredBlogEntries;
+            const numberOfItems = currentBlogs.length;
+            const numberOfPages = Math.ceil(numberOfItems / itemsPerPage);
+            
+            setPagination(numberOfPages,1);
+            document.querySelector(".pagination__page").className = "pagination__page--selected";
+            return filteredBlogEntries || [];
+        
 }
 
 
-const paginator = function (blogs) {
+const paginationSelector = document.querySelectorAll("[class^='pagination__'");
+console.log(paginationSelector);
+paginationSelector.forEach(function(page){
+    page.addEventListener("click", function(e) {
+        alert("clicked");
+    });
+})
 
-    const numberOfItems = blogs.length;
-    // 2.1 Establish the constraints and calcs for the pagination
-    const itemsPerPage = 5; // constant value
-    const numberOfPages = Math.ceil(numberOfItems / itemsPerPage);
+const isValidPagination = function(event) {
+    const validElements = ["pagination__page", "pagination__page--selected", "pagination__previous", "pagination__next"]
+    let isValid = false;
 
-    // 2.2 Programically generate the pagination section
+    validElements.forEach(function(element){
+        if (event.target.className === element) { return true }
+    })
+        
+    return false;
+}
+
+document.querySelector('.pagination').addEventListener("click", function(e) {
+        
+        if (!isValidPagination) {return}
+        console.log("cleeked");
+
+        const pageNumber = e.target.dataset.pageNum;
+        writeBlogs(currentBlogs, pageNumber);
+    });
+
+
+
+const writeBlogs = function (currentBlogs, pageNumber) {
+
+    const blogs = currentBlogs;
+
     const blogsEl = document.getElementById("blog-posts");
-    const blogPaginationEl = document.getElementById("blog-pagination");
-
+    blogsEl.innerHTML = "";
+    // 2.2 Programically generate the pagination section
     if (blogs.length < 1) {
         blogsEl.innerHTML = "No blogs found...";
-        blogPaginationEl.style.visibility = "hidden";
+        // don't display pagination if there are no blogs
         return;
-    } else {
-        blogPaginationEl.style.visibility = "visible";
     }
-    // 2.2.1 Assign the < and > elements with unique classes, we'll store the current
-    //       page inside the class as 'page-#'
-    // for the previous arrow
-    let pagination = `<span class="" id="blog-previous">&lt</span>`;
 
-    // 2.2.2 Loop through the number of pages and write a span or li for each one with the
-    //       class of "blog-page-link"
-    for (let i = 0; i < numberOfPages; i++) {
-        pagination += `<span class="blog-paginate-link blogpage-${i+1}">${i+1}</span>`;
-    }
-    // code for the next arrow
-    pagination += `<span class="blogpage-2" id="blog-next">&gt</span>`;
-    // 2.2.3 Update the innerHTML
-    blogPaginationEl.innerHTML = pagination;
-
-    // 2.2.4 Capture the new <  and > elements in a variable (we'll use it later)
-    const previousEl = document.getElementById("blog-previous");
-    const nextEl = document.getElementById("blog-next");
-    const pageNums = document.getElementsByClassName("blog-paginate-link")
-
-    // 2.3  Function for update page that takes an event, the user will click on the span or li
-    //      to update the page
-
-
-    function updateBlogPage(event) {
-
-        // 2.3.1 Clear the innerHTML of the "displayer"
-        blogsEl.innerHTML = "";
-        // 2.3.2 which page are we on? get PAGENUMBER here we're going to loop through the classList 
-        //          and find a class that starts with page-
-
-        const pageNumber = parseInt(
-            Array.from(event.target.classList)
-            .find(cl => {
-                if (cl.startsWith("blogpage-")) return cl;
-            }).split("-")[1]);
-
-        Array.from(pageNums).forEach(function (element) {
-            element.classList.remove("blog-selected");
-        }, this);
-
-        // in the instance that there is only one page or zero pages
-        // do not populate the pagination
-
-
-
-        pageNums[pageNumber - 1].className += " blog-selected";
-        // 2.3.3 update the arrows with the current page and control the formatting
-
-        if (pageNumber === 1) {
-            previousEl.style.visibility = "hidden";
-        } else {
-            previousEl.style.visibility = "";
-            previousEl.className = `blogpage-${pageNumber-1}`;
-        }
-
-        if (pageNumber + 1 > numberOfPages) {
-            nextEl.style.visibility = "hidden";
-        } else {
-            nextEl.style.visibility = "";
-            nextEl.className = `blogpage-${pageNumber+1}`;
-        }
-
-        // 2.3.4 determine which items to display by slicing the array based on PAGENUMBER -1 * 2
-        const itemsToDisplay = blogs.slice(
-            (pageNumber - 1) * itemsPerPage,
-            pageNumber * itemsPerPage
-        );
-
-        // 2.3.5 Update the page html from the array
-        //     for (let i = 0; i < currentKey.length; i++) {
+    const blogsToDisplay = blogs.slice(
+        (pageNumber - 1) * itemsPerPage,
+        pageNumber * itemsPerPage
+    );  
         
-        itemsToDisplay.forEach(function (entry) {
-            let imageSrc = entry.imgHeader.startsWith("images") ? "../" + entry.imgHeader : entry.imgHeader;
-            let html = `
-                <article class="blog-post">
-                    <div class="blog-header">
-                        <div class="blog-headline">${entry.headline}</div>
-                        <div class="blog-date">${moment(entry.dateAdded).format("YYYY-MM-DD")}</div>
-                    </div>
-                    <div class="blog-img-header">
-                        <img src="${imageSrc}">
-                    </div>
-                    <div class="blog-content">
-                        ${entry.content}
-                    </div>
-                
-            `;
+    blogsToDisplay.forEach(function (entry) {
+        let imageSrc = entry.imgHeader.startsWith("images") ? "../" + entry.imgHeader : entry.imgHeader;
+        let html = `
+            <article class="blog-post">
+                <div class="blog-header">
+                    <div class="blog-headline">${entry.headline}</div>
+                    <div class="blog-date">${moment(entry.dateAdded).format("YYYY-MM-DD")}</div>
+                </div>
+                <div class="blog-img-header">
+                    <img src="${imageSrc}">
+                </div>
+                <div class="blog-content">
+                    ${entry.content}
+                </div>
+            
+        `;
 
-            html += `<div class="blog-footer project-tag"><ul>`;
+        html += `<div class="blog-footer project-tag"><ul>`;
 
-            entry.tags.forEach((currentTag) => html += `<li>${currentTag}</li>`)
+        entry.tags.forEach((currentTag) => html += `<li>${currentTag}</li>`)
 
 
-            html += "</ul></div></article>";
-            blogsEl.innerHTML += html;
+        html += "</ul></div></article>";
+        blogsEl.innerHTML += html;
 
-        });
-
-        if (pageNums < 2) {
-            // hide the pagination in the event there is only 1 page
-            paginationEl.style.visibility = "hidden";
-            previousEl.style.visibility = "hidden";
-            nextEl.style.visibility = "hidden";
-        }
-
-    }
-    // 2.4  Programmically assign event listeners on the spans to check when they are clicked
-    //      and send that to the function is 2.3
-
-    for (let i = 0; i < pageNums.length; i++) {
-        let element = pageNums[i];
-        element.addEventListener("click", updateBlogPage, false);
-
-    }
-    //      2.4.1 add event listeners to the <  and > buttons seperately
-    previousEl.addEventListener("click", updateBlogPage, false);
-    nextEl.addEventListener("click", updateBlogPage, false);
-
-    // 2.5  Programically launch the first page using a fake event (variable that has the 
-    //       necessary elements)
-    updateBlogPage({
-        "target": {
-            "classList": ["blogpage-1"]
-        }
     });
 
 }
 
-paginator(getBlogs());
+writeBlogs(getBlogs(""),1);
