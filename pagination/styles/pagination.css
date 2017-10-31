@@ -33,10 +33,20 @@
   padding-bottom: 20px;
 }
 
-.pagination__previous:hover {
-  cursor: pointer;
+.pagination__previous,
+.pagination__next {
+  background: white;
+  display: inline-block;
+  margin: 10px;
+  height: auto; width: 25px;
+  padding: 10px;
+  /* border: 1px solid #0096FF; */
+  border-radius: 50%;
+  text-align: center;
 }
-
+.pagination__previous:hover,
 .pagination__next:hover {
-  cursor: pointer;
+  cursor: pointer; 
+  background: #0096FF;
+  color: white;
 }
