@@ -130,18 +130,19 @@ const writeBlogsEl = function (pageNumber) {
             // Img div
             let blogImgContainer = document.createElement('div');
             blogImgContainer.className = "blog__img-header";
-            
+            // Image
             let blogImg = document.createElement('img');
             blogImg.src = imageSrc;
             blogImgContainer.appendChild(blogImg);
             blogPost.appendChild(blogImgContainer);
 
-
+            // Content
             let blogContent = document.createElement('div');
             blogContent.className = "blog__content";
             blogContent.innerHTML = entry.content;
             blogPost.appendChild(blogContent);
 
+            // Tags Container
             let blogTags = document.createElement('div');
             blogTags.className = "blog__footer project-tag"
             let blogTagList = document.createElement('ul');
