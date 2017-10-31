@@ -42,7 +42,7 @@ const setInitialPagination = function() {
     const numberOfItems = currentBlogs.length;
     const numberOfPages = Math.ceil(numberOfItems / itemsPerPage);
     
-    setPagination(numberOfPages,1);
+    setPaginationByEls(numberOfPages,1);
     
 
     if (numberOfPages > 1) {

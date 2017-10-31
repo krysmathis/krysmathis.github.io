@@ -5,33 +5,7 @@ console.log('connected...')
         HTML: a <section> with the class of "pagination". 
         JS: You'll need to send in the number of pages to display
 */
-const setPagination = function (numberOfPages, startPage = 1) {
-    
-        const paginationEl = document.querySelector(".pagination");
-        /*
-            ============================================================
-            Writing the HTML for the pagination 
 
-            ============================================================
-        */
-        // Start with the previous arrow
-        let pagination = `<span class="pagination__previous" data-page-num="0">&lt</span>`;
-
-        // Loop through the number of pages and write a span or li for each one with the
-        // class of "blog-page-link"
-        for (let i = 0; i < numberOfPages; i++) {
-            pagination += `<span class="pagination__page" data-page-num="${i+1}">${i+1}</span>`;
-        }
-        // code for the next arrow
-        pagination += `<span class="pagination__next" data-page-num="2">&gt</span>`;
-        // // 2.2.3 Update the innerHTML
-        paginationEl.innerHTML = pagination;
-
-        // set the previous page selector to invisible
-        document.querySelector(".pagination__previous").style.visibility = "hidden";
-        document.querySelector(".pagination__page").className = "pagination__page--selected";
-    
-}
 
 // want to make sure we're clicking on a part of the pagination with a button
 const isValidPagination = function(event) {
@@ -100,58 +74,91 @@ const updatePagination = function(event) {
 }
 
 
-setPagination(4);  //need this to set the styling
 
-// set the initial page as --selected
-document.querySelector(".pagination__page").className = "pagination__page--selected";
 
-// add event listener for pagination
+
+
+
+const setPaginationByEls = function (numberOfPages, startPage = 1) {
+    /*
+    -------------------------------------------------
+    This code does not currently work - do not use.
+    Further research is required - use setPagination
+    -------------------------------------------------
+    */
+        const paginationEl = document.querySelector(".pagination");
+        // reset the pagination by removing all the child nodes
+        while (paginationEl.hasChildNodes()) {
+            node.removeChild(node.lastChild);
+        }
+        /*
+            ============================================================
+            Create the pagination elements
+            ============================================================
+        */
+        // Start with the previous arrow
+        const prev = document.createElement("span")
+        prev.dataset.pageNum="0"
+        prev.className="pagination__previous"
+        const prevText = document.createTextNode("<")
+        prev.appendChild(prevText);
+
+        paginationEl.appendChild(prev);
+  
+        // create an element to represent each page
+        for (let i = 0; i < numberOfPages; i++) {
+            
+            let link = document.createElement("span")
+            link.dataset.pageNum=`${i+1}`
+            link.className="pagination__page";
+            link.appendChild(document.createTextNode(`${i+1}`));
+            paginationEl.appendChild(link);
+   
+        }
+       
+        // create the next arrow button
+        const next = document.createElement("span")
+        next.dataset.pageNum="2"
+        next.className="pagination__next"
+        const nextText = document.createTextNode(">")
+        next.appendChild(nextText);
+        paginationEl.appendChild(next);
+        
+        // set the previous page selector to invisible and the first element to selected
+        document.querySelector(".pagination__previous").style.visibility = "hidden";
+        document.querySelector(".pagination__page").className = "pagination__page--selected";
+    
+}
+
 document.querySelector('.pagination').addEventListener("click", updatePagination);
 
 
+/* 
+    Deprecated but keeping this as a fall-back
+*/
 
-
-// const setPaginationEls = function (numberOfPages, startPage = 1) {
-//     /*
-//     -------------------------------------------------
-//     This code does not currently work - do not use.
-//     Further research is required - use setPagination
-//     -------------------------------------------------
-//     */
+// const setPagination = function (numberOfPages, startPage = 1) {
+    
 //         const paginationEl = document.querySelector(".pagination");
-//         // will need to remove all child nodes from here
-
 //         /*
 //             ============================================================
-//             Write the HTML for the pagination
+//             Writing the HTML for the pagination 
 
 //             ============================================================
 //         */
 //         // Start with the previous arrow
-//         const prev = document.createElement("span")
-//         prev.dataset.pageNum="0"
-//         prev.className="pagination_previous"
-//         const prevText = document.createTextNode("<")
-//         prev.appendChild(prevText);
+//         let pagination = `<span class="pagination__previous" data-page-num="0">&lt</span>`;
 
-//         paginationEl.appendChild(prev);
-  
+//         // Loop through the number of pages and write a span or li for each one with the
+//         // class of "blog-page-link"
 //         for (let i = 0; i < numberOfPages; i++) {
-            
-//             let link = document.createElement("span")
-//             link.dataset.pageNum=`${i+1}`
-//             link.className="pagination__page";
-//             link.appendChild(document.createTextNode(`${i+1}`));
-//             paginationEl.appendChild(link);
-   
+//             pagination += `<span class="pagination__page" data-page-num="${i+1}">${i+1}</span>`;
 //         }
-       
-//         const next = document.createElement("span")
-//         next.dataset.pageNum="2"
-//         next.className="pagination_previous"
-//         const nextText = document.createTextNode(">")
-//         next.appendChild(nextText);
-        
+//         // code for the next arrow
+//         pagination += `<span class="pagination__next" data-page-num="2">&gt</span>`;
+//         // // 2.2.3 Update the innerHTML
+//         paginationEl.innerHTML = pagination;
+
 //         // set the previous page selector to invisible
 //         document.querySelector(".pagination__previous").style.visibility = "hidden";
 //         document.querySelector(".pagination__page").className = "pagination__page--selected";
