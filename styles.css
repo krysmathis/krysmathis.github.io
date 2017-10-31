@@ -33,47 +33,6 @@ body {
 
 }
 
-nav {
-	background: #384047;
-	height: 40px;
-	width: 100%;
-	padding-top: 0px;
-	text-align: left;
-	font-size: 1em;
-
-}
-
-.nav-container {
-	display: inline-flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-}
-nav ul {
-	list-style: none;
-}
-
-nav ul li {
-	display: inline-block;
-	width: 84px;
-	text-align: center;
-
-}
-
-
-nav ul li a {
-	color: #fff;
-	width: 100%;
-	line-height: 40px;
-	text-decoration: none;
-}
-
-nav ul li.selected {
-	background: #fff;
-}
-
-nav ul li.selected a {
-	color: #384047;
-}
 
 select {
 	width: 84%;

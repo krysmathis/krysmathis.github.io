@@ -1,9 +1,13 @@
-
-
-
 .nav {
+  --main-bg-color: #374048;
   height: 50px;
   cursor: pointer;
+	width: 100%;
+	padding-top: 0px;
+	text-align: left;
+  font-size: 1em;
+  background: var(--main-bg-color);
+
 }
 
 .nav__list {
@@ -11,6 +15,7 @@
   list-style: none;
   justify-content: space-around;
   height: 100%;
+  text-align: center;
 
 }
 
@@ -32,9 +37,11 @@
   color: white;
   padding-top: 10px;
   font-size: 1.25em;
+  width: 10%;
 }
 
 .nav__link--selected {
+  width: 10%;
   text-decoration: none;
   background: purple;
   color: white;
@@ -44,7 +51,31 @@
 
 .nav__link--selected:hover {
   text-decoration: none;
-  background: pink;
-  color: black;
-  padding-top: 10px;
+}
+
+/* --- ARROWS --- */
+ .nav__link--selected {
+	position: relative;
+	background: var(--main-bg-color);
+}
+
+.nav__link--selected:after, .nav__link--selected:before {
+	top: 100%;
+	left: 50%;	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.nav__link--selected:after {
+	border-top-color: var(--main-bg-color);
+	border-width: 15px;
+	margin-left: -15px;
+}
+.nav__list:before {	
+	border-top-color: var(--main-bg-color);
+	border-width: 21px;
+	margin-left: -21px;
 }
