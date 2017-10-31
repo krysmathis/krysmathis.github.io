@@ -1,7 +1,7 @@
 // TODO: verify the database exists
 
 let currentBlogs = [];
-let itemsPerPage = 2;
+let itemsPerPage = 5;
 
 // function to return the blogs to show
 const getBlogs = function (searchCriteria) {
@@ -11,21 +11,25 @@ const getBlogs = function (searchCriteria) {
 
     // sort in descending order
     const sortedBlogEntries = blogEntries.sort((a, b) => moment(b.dateAdded) - moment(a.dateAdded))
-    let filteredBlogEntries = [];
-        
+    
+    let filteredBlogEntries = [];    
     if (searchCriteria === undefined || searchCriteria === "") {
+            // just return the sorted blogs
             filteredBlogEntries = sortedBlogEntries;
     } else {
+            // return the filtered blogs
             filteredBlogEntries =
-            sortedBlogEntries.filter(function (blog) {
-                return blog.headline.toLowerCase().includes(searchCriteria) ||
-                blog.content.toLowerCase().includes(searchCriteria);
-            }) || [];
+                sortedBlogEntries.filter(
+                    blog =>
+                    blog.headline.toLowerCase().includes(searchCriteria) ||
+                    blog.content.toLowerCase().includes(searchCriteria)
+                );
     }
-            // set the global    
-            currentBlogs = filteredBlogEntries;
-            //setInitialPagination();
-            return filteredBlogEntries || [];
+    
+    // set the global variable  
+    currentBlogs = filteredBlogEntries;
+    //setInitialPagination();
+    return filteredBlogEntries || [];
         
 }
 
@@ -41,38 +45,28 @@ const setInitialPagination = function() {
     
     // it is either hidde or not
     if (numberOfPages > 1) {
-        document.querySelector(".pagination").style.visibility = "";
+        document.querySelector(".pagination").style.display = "";
     } else {
-        document.querySelector(".pagination").style.visibility = "hidden";
+        document.querySelector(".pagination").style.display = "none";
     }
     
 }
 
 
-document.querySelector('.pagination').addEventListener("click", function(e) {
-        
-        if (!isValidPagination(e)) {return}
-
-        const pageNumber = e.target.dataset.pageNum;
-        writeBlogs(currentBlogs, pageNumber);
-
-});
-
-
-
-const writeBlogs = function (currentBlogs, pageNumber) {
+const writeBlogs = function (pageNumber) {
 
     const blogs = currentBlogs;
 
     const blogsEl = document.getElementById("blog-posts");
     blogsEl.innerHTML = "";
-    // 2.2 Programically generate the pagination section
+
+    // don't display pagination if there are no blogs
     if (blogs.length < 1) {
         blogsEl.innerHTML = "No blogs found...";
-        // don't display pagination if there are no blogs
         return;
     }
 
+    // Only display the pages in the current page number
     const blogsToDisplay = blogs.slice(
         (pageNumber - 1) * itemsPerPage,
         pageNumber * itemsPerPage
@@ -107,5 +101,16 @@ const writeBlogs = function (currentBlogs, pageNumber) {
 
 }
 
-writeBlogs(getBlogs(""),1);
+// ---- EVENT LISTENERS ----
+document.querySelector('.pagination').addEventListener("click", function(e) {
+    
+    if (!isValidPagination(e)) {return}
+
+    const pageNumber = e.target.dataset.pageNum;
+    writeBlogs(pageNumber);
+
+});
+
+getBlogs("");
+writeBlogs(1);
 setInitialPagination()
