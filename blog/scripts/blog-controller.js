@@ -139,8 +139,7 @@ const writeBlogsEl = function (pageNumber) {
 
             let blogContent = document.createElement('div');
             blogContent.className = "blog__content";
-            let blogContentText = document.createTextNode(entry.content);
-            blogContent.appendChild(blogContentText);
+            blogContent.innerHTML = entry.content;
             blogPost.appendChild(blogContent);
 
             let blogTags = document.createElement('div');
