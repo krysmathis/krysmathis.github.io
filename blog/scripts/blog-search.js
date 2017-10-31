@@ -11,11 +11,11 @@ searchInput.addEventListener("keyup", function(event) {
     let searchString = event.target.value.toLowerCase();
     if (searchString.length >=3) {
         getBlogs(searchString);
-        writeBlogs(1);
+        writeBlogsEl(1);
         setInitialPagination()
     } else {
         getBlogs(searchString)
-        writeBlogs(1);
+        writeBlogsEl(1);
         setInitialPagination()
     }
 })

@@ -73,23 +73,12 @@ const updatePagination = function(event) {
     return;
 }
 
-
-
-
-
-
-
 const setPaginationByEls = function (numberOfPages, startPage = 1) {
-    /*
-    -------------------------------------------------
-    This code does not currently work - do not use.
-    Further research is required - use setPagination
-    -------------------------------------------------
-    */
+
         const paginationEl = document.querySelector(".pagination");
         // reset the pagination by removing all the child nodes
         while (paginationEl.hasChildNodes()) {
-            node.removeChild(node.lastChild);
+            paginationEl.removeChild(paginationEl.lastChild);
         }
         /*
             ============================================================
