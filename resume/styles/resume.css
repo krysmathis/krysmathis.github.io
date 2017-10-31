@@ -1,0 +1,29 @@
+/*
+font-family: 'Source Serif Pro', serif;
+font-family: 'Source Sans Pro', sans-serif;
+*/
+
+.main-content {
+    margin-top: 75px;
+}
+
+.professional-experience {
+    max-width: 800px;
+    font-family: 'Source Serif Pro', serif;
+}
+
+.resume__date {
+    text-align:left;
+    font-family: 'Source Sans Pro', sans;
+}
+
+.resume__headline {
+    margin-right: auto;
+    font-family: 'Source Sans Pro', sans;
+}
+.resume__header {
+    display: flex;
+    justify-content: flex-end;
+
+}
+

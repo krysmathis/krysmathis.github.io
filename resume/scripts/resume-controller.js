@@ -12,17 +12,18 @@ for (let i = 0; i < jobsFromDB.length; i++) {
 
     for (let accompTracker = 0; accompTracker < job.accomplishments.length; accompTracker++) {
         resumeBullets += 
-        `<li>${job.accomplishments[accompTracker]}</li>`;
+        `<li class="resume__accomplishment">${job.accomplishments[accompTracker]}</li>`;
     }
 
     jobsSection.innerHTML += `
     <article class="professional-experience">
-      <header class="article-header resume-header">
-        ${job.headline}
+      <header class="article-header resume__header">
+        <span class="resume__headline">${job.headline}</span>
+        <span class="resume__date">${moment(job.startDate).format("YYYY")}-${moment(job.endDate).format("YYYY")}</span>
       </header>
       <img src="${job.companyLogoImg}"
-      <h3>${job.title}<h3>
-      <ul>
+      <h3 class="resume__job-title">${job.title}<h3>
+      <ul class="resume__job-list">
         ${resumeBullets}
       </ul>
       </article>

@@ -5,9 +5,6 @@ console.log('connected...')
 
 // add eventlistener to toggle the selected class
 
-const pageName = document.querySelector("[class^='page__']").className.split("__")[1]
-
-
 const populateNavBar = (function(){
 
     const navs = new Map();
@@ -36,6 +33,9 @@ const populateNavBar = (function(){
     const brandText = document.createTextNode("Krys Mathis");
     newBrandLi.appendChild(brandText)
     newList.appendChild(newBrandLi);
+    newBrandLi.addEventListener("click", e=> {
+        document.location.href = navs.get("Home").link;
+    })
 
     navs.forEach(
         nav => {

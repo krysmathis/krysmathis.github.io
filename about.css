@@ -6,8 +6,13 @@
     grid-template-areas: 
     "header"
     "image"
-    "about-container"
+    "image"
     "footer";
+}
+
+.main-content {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .main-header {
@@ -26,7 +31,6 @@
 }
 
 #about-container {
-    margin: 0;
     padding: 0;
     grid-row: 3 / 4;
 
@@ -63,7 +67,8 @@
     text-align: center;
     position: relative;
     height: 100%;
-    background-image: url("images/background.jpg");
+    /* background-image: url("images/background.jpg"); */
+    background-color: #D4D3D3;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -73,29 +78,59 @@
     justify-content: center;
     align-items: center;
 
+
+
 }
 
-.about-image-textblock {
-    display: block;
-    text-align: left;
+.about__image-textblock {
+    width: 60%;
+    top: 100px;
+    display: grid;
+    grid-template-rows: 20% 10% 1fr;
+    grid-template-columns: .4fr 1fr;
+    text-align: center;
     position: absolute;
     padding: 20px;
     color: white;
-    background-color: rgba(0,0,0,.45);
+    background-color: rgba(0,0,0,.65);
     box-shadow: 10px 10px 10px rgba(0,0,0,.45);
+    border-radius: 15px;
+
 
 }
 
+.about__history {
+    grid-row: 3 / 3;
+    grid-column: 1 / 3;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    background: white;
+    color: black;
+}
+
 #text-block-brand {
-    font-size: 3em;
+    font-family: 'Source Serif Pro', serif;
+    font-size: 8em;
     border-bottom: 1px solid rgba(255,255,255,.45);
     margin-bottom: 5px;
     padding-bottom: 5px;
     padding-top: 10px;
+    grid-row: 1 / 2;
+    grid-column: 1 / 3;
 }
 
 #text-block-tagline {
-    padding-top: 5px;
+    font-family: 'Source Sans Pro', serif;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+}
+
+.about__intro {
+    font-family: 'Source Sans Pro', serif;
+    grid-row: 2 / 3;
+    grid-column: 2 / 2;
 }
 
 #intro {
@@ -105,10 +140,7 @@
     margin-bottom: 20px;
 }
 
-#history {
-    width: 100%;
-    grid-area: history;
-}
+
 
 #history p {
     padding: 20px;

@@ -1,5 +1,8 @@
 
+
+
 .blog__post {
+	max-width: 800px;
 	clear: left;
     padding: 10px;
     margin: 0 auto;
@@ -49,6 +52,7 @@
 	padding-top: 20px;
 	padding-bottom: 20px;
 	overflow: auto;
+	font-family: 'Source Serif Pro', sans-serif;
 }
 
 .blog__content img {
