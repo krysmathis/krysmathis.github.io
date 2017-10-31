@@ -10,15 +10,15 @@ const setPagination = function (numberOfPages, startPage = 1) {
         const paginationEl = document.querySelector(".pagination");
         /*
             ============================================================
-            Writing all of the HTML for the blog page. 
+            Writing the HTML for the pagination 
 
             ============================================================
         */
         // Start with the previous arrow
         let pagination = `<span class="pagination__previous" data-page-num="0">&lt</span>`;
 
-        // 2.2.2 Loop through the number of pages and write a span or li for each one with the
-        //       class of "blog-page-link"
+        // Loop through the number of pages and write a span or li for each one with the
+        // class of "blog-page-link"
         for (let i = 0; i < numberOfPages; i++) {
             pagination += `<span class="pagination__page" data-page-num="${i+1}">${i+1}</span>`;
         }
@@ -33,55 +33,7 @@ const setPagination = function (numberOfPages, startPage = 1) {
     
 }
 
-const setPaginationEls = function (numberOfPages, startPage = 1) {
-    
-        const paginationEl = document.querySelector(".pagination");
-        // will need to remove all child nodes from here
-        /*
-            ============================================================
-            Writing all of the HTML for the blog page. 
-
-            ============================================================
-        */
-        // Start with the previous arrow
-        const prev = document.createElement("span")
-        prev.dataset.pageNum="0"
-        prev.className="pagination_previous"
-        const prevText = document.createTextNode("<")
-        prev.appendChild(prevText);
-
-        paginationEl.appendChild(prev);
-    
-
-        // 2.2.2 Loop through the number of pages and write a span or li for each one with the
-        //       class of "blog-page-link"
-        for (let i = 0; i < numberOfPages; i++) {
-            
-            let link = document.createElement("span")
-            link.dataset.pageNum=`${i+1}`
-            link.className="pagination__page";
-            link.appendChild(document.createTextNode(`${i+1}`));
-            paginationEl.appendChild(link);
-            
-            //pagination += `<span class="pagination__page" data-page-num="${i+1}">${i+1}</span>`;
-        }
-        // // code for the next arrow
-        // pagination += `<span class="pagination__next" data-page-num="2">&gt</span>`;
-        // // // 2.2.3 Update the innerHTML
-        // paginationEl.innerHTML = pagination;
-       
-        const newEl = document.createElement('span');
-        newEl.dataset.pageNum = "69";
-        paginationEl.appendChild(newEl);
-        
-        // set the previous page selector to invisible
-        document.querySelector(".pagination__previous").style.visibility = "hidden";
-        document.querySelector(".pagination__page").className = "pagination__page--selected";
-    
-}
-
-    
-// want to make sure we're clicking on 
+// want to make sure we're clicking on a part of the pagination with a button
 const isValidPagination = function(event) {
     const validElements = ["pagination__page", "pagination__page--selected", "pagination__previous", "pagination__next"]
     let isValid = false;
@@ -93,16 +45,20 @@ const isValidPagination = function(event) {
     return isValid;
 }
 
-// this updates which element gets the --selected modifier
-// and update the previous and next data values for pageNum
+/* 
+    This handles the styling modifications for the pagination
+    1.  The active page is set with the --selected modifier
+    2.  If the active page is the first or last element, hide or show the
+        arrow keys
+*/
 const updatePagination = function(event) {
 
     if (!isValidPagination(event)) {
-        // Do nothing!
         return;
     }
 
-    // capture the pageNum value from clicked element
+    // capture the pageNum value from clicked element. Parse it as an int
+    // because the program will need to do math with it later
     const clickedPageNumber = parseInt(event.target.dataset.pageNum);
     
     /*  
@@ -137,10 +93,67 @@ const updatePagination = function(event) {
         nextEl.style.visibility = "";
         nextEl.dataset.pageNum = clickedPageNumber+1;
     }
+    
+    // scroll to the top of the window
     window.scrollTo(0,0);
     return;
 }
 
-setPagination(4);
+
+setPagination(4);  //need this to set the styling
+
+// set the initial page as --selected
 document.querySelector(".pagination__page").className = "pagination__page--selected";
+
+// add event listener for pagination
 document.querySelector('.pagination').addEventListener("click", updatePagination);
+
+
+
+
+// const setPaginationEls = function (numberOfPages, startPage = 1) {
+//     /*
+//     -------------------------------------------------
+//     This code does not currently work - do not use.
+//     Further research is required - use setPagination
+//     -------------------------------------------------
+//     */
+//         const paginationEl = document.querySelector(".pagination");
+//         // will need to remove all child nodes from here
+
+//         /*
+//             ============================================================
+//             Write the HTML for the pagination
+
+//             ============================================================
+//         */
+//         // Start with the previous arrow
+//         const prev = document.createElement("span")
+//         prev.dataset.pageNum="0"
+//         prev.className="pagination_previous"
+//         const prevText = document.createTextNode("<")
+//         prev.appendChild(prevText);
+
+//         paginationEl.appendChild(prev);
+  
+//         for (let i = 0; i < numberOfPages; i++) {
+            
+//             let link = document.createElement("span")
+//             link.dataset.pageNum=`${i+1}`
+//             link.className="pagination__page";
+//             link.appendChild(document.createTextNode(`${i+1}`));
+//             paginationEl.appendChild(link);
+   
+//         }
+       
+//         const next = document.createElement("span")
+//         next.dataset.pageNum="2"
+//         next.className="pagination_previous"
+//         const nextText = document.createTextNode(">")
+//         next.appendChild(nextText);
+        
+//         // set the previous page selector to invisible
+//         document.querySelector(".pagination__previous").style.visibility = "hidden";
+//         document.querySelector(".pagination__page").className = "pagination__page--selected";
+    
+// }

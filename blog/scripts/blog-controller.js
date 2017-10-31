@@ -29,12 +29,13 @@ const getBlogs = function (searchCriteria) {
     // set the global variable  
     currentBlogs = filteredBlogEntries;
     //setInitialPagination();
-    return filteredBlogEntries || [];
+    return filteredBlogEntries;
         
 }
 
 /*
     Set the initial pagination once you have filtered your blog entries
+    This call the pagination
 */
 const setInitialPagination = function() {
    
@@ -43,11 +44,11 @@ const setInitialPagination = function() {
     
     setPagination(numberOfPages,1);
     
-    // it is either hidde or not
+
     if (numberOfPages > 1) {
-        document.querySelector(".pagination").style.display = "";
+        document.querySelector(".pagination").style.visibility = "";
     } else {
-        document.querySelector(".pagination").style.display = "none";
+        document.querySelector(".pagination").style.visibility = "hidden";
     }
     
 }
@@ -101,7 +102,7 @@ const writeBlogs = function (pageNumber) {
 
 }
 
-// ---- EVENT LISTENERS ----
+// ---- EVENT LISTENER FOR PAGINATION ----
 document.querySelector('.pagination').addEventListener("click", function(e) {
     
     if (!isValidPagination(e)) {return}
@@ -111,6 +112,6 @@ document.querySelector('.pagination').addEventListener("click", function(e) {
 
 });
 
-getBlogs("");
-writeBlogs(1);
-setInitialPagination()
+getBlogs(""); // returns all blogs
+writeBlogs(1); // writes the first page of blogs
+setInitialPagination(); // initiates the pagination div
