@@ -65,7 +65,7 @@ const demandPlanningDir = professionalExperience (
 
 
 var projectManager = professionalExperience(
-    "System Implementater, Project Manager",
+    "System Subject Matter Expert, Project Manager",
     "Dollar General",
     new Date("2011-01-01"),
     new Date("2013-01-01"),

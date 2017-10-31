@@ -24,7 +24,7 @@ const getMissingParts = function() {
 
 const addNewBlogArticleToDb = function() {
     
-    const tags = document.querySelector(".blogForm__tags").value.split(" ")
+    const tags = document.querySelector(".blogForm__tags").value.split(", ")
     
     const newBlogArticle = blogObjectFactory (
         document.querySelector(".blogForm__headline").value, //headline
