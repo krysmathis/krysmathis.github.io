@@ -12,29 +12,38 @@
   font-size: 2em;
   font-weight: bold;
   border-bottom: 1px solid rgba(0,0,0,.15);
-   padding: 10px 0px 10px 0px;
-   margin-bottom: 10px;
+  padding: 10px 0px 10px 0px;
+  margin-bottom: 10px;
 }
 /* the look of the toast element */
 
+/*
+  Controls the position of your toaster
+*/
 .toaster__container {
-  position: fixed;
+  --toast-width: 250px; /* variable for toast width */
+  position: fixed; /* Sit on top of the screen */
+  
   top: 0;
-  right: 300px;
-  z-index: 10;
+  right: var(--toast-width)
+  ; /* at least the width of your toast */
+  margin-right: 100px;  
+  /* z-index: 100; */
+  
 }
 
 .toaster {
     list-style: none;
-    position: absolute;
+    position: absolute; /* need this to be able to position the toaster */
     margin: 0 auto;
 }
 .toaster__toast {
   background-color: rgba(0,0,0,.25);
   color: white;
   margin-top: 25px;
-  width: 200px;
+  width: var(--toast-width);
   height: auto;
   padding: 10px;
   box-shadow: 5px 5px 5px rgba(0,0,0,.15);
+  border-radius: 10px;
 }

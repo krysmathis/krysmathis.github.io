@@ -57,12 +57,12 @@ const blogIdGenerator = function* (start) {
 
 const blogIdFactory = blogIdGenerator(maxBlogId);
 
-const blogObjectFactory = function (headline, dateAdded, author, imgHeader, content, tags) {
+const blogObjectFactory = function (headline, dateAdded, author, imgHeader, content, tags, id) {
     
     const currentId = blogIdFactory.next().value;
     
     return Object.create({},{
-        "id": {value: currentId, enumerable: true},
+        "id": {value: id || currentId, enumerable: true},
         "headline": {value: headline, enumerable: true},
         "dateAdded": {value: dateAdded, enumerable: true},
         "author": {value: dateAdded, enumerable: true},

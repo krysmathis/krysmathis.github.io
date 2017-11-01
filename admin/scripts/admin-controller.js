@@ -1,5 +1,7 @@
 {
 
+let editMode = false;
+
 // get the database from local storage, or empty object if null
 const blog = JSON.parse(localStorage.getItem("blog")) || {};
 
