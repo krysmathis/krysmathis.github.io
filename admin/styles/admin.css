@@ -1,23 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
 
- body {
-  background: red;
-  font-family: 'Roboto', sans-serif
+.blogForm {
+  text-align: left;
+  padding-left: 20px;
 }
-
-.main-content {
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
- header {
-  font-size: 2em;
-  font-weight: bold;
-  border-bottom: 1px solid rgba(0,0,0,.15);
-   padding: 10px 0px 10px 0px;
-   margin-bottom: 10px;
-}
-
 .blogForm__content {
   height: 200px;
   width: 600px;
