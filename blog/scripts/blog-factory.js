@@ -65,7 +65,7 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
         "id": {value: id || currentId, enumerable: true},
         "headline": {value: headline, enumerable: true},
         "dateAdded": {value: dateAdded, enumerable: true},
-        "author": {value: dateAdded, enumerable: true},
+        "author": {value: author, enumerable: true},
         "imgHeader": {value: imgHeader, enumerable: true},
         "content": {value: content, enumerable: true},
         "tags": {value: tags, enumerable: true},

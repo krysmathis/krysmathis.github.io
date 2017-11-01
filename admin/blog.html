@@ -8,6 +8,9 @@
 </head>
   <body>
     <nav class="nav"></nav>
+    <div class="messageBlock__container">
+      <div class="messageBlock">Edit Mode!</div>
+    </div>
     <main class='main-content'>
       <h1>Create a Blog Entry</h1>
       <section class="blogForm">
@@ -16,6 +19,9 @@
 
         <label>Author</label>
         <input type="text" value="Krys Mathis" name="blog-author" class="blogForm__author">
+
+        <label>Date</label>
+        <input type="date" value="" name="blog-date" class="blogForm__date">
 
         <label>Content</label>
         <textarea value="Enter contents here. HTML is OK."name="blog-content" class="blogForm__content"></textarea>
@@ -30,6 +36,28 @@
         <button class="blogForm__btnGoToBlog">Go To Blogs</button>
 
       </section>
+        <!--- this will hold a list of the blogs to edit -->`
+        <table class="blogList">
+            <colgroup>
+              <col style="width:35%">
+              <col style="width:35%">
+              <col style="width:15%">
+              <col style="width:15%">
+            </colgroup>
+            <caption class="blogList__caption">Edit Existing Blog Articles</caption>
+            <thead class="blogList__headers">
+                <tr class="blogList__headerRow">
+                <th>Title</th>
+                <th>Snapshot</th>
+                <th>Date</th>
+                <th>Edit?</th>
+                </tr>
+            </thead>
+            <tbody class="blogList__body">
+
+            </tbody>
+            </table>
+            
     </main>
     <footer></footer>
   <script src="../navbar/scripts/navbar.js"></script>

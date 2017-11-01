@@ -1,12 +1,56 @@
 {
 
 let editMode = false;
+let currentBlog = null;
+let baseBackground = document.querySelector("body").style.backgroundColor;
+
+const setEditMode = (bool) => {
+    editMode = bool;
+    const msgBlock = document.querySelector(".messageBlock");
+    if (bool) 
+        { 
+            msgBlock.style.backgroundColor = "red";
+            msgBlock.style.display = "block";
+            
+        }
+    else 
+        { 
+            msgBlock.style.backgroundColor = baseBackground;
+            msgBlock.style.display = "none";
+        }  
+}
+
 
 // get the database from local storage, or empty object if null
 const blog = JSON.parse(localStorage.getItem("blog")) || {};
 
 // get the blog entries or empty object if null
 blog.blogEntries = blog.blogEntries || [];
+
+/*
+    ===================================================
+    Generate a list of the current blogs for editing
+    ===================================================
+*/
+const listCurrentBlogs = () => {
+    let html = ""
+    blog.blogEntries
+        .sort((a,b)=>b.dateAdded - a.dateAdded)
+        .forEach(entry => {
+        html += `
+        <tr class="blogList__entry">
+            <th class="blogList__headline">${entry.headline}</th>
+            <td class="blogList__preview">${entry.content.substring(0,30).replace(/<(?:.|\n)*?>/gm, '')}</td>
+            <td class="blogList__date">${entry.dateAdded}</td>
+            <td class="blogList__button-row"><button class="blogList__btn-edit" data-blog-id="${entry.id}">Edit</button></td>
+        </tr>
+        `
+        let x = 1;
+    })
+
+    document.querySelector(".blogList__body").innerHTML = html;
+}
+listCurrentBlogs();
 
 const getMissingParts = function() {
     // check inputs
@@ -27,21 +71,45 @@ const getMissingParts = function() {
 const addNewBlogArticleToDb = function() {
     
     const tags = document.querySelector(".blogForm__tags").value.split(", ")
+
+    if (editMode) {
+        //get index
+            // Find the index of the selected article
+            const blogIndex = blog.blogEntries.findIndex(
+                a => a.id === currentBlog.id
+            )
+
+            blog.blogEntries[blogIndex] = blogObjectFactory (
+                document.querySelector(".blogForm__headline").value, //headline
+                document.querySelector(".blogForm__date").value,
+                document.querySelector(".blogForm__author").value, //author
+                document.querySelector(".blogForm__image").value, // imgheader
+                document.querySelector(".blogForm__content").value, //content
+                tags,
+                currentBlog.id
+            );
+            listCurrentBlogs();
+            setEditMode(false);
+        //modify existing array
+    } else {
+        const newBlogArticle = blogObjectFactory (
+            document.querySelector(".blogForm__headline").value, //headline
+            new moment(), // date added
+            document.querySelector(".blogForm__author").value, //author
+            document.querySelector(".blogForm__image").value, // imgheader
+            document.querySelector(".blogForm__content").value, //content
+            tags
+        )
+        /*         
+        Add the article to the blog array, then add it to the db in
+        Add it to local storage 
+        */
+        blog.blogEntries.unshift(newBlogArticle);
+    }
     
-    const newBlogArticle = blogObjectFactory (
-        document.querySelector(".blogForm__headline").value, //headline
-        new moment(), // date added
-        document.querySelector(".blogForm__author").value, //author
-        document.querySelector(".blogForm__image").value, // imgheader
-        document.querySelector(".blogForm__content").value, //content
-        tags
-    )
-    /*         
-    Add the article to the blog array, then add it to the db in
-    Add it to local storage 
-    */
-    blog.blogEntries.unshift(newBlogArticle);
+    // regardless of edit mode push the changes to the database
     localStorage.setItem("blog",JSON.stringify(blog))
+
     
 }
 
@@ -75,8 +143,38 @@ document.querySelector(".blogForm__btnSave").addEventListener("click", function(
     
 })
 
+// store the current blog as the number
+const getCurrentBlog = (blogId) => {
+    currentBlog = blog.blogEntries.find(function(_blog){
+        return _blog.id === parseInt(blogId);
+    })
+}
+
+const populateBlogForm = () => {
+    document.querySelector(".blogForm__tags").value = currentBlog.tags.join(", ");
+    document.querySelector(".blogForm__headline").value = currentBlog.headline;
+    document.querySelector(".blogForm__author").value = currentBlog.author;
+    document.querySelector(".blogForm__date").value = currentBlog.dateAdded;
+    document.querySelector(".blogForm__image").value = currentBlog.imgHeader;
+    document.querySelector(".blogForm__content").value = currentBlog.content;
+    setEditMode(true);
+}
+
+
+//---- EVENT LISTENERS ----- 
+
 document.querySelector(".blogForm__btnGoToBlog").addEventListener("click", function(e){
     window.location.href="../blog/index.html";
+});
+
+document.querySelector(".blogList__body").addEventListener("click", e => {
+
+    if (e.target.className === "blogList__btn-edit") {
+        const blogId = e.target.dataset.blogId;
+        getCurrentBlog(blogId);
+        populateBlogForm();
+    }
+    
 });
 
 }  // end of castle wall
