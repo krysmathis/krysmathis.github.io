@@ -1,12 +1,4 @@
 // event listener for the search bar
-
-const searchInput = document.querySelector(".blog__search-input");
-
-// clear the box when the form has the focus
-searchInput.addEventListener("focus", function(event) {
-    searchInput.value = "";
-});
-
 const initiateSearch = function(searchString) {
     if (searchString.length >=3) {
         getBlogs(searchString);
@@ -18,6 +10,14 @@ const initiateSearch = function(searchString) {
         setInitialPagination()
     }
 }
+
+const searchInput = document.querySelector(".blog__search-input");
+
+// clear the box when the form has the focus
+searchInput.addEventListener("focus", function(event) {
+    searchInput.value = "";
+});
+
 searchInput.addEventListener("keyup", function(event) {
     let searchString = event.target.value.toLowerCase();
     initiateSearch(searchString);
