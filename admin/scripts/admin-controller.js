@@ -9,6 +9,10 @@ blog.blogEntries = blog.blogEntries || [];
 let editMode = false;
 let currentBlog = null;
 
+//Store the elements here
+const headlineEl = document.querySelector(".blogForm__headline");
+
+
 const setEditMode = (bool) => {
     editMode = bool;
 
@@ -62,7 +66,7 @@ const addUpdateBlogArticleToDb = function() {
             )
 
             blog.blogEntries[blogIndex] = blogObjectFactory (
-                document.querySelector(".blogForm__headline").value, //headline
+                headlineEl.value, //headline
                 document.querySelector(".blogForm__date").value,
                 document.querySelector(".blogForm__author").value, //author
                 document.querySelector(".blogForm__image").value, // imgheader
@@ -75,8 +79,8 @@ const addUpdateBlogArticleToDb = function() {
         //modify existing array
     } else {
         const newBlogArticle = blogObjectFactory (
-            document.querySelector(".blogForm__headline").value, //headline
-            new moment(), // date added
+            headlineEl.value, //headline
+            new moment().format("YYYY-MM-DD"), // date added
             document.querySelector(".blogForm__author").value, //author
             document.querySelector(".blogForm__image").value, // imgheader
             document.querySelector(".blogForm__content").value, //content
@@ -104,7 +108,7 @@ const getCurrentBlog = (blogId) => {
 
 const populateBlogForm = () => {
     document.querySelector(".blogForm__tags").value = currentBlog.tags.join(", ");
-    document.querySelector(".blogForm__headline").value = currentBlog.headline;
+    headlineEl.value = currentBlog.headline;
     document.querySelector(".blogForm__author").value = currentBlog.author;
     document.querySelector(".blogForm__date").value = currentBlog.dateAdded;
     document.querySelector(".blogForm__image").value = currentBlog.imgHeader;
@@ -145,10 +149,19 @@ const showErrors = function(missingParts) {
     missingParts.forEach( part => message += `<li class="messageBlock__detail">Your ${part.field} is ${part.message}</li>`)
     message += "</ul>"
     msgBlock.style.display="block";
+    msgBlock.style.backgroundColor = "red";
     msgBlock.innerHTML = message;
 }
 
-
+const showSuccess = () => {
+    const msgBlock = document.querySelector(".messageBlock");
+    msgBlock.style.backgroundColor = "rgba(255,255,0,.75)";
+    msgBlock.innerHTML = "You've created a new blog!";
+    msgBlock.style.display = "block"; //show the element
+    setTimeout(function() {
+       msgBlock.style.display = "none"; 
+    }, 10000);
+}
 
 //---- EVENT LISTENERS ----- 
 
@@ -180,6 +193,8 @@ document.querySelector(".blogForm__btnSave").addEventListener("click", function(
     if (missingParts.length === 0) {
         // no errors proceed to add blog
         addUpdateBlogArticleToDb();
+        showSuccess();
+        listCurrentBlogs();
     } else {
         // display errors, do not add blog
         showErrors(missingParts);

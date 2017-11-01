@@ -120,7 +120,7 @@ const setPaginationByEls = function (numberOfPages, startPage = 1) {
 }
 
 document.querySelector('.pagination').addEventListener("click", updatePagination);
-
+setPaginationByEls(4);
 
 /* 
     Deprecated but keeping this as a fall-back

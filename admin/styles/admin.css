@@ -39,13 +39,21 @@
 
 .blogForm__btnSave,
 .blogForm__btnGoToBlog {
-  width: 200px;
+  width: 150px;
   height: 50px;
   border-radius: 15px;
   border: 2px solid white;
   margin-top: 25px;
+  color: black;
+  font-size: 1.25em;
 }
 
+
+.blogForm__btnSave {
+  background-color: #52bab3;
+  color: black;
+  font-size: 1.25em;
+}
 .blogForm label,
 .blogForm input {
   display: block;
