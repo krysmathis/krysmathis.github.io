@@ -41,27 +41,28 @@ const updatePagination = function(event) {
         Also need to capture the number of pages
     */ 
     const pageNums = document.querySelectorAll("[class^='pagination__page'");
-    let numberOfPages = 0;
     Array.from(pageNums).forEach(function (page) {     
         page.className = "pagination__page";
         if (clickedPageNumber.toString() === page.dataset.pageNum) {
             page.className = "pagination__page--selected";
         }
-        numberOfPages++;
     }, this);
-
+    
+    const maxPage = parseInt(pageNums[pageNums.length-1].dataset.pageNum);
+    const minPage = parseInt(pageNums[0].dataset.pageNum)
+    
     const previousEl = document.querySelector(".pagination__previous");
     const nextEl = document.querySelector(".pagination__next");
 
     // Behavior for the arrow keys
-    if (clickedPageNumber === 1) {
+    if (clickedPageNumber === minPage) {
         previousEl.style.visibility = "hidden";
     } else {
         previousEl.style.visibility = "";
         previousEl.dataset.pageNum = clickedPageNumber-1;
     }
     
-    if (clickedPageNumber + 1 > numberOfPages) {  
+    if (clickedPageNumber + 1 > maxPage) {  
         nextEl.style.visibility = "hidden";
     } else {
         nextEl.style.visibility = "";
@@ -87,27 +88,27 @@ const setPaginationByEls = function (numberOfPages, startPage = 1) {
         */
         // Start with the previous arrow
         const prev = document.createElement("span")
-        prev.dataset.pageNum="0"
+        prev.dataset.pageNum=(startPage-1).toString();
         prev.className="pagination__previous"
         const prevText = document.createTextNode("<")
         prev.appendChild(prevText);
 
         paginationEl.appendChild(prev);
-  
+
         // create an element to represent each page
         for (let i = 0; i < numberOfPages; i++) {
             
             let link = document.createElement("span")
-            link.dataset.pageNum=`${i+1}`
+            link.dataset.pageNum=`${i+startPage}`
             link.className="pagination__page";
-            link.appendChild(document.createTextNode(`${i+1}`));
+            link.appendChild(document.createTextNode(`${i+startPage}`));
             paginationEl.appendChild(link);
    
         }
        
         // create the next arrow button
         const next = document.createElement("span")
-        next.dataset.pageNum="2"
+        next.dataset.pageNum=(startPage+1).toString();
         next.className="pagination__next"
         const nextText = document.createTextNode(">")
         next.appendChild(nextText);
@@ -120,7 +121,7 @@ const setPaginationByEls = function (numberOfPages, startPage = 1) {
 }
 
 document.querySelector('.pagination').addEventListener("click", updatePagination);
-setPaginationByEls(4);
+setPaginationByEls(10,5);
 
 /* 
     Deprecated but keeping this as a fall-back

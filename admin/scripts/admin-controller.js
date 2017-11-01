@@ -60,7 +60,7 @@ listCurrentBlogs();
 
 const addUpdateBlogArticleToDb = function() {
     
-    const tags = tagsEl.split(", ")
+    const tags = tagsEl.value.split(", ")
 
     if (editMode) {
         //get index
