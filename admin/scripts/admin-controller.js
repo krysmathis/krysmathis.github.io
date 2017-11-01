@@ -11,7 +11,11 @@ let currentBlog = null;
 
 //Store the elements here
 const headlineEl = document.querySelector(".blogForm__headline");
-
+const authorEl = document.querySelector(".blogForm__author")
+const dateEl = document.querySelector(".blogForm__date")
+const imageEl = document.querySelector(".blogForm__image")
+const contentEl = document.querySelector(".blogForm__content")
+const tagsEl = document.querySelector(".blogForm__tags")
 
 const setEditMode = (bool) => {
     editMode = bool;
@@ -56,7 +60,7 @@ listCurrentBlogs();
 
 const addUpdateBlogArticleToDb = function() {
     
-    const tags = document.querySelector(".blogForm__tags").value.split(", ")
+    const tags = tagsEl.split(", ")
 
     if (editMode) {
         //get index
@@ -67,10 +71,10 @@ const addUpdateBlogArticleToDb = function() {
 
             blog.blogEntries[blogIndex] = blogObjectFactory (
                 headlineEl.value, //headline
-                document.querySelector(".blogForm__date").value,
-                document.querySelector(".blogForm__author").value, //author
-                document.querySelector(".blogForm__image").value, // imgheader
-                document.querySelector(".blogForm__content").value, //content
+                dateEl.value,
+                authorEl.value, //author
+                imageEl.value, // imgheader
+                contentEl.value, //content
                 tags,
                 currentBlog.id
             );
@@ -81,9 +85,9 @@ const addUpdateBlogArticleToDb = function() {
         const newBlogArticle = blogObjectFactory (
             headlineEl.value, //headline
             new moment().format("YYYY-MM-DD"), // date added
-            document.querySelector(".blogForm__author").value, //author
-            document.querySelector(".blogForm__image").value, // imgheader
-            document.querySelector(".blogForm__content").value, //content
+            authorEl.value, //author
+            imageEl.value, // imgheader
+            contentEl.value, //content
             tags
         )
         /*         
@@ -107,12 +111,12 @@ const getCurrentBlog = (blogId) => {
 }
 
 const populateBlogForm = () => {
-    document.querySelector(".blogForm__tags").value = currentBlog.tags.join(", ");
+    tagsEl = currentBlog.tags.join(", ");
     headlineEl.value = currentBlog.headline;
-    document.querySelector(".blogForm__author").value = currentBlog.author;
-    document.querySelector(".blogForm__date").value = currentBlog.dateAdded;
-    document.querySelector(".blogForm__image").value = currentBlog.imgHeader;
-    document.querySelector(".blogForm__content").value = currentBlog.content;
+    authorEl.value = currentBlog.author;
+    dateEl.value = currentBlog.dateAdded;
+    imageEl.value = currentBlog.imgHeader;
+    contentEl.value = currentBlog.content;
     setEditMode(true);
 }
 
