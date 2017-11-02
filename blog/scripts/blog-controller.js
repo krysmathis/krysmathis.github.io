@@ -3,6 +3,7 @@
 let currentBlogs = [];
 let itemsPerPage = 5;
 
+
 // function to return the blogs to show
 const getBlogs = function (searchCriteria) {
 

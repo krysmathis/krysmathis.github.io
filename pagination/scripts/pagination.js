@@ -121,7 +121,50 @@ const setPaginationByEls = function (numberOfPages, startPage = 1) {
 }
 
 // document.querySelector('.pagination').addEventListener("click", updatePagination);
-// setPaginationByEls(10,5);
+ setPaginationByEls(10,5);
+
+ const Paginator = function() {
+    
+        let _totalPages = 0;
+        let _currentRange = null;
+        let _span = 0;
+        let _currentPage;
+
+        const printOut = function() {
+            console.log("test");
+        }
+
+        return Object.create({},{
+            
+            "init": {
+                value: function(pages, span) { 
+                    _totalPages = pages,
+                    _span = span
+                },
+                enumerable: true
+            },
+            "currentPage": {
+                configurable: false,
+                value: function(value) {
+                    _currentPage = value;
+                },
+                enumerable: true
+            },
+            "span": {
+                get: () => _span
+            },
+            "page": {
+                get: () => _currentPage
+            },
+            "printer": {
+                value: () => printOut(),
+                enumerable: false
+            }
+
+        })
+    
+}
+
 
 /* 
     Deprecated but keeping this as a fall-back

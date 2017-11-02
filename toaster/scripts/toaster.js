@@ -2,10 +2,13 @@ console.log('connected...')
 
 /*
     1. requires a section or div called toaster
-
+    2. There are three toast timings
+        a.  In miliseconds
+        b.  0 = the user clicks it to close it
+        c.  -1 = this will only go away when triggered
 */
 const Toaster = function() {
-    
+
     const initToaster = function() {
         // Get the toaster element
         const toastContainer = document.querySelector(".toaster__container");
@@ -29,6 +32,7 @@ const Toaster = function() {
         toastMessage = document.createTextNode(message);
         toast.appendChild(toastMessage);
         toast.className = "toaster__toast";
+        toast.dataset.timeout = timeout;
     
         if (toaster.hasChildNodes()) {
              toaster.insertBefore(toast, toaster.firstChild);
@@ -36,12 +40,15 @@ const Toaster = function() {
             toaster.appendChild(toast);
         }
     
-        // set expiration timing for the toast
-        setTimeout(function() {
-            if (toaster.contains(toast)) {
-                toaster.removeChild(toast);
-            }
-        }, timeout);
+        if (timeout > 0) {
+            // set expiration timing for the toast
+            setTimeout(function() {
+                if (toaster.contains(toast)) {
+                    toaster.removeChild(toast);
+                }
+            }, timeout);
+        }
+        
     }
 
     return Object.create(null, {
@@ -64,8 +71,16 @@ document.addEventListener("click", function(e) {
 
     if (e.target.className === "toaster__toast") {
         const toaster = e.target.parentNode;
+       
+        const timeout = e.target.dataset.timeout;
+        if (timeout === "-1") {
+            return;
+        }
+        console.log(timeout);
         // Make sure the toaster still has a child node
-        if (toaster.contains(e.target)) toaster.removeChild(e.target);
+        if (toaster.contains(e.target)) {
+            toaster.removeChild(e.target)
+        };
         return;
     }
 })
