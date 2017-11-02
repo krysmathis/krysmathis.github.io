@@ -59,9 +59,6 @@ const Toaster = function() {
        
 };
 
-// to use the toaster you need the code below in your javascript
-
-let toaster = Toaster();
 
 document.addEventListener("click", function(e) {
     if (e.target.id === "btn"){
@@ -84,3 +81,7 @@ document.addEventListener("click", function(e) {
         return;
     }
 })
+
+// to use the toaster you need the code below in your javascript
+let toaster = Toaster();
+
