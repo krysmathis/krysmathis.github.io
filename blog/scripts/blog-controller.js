@@ -175,9 +175,12 @@ const writeBlogsEl = function (pageNumber) {
 document.querySelector('.pagination').addEventListener("click", function(e) {
     
     if (!isValidPagination(e)) {return}
-
+    
+    // Update the blog posts
     const pageNumber = e.target.dataset.pageNum;
     writeBlogsEl(pageNumber);
+    // Update the pagination to store the new page #'s
+    updatePagination(e);
 
 });
 
