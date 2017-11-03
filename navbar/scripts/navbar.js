@@ -35,6 +35,7 @@ const populateNavBar = (function(brand){
     const brandText = document.createTextNode(brand);
     newBrandLi.appendChild(brandText);
     newList.appendChild(newBrandLi);
+    
     newBrandLi.addEventListener("click", () => {
         document.location.href = navs.get("Home").link;
     });
@@ -82,6 +83,9 @@ const populateNavBar = (function(brand){
             menuItem.innerHTML = `${nav.label}`;
             menuItem.className = "menu-list__item";
             menuList.appendChild(menuItem);
+            menuItem.addEventListener("click",() => {
+                document.location.href = nav.link;
+            });
         }
     );
 
@@ -102,9 +106,10 @@ const updateNavBar = function(pageName) {
 * Hamburger Menu
 * That will look like something interesting
 */
+
+const menu = document.querySelector(".menu-list"); 
 document.querySelector(".menu-col").addEventListener("click", ()=>{
 
-    const menu = document.querySelector(".menu-list"); 
     const displayStyle = menu.style.display;
     if (displayStyle === "none" || displayStyle === "") {
         menu.style.display = "block";
@@ -115,11 +120,17 @@ document.querySelector(".menu-col").addEventListener("click", ()=>{
 
 document.querySelector(".menu-list").addEventListener("click", (event)=>{
     
-    const menu = document.querySelector(".menu-list"); 
     const displayStyle = menu.style.display;
     if (displayStyle === "none" || displayStyle === "") {
         menu.style.display = "block";
     } else {
         menu.style.display = "none";
     }
+});
+
+/**
+ * If the user resizes the window the drop down menu will disappear
+ */
+window.addEventListener("resize", () => {
+    menu.style.display = "none";
 });

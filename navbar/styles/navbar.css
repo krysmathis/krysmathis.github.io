@@ -13,18 +13,19 @@
 .nav__list {
   display: flex;
   list-style: none;
-  justify-content: space-around;
   height: 100%;
   text-align: center;
-
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
 }
 
 .nav__brand {
   width: 200px;
-  padding-top: 5px;
   font-size: 2em;
   font-family: 'Source Serif Pro', sans-serif;
   color: white;
+  flex-shrink: 1;
 }
 
 .nav__link:hover {
@@ -36,7 +37,6 @@
 .nav__link {
   text-decoration: none;
   color: white;
-  padding-top: 10px;
   font-size: 1.25em;
   width: 10%;
 }
@@ -46,7 +46,6 @@
   text-decoration: none;
   background: purple;
   color: white;
-  padding-top: 10px;
   font-size: 1.25em;
 }
 
@@ -72,8 +71,8 @@
 
 .nav__link--selected:after {
 	border-top-color: var(--main-bg-color);
-	border-width: 15px;
-	margin-left: -15px;
+	border-width: 20px;
+	margin-left: -20px;
 }
 
 .nav__list:before {	
@@ -89,6 +88,8 @@
   width: 35px;
   padding: 5px;
   display: none;
+  position: absolute;
+  right: 15px;
 }
 
 .menu-col__bar {
@@ -105,37 +106,61 @@
 
 .menu-list {
   display: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 5px;
 }
 
 .menu-list__list {
   width: 300px;
   background-color: white;
   list-style: none;
+  padding: 0;
 
 }
 .menu-list__item {
   height: 10px;
-  padding: 25px;   
+  padding: 25px; 
+  color: black;
+  text-shadow: none;
 }
 .menu-list__item:nth-child(even) {
   background-color: grey;
 }
 .menu-list__item:hover {
-  background-color: red;
+  background-color: #52bab3;
 }
 
 @media (max-width: 769px) {
   
   .menu-col {
     display: block;
-    margin-right: auto;
+    right: 15px;
 
   }
+
   .nav__link {
     display: none;
   }
-  .nav__list {
-    justify-content: flex-end;
+
+  .nav {
+    position: relative;
   }
+
+  .nav__list {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+@media (max-width: 768px) {
+  
+  .menu-list {
+    display:none;
+  }
+}
 
 }
