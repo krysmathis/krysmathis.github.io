@@ -57,7 +57,36 @@ const populateNavBar = (function(brand){
         }
     );
     navBar.appendChild(newList);
-    
+
+    /**
+     * Building the dropdown menu
+     */
+    const hamburgerMenu = document.createElement("div");
+    hamburgerMenu.className = "menu-col";
+    for (let i = 0; i < 3; i++) {
+        let newMenuBar = document.createElement("div");
+        newMenuBar.className = "menu-col__bar";
+        hamburgerMenu.appendChild(newMenuBar);
+    }
+    newList.appendChild(hamburgerMenu);
+
+    const menu = document.createElement("div");
+    menu.className = "menu-list";
+    const menuList = document.createElement("ul");
+    menuList.className = "menu-list__list";
+    menu.appendChild(menuList);
+
+    navs.forEach(
+        nav => {
+            let menuItem = document.createElement("li");
+            menuItem.innerHTML = `${nav.label}`;
+            menuItem.className = "menu-list__item";
+            menuList.appendChild(menuItem);
+        }
+    );
+
+    navBar.appendChild(menu);
+
 })("Krys Mathis");
 
 // this is the external function
@@ -68,3 +97,29 @@ const updateNavBar = function(pageName) {
         }
     );
 };
+
+/**
+* Hamburger Menu
+* That will look like something interesting
+*/
+document.querySelector(".menu-col").addEventListener("click", ()=>{
+
+    const menu = document.querySelector(".menu-list"); 
+    const displayStyle = menu.style.display;
+    if (displayStyle === "none" || displayStyle === "") {
+        menu.style.display = "block";
+    } else {
+        menu.style.display = "none";
+    }
+});
+
+document.querySelector(".menu-list").addEventListener("click", (event)=>{
+    
+    const menu = document.querySelector(".menu-list"); 
+    const displayStyle = menu.style.display;
+    if (displayStyle === "none" || displayStyle === "") {
+        menu.style.display = "block";
+    } else {
+        menu.style.display = "none";
+    }
+});
