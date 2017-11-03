@@ -1,3 +1,6 @@
+node_modules
+conf
+conf/
 .vscode
 .DS_Store
 images
@@ -5,4 +8,4 @@ template.html
 questions.js
 scripts/playground.js
 playground.html
-css/playground.css
+scripts/playground.css

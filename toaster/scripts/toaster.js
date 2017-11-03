@@ -1,5 +1,3 @@
-console.log('connected...')
-
 /*
     1. requires a section or div called toaster
     2. There are three toast timings
@@ -14,14 +12,16 @@ const Toaster = function() {
         const toastContainer = document.querySelector(".toaster__container");
         // clear the existing toaster
         while(toastContainer.hasChildNodes()){
-            toastContainer.removeChild(toastContainer.lastChild)
+            toastContainer.removeChild(toastContainer.lastChild);
         }
 
         // append the ul element
         const toasterUl = document.createElement("ul");
-        toasterUl.className = ("toaster")
+        toasterUl.className = ("toaster");
         toastContainer.appendChild(toasterUl);
-    }();
+    };
+
+    initToaster();
 
     const createToast = function(message, timeout) {
         
@@ -29,13 +29,13 @@ const Toaster = function() {
         // get the toaster
         const toast = document.createElement("li");
         
-        toastMessage = document.createTextNode(message);
+        let toastMessage = document.createTextNode(message);
         toast.appendChild(toastMessage);
         toast.className = "toaster__toast";
         toast.dataset.timeout = timeout;
     
         if (toaster.hasChildNodes()) {
-             toaster.insertBefore(toast, toaster.firstChild);
+            toaster.insertBefore(toast, toaster.firstChild);
         } else {
             toaster.appendChild(toast);
         }
@@ -49,13 +49,13 @@ const Toaster = function() {
             }, timeout);
         }
         
-    }
+    };
 
     return Object.create(null, {
         "makeToast": {
-            value: (message,time) => {createToast(message, time)},
+            value: (message,time) => {createToast(message, time);},
             enumerable: true}
-    })
+    });
        
 };
 
@@ -73,14 +73,13 @@ document.addEventListener("click", function(e) {
         if (timeout === "-1") {
             return;
         }
-        console.log(timeout);
         // Make sure the toaster still has a child node
         if (toaster.contains(e.target)) {
-            toaster.removeChild(e.target)
-        };
+            toaster.removeChild(e.target);
+        }
         return;
     }
-})
+});
 
 // to use the toaster you need the code below in your javascript
 let toaster = Toaster();

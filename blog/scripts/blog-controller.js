@@ -11,19 +11,19 @@ const getBlogs = function (searchCriteria) {
     const blogEntries = blogDB.blogEntries || [];
 
     // sort in descending order
-    const sortedBlogEntries = blogEntries.sort((a, b) => moment(b.dateAdded) - moment(a.dateAdded))
+    const sortedBlogEntries = blogEntries.sort((a, b) => moment(b.dateAdded) - moment(a.dateAdded));
     
     let filteredBlogEntries = [];    
     if (searchCriteria === undefined || searchCriteria === "") {
-            // just return the sorted blogs
-            filteredBlogEntries = sortedBlogEntries;
+        // just return the sorted blogs
+        filteredBlogEntries = sortedBlogEntries;
     } else {
-            // return the filtered blogs
-            filteredBlogEntries =
+        // return the filtered blogs
+        filteredBlogEntries =
                 sortedBlogEntries.filter(
                     blog =>
-                    blog.headline.toLowerCase().includes(searchCriteria) ||
-                    blog.content.toLowerCase().includes(searchCriteria)
+                        blog.headline.toLowerCase().includes(searchCriteria) ||
+                        blog.content.toLowerCase().includes(searchCriteria)
                 );
     }
     
@@ -32,7 +32,7 @@ const getBlogs = function (searchCriteria) {
     //setInitialPagination();
     return filteredBlogEntries;
         
-}
+};
 
 // Get blogs with matching tags
 const getBlogsMatchedTags = function(tag) {
@@ -42,19 +42,18 @@ const getBlogsMatchedTags = function(tag) {
         blog.tags.forEach(currentTag =>{
             if (currentTag === tag) 
                 matchedBlogPosts.push(blog);
-                return;
-        })
-    })
+            return;
+        });
+    });
     return matchedBlogPosts;
-}
+};
 
 // Update the current blogs based on the selected tag
 const filterByTag = e => {
-    currentBlogs = getBlogsMatchedTags(e.target.innerHTML)
-    console.log("currentBlgos", currentBlogs);
+    currentBlogs = getBlogsMatchedTags(e.target.innerHTML);
     writeBlogsEl(1);
     setInitialPagination();
-}
+};
 
 /*
     Set the initial pagination once you have filtered your blog entries
@@ -74,108 +73,108 @@ const setInitialPagination = function() {
         document.querySelector(".pagination").style.visibility = "hidden";
     }
     
-}
+};
 
 
 
 
 const writeBlogsEl = function (pageNumber) {
     
-        const blogs = currentBlogs;
+    const blogs = currentBlogs;
 
-        // Clear out all existing blog elements
-        const blogsEl = document.getElementById("blog-posts");
-        while (blogsEl.hasChildNodes()) {
-            blogsEl.removeChild(blogsEl.lastChild);
-        }
-    
-        // don't display pagination if there are no blogs
-        if (blogs.length < 1) {
-            blogsEl.innerHTML = "No blogs found...";
-            return;
-        }
-    
-        // Only display the pages in the current page number
-        const blogsToDisplay = blogs.slice(
-            (pageNumber - 1) * itemsPerPage,
-            pageNumber * itemsPerPage
-        );  
-            
-        blogsToDisplay.forEach(function (entry) {
-            let imageSrc = entry.imgHeader.startsWith("images") ? "../" + entry.imgHeader : entry.imgHeader;
-            
-            // main element
-            let blogPost = document.createElement('article');
-            blogPost.className = "blog__post"
-
-            let blogHeader = document.createElement('div');
-            blogHeader.className = "blog__header"
-
-                let blogHeadline = document.createElement('div');
-                blogHeadline.className = "blog__headline"
-                let blogHeadlineText = document.createTextNode(entry.headline);
-                blogHeadline.appendChild(blogHeadlineText);
-
-                let blogDate = document.createElement('div');
-                blogDate.className = "blog__date";
-                let blogDateText = document.createTextNode(moment(entry.dateAdded).format("YYYY-MM-DD"));
-                blogDate.appendChild(blogDateText);
-
-                // append to the blogHeader div
-                blogHeader.appendChild(blogHeadline);
-                blogHeader.appendChild(blogDate);
-                
-                // append to main div
-                blogPost.appendChild(blogHeader);
-            
-            // Img div
-            let blogImgContainer = document.createElement('div');
-            blogImgContainer.className = "blog__img-header";
-            // Image
-            let blogImg = document.createElement('img');
-            blogImg.src = imageSrc;
-            blogImgContainer.appendChild(blogImg);
-            blogPost.appendChild(blogImgContainer);
-
-            // Content
-            let blogContent = document.createElement('div');
-            blogContent.className = "blog__content";
-            blogContent.innerHTML = entry.content;
-            blogPost.appendChild(blogContent);
-
-            // Tags Container
-            let blogTags = document.createElement('div');
-            blogTags.className = "blog__footer project-tag"
-            let blogTagList = document.createElement('ul');
-            
-            // do the tags
-            entry.tags.forEach(currentTag => 
-            {
-                let tag = document.createElement('li');
-                tag.className = "blog__tag";
-                tag.appendChild(document.createTextNode(currentTag))
-                blogTagList.appendChild(tag);
-                
-                // add event listener for on click
-                tag.addEventListener("click", filterByTag)
-            })
-
-            blogTags.appendChild(blogTagList);
-            blogPost.appendChild(blogTags);
-
-
-            // for loop for adding the tags
-            blogsEl.appendChild(blogPost);
-        });
-    
+    // Clear out all existing blog elements
+    const blogsEl = document.getElementById("blog-posts");
+    while (blogsEl.hasChildNodes()) {
+        blogsEl.removeChild(blogsEl.lastChild);
     }
+    
+    // don't display pagination if there are no blogs
+    if (blogs.length < 1) {
+        blogsEl.innerHTML = "No blogs found...";
+        return;
+    }
+    
+    // Only display the pages in the current page number
+    const blogsToDisplay = blogs.slice(
+        (pageNumber - 1) * itemsPerPage,
+        pageNumber * itemsPerPage
+    );  
+            
+    blogsToDisplay.forEach(function (entry) {
+        let imageSrc = entry.imgHeader.startsWith("images") ? "../" + entry.imgHeader : entry.imgHeader;
+            
+        // main element
+        let blogPost = document.createElement("article");
+        blogPost.className = "blog__post";
+
+        let blogHeader = document.createElement("div");
+        blogHeader.className = "blog__header";
+
+        let blogHeadline = document.createElement("div");
+        blogHeadline.className = "blog__headline";
+        let blogHeadlineText = document.createTextNode(entry.headline);
+        blogHeadline.appendChild(blogHeadlineText);
+
+        let blogDate = document.createElement("div");
+        blogDate.className = "blog__date";
+        let blogDateText = document.createTextNode(moment(entry.dateAdded).format("YYYY-MM-DD"));
+        blogDate.appendChild(blogDateText);
+
+        // append to the blogHeader div
+        blogHeader.appendChild(blogHeadline);
+        blogHeader.appendChild(blogDate);
+                
+        // append to main div
+        blogPost.appendChild(blogHeader);
+            
+        // Img div
+        let blogImgContainer = document.createElement("div");
+        blogImgContainer.className = "blog__img-header";
+        // Image
+        let blogImg = document.createElement("img");
+        blogImg.src = imageSrc;
+        blogImgContainer.appendChild(blogImg);
+        blogPost.appendChild(blogImgContainer);
+
+        // Content
+        let blogContent = document.createElement("div");
+        blogContent.className = "blog__content";
+        blogContent.innerHTML = entry.content;
+        blogPost.appendChild(blogContent);
+
+        // Tags Container
+        let blogTags = document.createElement("div");
+        blogTags.className = "blog__footer project-tag";
+        let blogTagList = document.createElement("ul");
+            
+        // do the tags
+        entry.tags.forEach(currentTag => 
+        {
+            let tag = document.createElement("li");
+            tag.className = "blog__tag";
+            tag.appendChild(document.createTextNode(currentTag));
+            blogTagList.appendChild(tag);
+                
+            // add event listener for on click
+            tag.addEventListener("click", filterByTag);
+        });
+
+        blogTags.appendChild(blogTagList);
+        blogPost.appendChild(blogTags);
+
+
+        // for loop for adding the tags
+        blogsEl.appendChild(blogPost);
+    });
+    
+};
 
 
 
 // ---- EVENT LISTENER FOR PAGINATION ----
-document.querySelector('.pagination').addEventListener("click", function(e) {
+document.querySelector(".pagination").addEventListener("click", function(e) {
     
-    if (!isValidPagination(e)) {return}
+    if (!isValidPagination(e)) {return;}
     
     // Update the blog posts
     const pageNumber = e.target.dataset.pageNum;

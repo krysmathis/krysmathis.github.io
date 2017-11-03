@@ -3,27 +3,27 @@ const initiateSearch = function(searchString) {
     if (searchString.length >=3) {
         getBlogs(searchString);
         writeBlogsEl(1);
-        setInitialPagination()
+        setInitialPagination();
     } else {
-        getBlogs(searchString)
+        getBlogs(searchString);
         writeBlogsEl(1);
-        setInitialPagination()
+        setInitialPagination();
     }
-}
+};
 
 const searchInput = document.querySelector(".blog__search-input");
 
 // clear the box when the form has the focus
-searchInput.addEventListener("focus", function(event) {
+searchInput.addEventListener("focus", () => {
     searchInput.value = "";
 });
 
 searchInput.addEventListener("keyup", function(event) {
     let searchString = event.target.value.toLowerCase();
     initiateSearch(searchString);
-})
+});
 
-document.querySelector(".blog__bnt-clear").addEventListener("click", e => {
+document.querySelector(".blog__bnt-clear").addEventListener("click", ()=> {
     searchInput.value = "";
     initiateSearch("");
-})
+});

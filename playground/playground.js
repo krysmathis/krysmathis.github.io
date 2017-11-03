@@ -74,3 +74,18 @@ function positionPopupOnPage( evt ) {
     }   // end fn positionPopupOnPage
 
     console.log(moment()); 
+
+
+/**
+* Hamburger Menu
+* That will look like something interesting
+*/
+document.querySelector(".menu-col").addEventListener("click", ()=>{
+    const menu = document.querySelector(".menu-list"); 
+    const displayStyle = menu.style.display;
+    if (displayStyle === "none" || displayStyle === "") {
+        menu.style.display = "block";
+    } else {
+        menu.style.display = "none";
+    }
+});

@@ -1,5 +1,3 @@
-console.log('connected...')
-
 /*
     REQUIREMENTS: 
         HTML: a <section> with the class of "pagination". 
@@ -9,15 +7,15 @@ console.log('connected...')
 
 // want to make sure we're clicking on a part of the pagination with a button
 const isValidPagination = function(event) {
-    const validElements = ["pagination__page", "pagination__page--selected", "pagination__previous", "pagination__next"]
+    const validElements = ["pagination__page", "pagination__page--selected", "pagination__previous", "pagination__next"];
     let isValid = false;
 
     validElements.forEach(function(element){
-        if (event.target.className === element) { isValid = true}
-    })
+        if (event.target.className === element) { isValid = true;}
+    });
         
     return isValid;
-}
+};
 
 /* 
     This handles the styling modifications for the pagination
@@ -49,7 +47,7 @@ const updatePagination = function(event) {
     }, this);
     
     const maxPage = parseInt(pageNums[pageNums.length-1].dataset.pageNum);
-    const minPage = parseInt(pageNums[0].dataset.pageNum)
+    const minPage = parseInt(pageNums[0].dataset.pageNum);
     
     const previousEl = document.querySelector(".pagination__previous");
     const nextEl = document.querySelector(".pagination__next");
@@ -72,99 +70,101 @@ const updatePagination = function(event) {
     // scroll to the top of the window
     window.scrollTo(0,0);
     return;
-}
+};
 
 const setPaginationByEls = function (numberOfPages, startPage = 1) {
 
-        const paginationEl = document.querySelector(".pagination");
-        // reset the pagination by removing all the child nodes
-        while (paginationEl.hasChildNodes()) {
-            paginationEl.removeChild(paginationEl.lastChild);
-        }
-        /*
+    const paginationEl = document.querySelector(".pagination");
+    // reset the pagination by removing all the child nodes
+    while (paginationEl.hasChildNodes()) {
+        paginationEl.removeChild(paginationEl.lastChild);
+    }
+    /*
             ============================================================
             Create the pagination elements
             ============================================================
         */
-        // Start with the previous arrow
-        const prev = document.createElement("span")
-        prev.dataset.pageNum=(startPage-1).toString();
-        prev.className="pagination__previous"
-        const prevText = document.createTextNode("<")
-        prev.appendChild(prevText);
+    // Start with the previous arrow
+    const prev = document.createElement("span");
+    prev.dataset.pageNum=(startPage-1).toString();
+    prev.className="pagination__previous";
+    const prevText = document.createTextNode("<");
+    prev.appendChild(prevText);
 
-        paginationEl.appendChild(prev);
+    paginationEl.appendChild(prev);
 
-        // create an element to represent each page
-        for (let i = 0; i < numberOfPages; i++) {
+    // create an element to represent each page
+    for (let i = 0; i < numberOfPages; i++) {
             
-            let link = document.createElement("span")
-            link.dataset.pageNum=`${i+startPage}`
-            link.className="pagination__page";
-            link.appendChild(document.createTextNode(`${i+startPage}`));
-            paginationEl.appendChild(link);
+        let link = document.createElement("span");
+        link.dataset.pageNum=`${i+startPage}`;
+        link.className="pagination__page";
+        link.appendChild(document.createTextNode(`${i+startPage}`));
+        paginationEl.appendChild(link);
    
-        }
+    }
        
-        // create the next arrow button
-        const next = document.createElement("span")
-        next.dataset.pageNum=(startPage+1).toString();
-        next.className="pagination__next"
-        const nextText = document.createTextNode(">")
-        next.appendChild(nextText);
-        paginationEl.appendChild(next);
+    // create the next arrow button
+    const next = document.createElement("span");
+    next.dataset.pageNum=(startPage+1).toString();
+    next.className="pagination__next";
+    const nextText = document.createTextNode(">");
+    next.appendChild(nextText);
+    paginationEl.appendChild(next);
         
-        // set the previous page selector to invisible and the first element to selected
-        document.querySelector(".pagination__previous").style.visibility = "hidden";
-        document.querySelector(".pagination__page").className = "pagination__page--selected";
+    // set the previous page selector to invisible and the first element to selected
+    document.querySelector(".pagination__previous").style.visibility = "hidden";
+    document.querySelector(".pagination__page").className = "pagination__page--selected";
     
-}
+};
 
 // document.querySelector('.pagination').addEventListener("click", updatePagination);
- setPaginationByEls(10,5);
+setPaginationByEls(10,5);
 
- const Paginator = function() {
+/*
+const Paginator = function() {
     
-        let _totalPages = 0;
-        let _currentRange = null;
-        let _span = 0;
-        let _currentPage;
+    let _totalPages = 0;
+    let _currentRange = null;
+    let _span = 0;
+    let _currentPage;
 
-        const printOut = function() {
-            console.log("test");
+    const printOut = function() {
+        //console.log("test");
+    };
+
+    return Object.create({},{
+            
+        "init": {
+            value: function(pages, span) { 
+                _totalPages = pages,
+                _span = span;
+            },
+            enumerable: true
+        },
+        "currentPage": {
+            configurable: false,
+            value: function(value) {
+                _currentPage = value;
+            },
+            enumerable: true
+        },
+        "span": {
+            get: () => _span
+        },
+        "page": {
+            get: () => _currentPage
+        },
+        "printer": {
+            value: () => printOut(),
+            enumerable: false
         }
 
-        return Object.create({},{
-            
-            "init": {
-                value: function(pages, span) { 
-                    _totalPages = pages,
-                    _span = span
-                },
-                enumerable: true
-            },
-            "currentPage": {
-                configurable: false,
-                value: function(value) {
-                    _currentPage = value;
-                },
-                enumerable: true
-            },
-            "span": {
-                get: () => _span
-            },
-            "page": {
-                get: () => _currentPage
-            },
-            "printer": {
-                value: () => printOut(),
-                enumerable: false
-            }
-
-        })
+    });
     
-}
+};
 
+*/
 
 /* 
     Deprecated but keeping this as a fall-back

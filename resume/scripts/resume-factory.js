@@ -30,7 +30,7 @@ const uniqueResumeIdGenerator = function*() {
         yield i;
         i++;
     }
-}
+};
 
 const uniqueResumeIdFactory = uniqueResumeIdGenerator();
 
@@ -46,7 +46,7 @@ let professionalExperience = function(headline, company, startDate, endDate, tit
         "skills": {value: skills, enumerable: true},
         "companyLogoImg": {value: logo, enumerable: true}
     });
-}
+};
 
 const demandPlanningDir = professionalExperience (
     "Forecaster, Number-Cruncher, Leader",
@@ -60,7 +60,7 @@ const demandPlanningDir = professionalExperience (
         "Developed custom software application using Python and C# to cluster items based on seasonal trends which enables faster, more frequent review of item seasonality and supports advanced strategies for improving in-stock and inventory turns during seasonal periods." 
     ],
     ["Leadership", "Forecasting", "Demand Planning"],
-    "../../images/dollargeneral.png",
+    "../../images/dollargeneral.png"
 );
 
 
@@ -70,12 +70,12 @@ var projectManager = professionalExperience(
     new Date("2011-01-01"),
     new Date("2013-01-01"),
     "Sr. Project Manager",
-   [
+    [
         "Implemented a new Supply Chain system, GOLD, with responsibility for Master Data Management, including capturing requirements, reviewing design documents, training, and process design to support 120,000 items, 11,000 locations and 3,400 vendors.",
         "Led GOLD user training for 200 employees from the Store Support Center and the Hong Kong office, which was highly rated by participants, based on post-event feedback surveys, and supported the timely rollout of the SCS project."
-        ],
+    ],
     ["Project Management", "User Acceptance Testing", "Design", "Training and Development"],
-    "../../images/dollargeneral.png",
+    "../../images/dollargeneral.png"
 );
 
 var strategicPlanningAndAnalysis = professionalExperience(
@@ -84,12 +84,12 @@ var strategicPlanningAndAnalysis = professionalExperience(
     new Date("2009-01-01"),
     new Date("2010-01-02"),
     "Strategic Planning and Analysis, Sr. Manager",
-   [
+    [
         "Led over 40 business experiments for Senior Management, leveraging statistical and financial analysis to forecast the expected impact to critical financial measures, such as EBITDA, ROI and EPS.",
         "Led the company’s Out-of-Stock Reduction initiative which worked cross-functionally to develop, test and implement solutions aimed at improving store in-stocks and increasing sales by $41.5 million."
     ],
     ["A B Testing", "Analysis", "Financial Planning", "ROI IRR Analysis"],
-    "../../images/dollargeneral.png",
+    "../../images/dollargeneral.png"
 );
 
 let jobs = [];
@@ -97,7 +97,6 @@ jobs.push(demandPlanningDir, projectManager, strategicPlanningAndAnalysis);
 
 let Resume = {
     "jobs": jobs
-}
+};
 
 localStorage.setItem("resume", JSON.stringify(Resume));
-

@@ -12,7 +12,7 @@ let getProjects = function(searchString) {
         }) || [];
     }
 
-}
+};
 
 /*
 Sort the projects in descending order according to the dateCompleted property
@@ -61,7 +61,7 @@ function updateProjectsInDOM(searchString) {
                     </ul>
                 </div>
             </article>
-        `
+        `;
 
 
     }

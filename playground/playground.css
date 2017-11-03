@@ -27,3 +27,47 @@
     font-weight: bold;
     color: white;
 }
+
+.menu-col {
+    width: 35px;
+    height: 30px;
+    padding: 5px;
+    border: 2px solid white;
+    margin: 0 auto;
+    border-radius: 5px;
+
+}
+
+.menu-col__bar {
+    padding: 0;
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+}
+
+.menu-col__bar:first-child {
+    margin-top: 1.25px;
+}
+
+.menu-list {
+    display: none;
+}
+
+.menu-list__list {
+    width: 300px;
+    background-color: white;
+    list-style: none;
+
+}
+
+.menu-list__item {
+    height: 10px;
+    padding: 25px;   
+}
+.menu-list__item:nth-child(even) {
+    background-color: grey;
+}
+.menu-list__item:hover {
+    background-color: red;
+}

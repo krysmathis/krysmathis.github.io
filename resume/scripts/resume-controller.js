@@ -27,7 +27,7 @@ for (let i = 0; i < jobsFromDB.length; i++) {
         ${resumeBullets}
       </ul>
       </article>
-    `
+    `;
     
 }
 
