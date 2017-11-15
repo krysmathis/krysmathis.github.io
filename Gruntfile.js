@@ -4,19 +4,38 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON("package.json"),
         eslint: {
-            src: ["admin/scripts/*.js","blog/scripts/*.js","contact/scripts/*.js","toaster/scripts/*.js","projects/scripts/*.js","pagination/scripts/*.js", "resume/scripts/*.js"]
+            src: [
+                "*/scripts*.js",
+                "**/scripts/*.js",
+                "**/scripts/**/*.js",
+                "!node_modules/**/*.js",
+            ],
         },
         browserify: {
             dist: {
                 files: {
-                    "build/module.js": ["admin/scripts/*.js","blog/scripts/*.js"]
+                    "build/bundle.js": ["scripts/main.js"]
+                }
+            },
+            options: {
+                browserifyOptions: {
+                    debug: true,
                 }
             }
         },
         watch: {
+            options: {
+                livereload: true
+            },
+            styles: {
+                files: ["styles/**/*.css"]
+            },
+            html: {
+                files: ["index.html"]
+            },
             scripts: {
-                files: ["admin/scripts/*.js","blog/scripts/*.js","contact/scripts/*.js","toaster/scripts/*.js","projects/*.js","pagination/scripts/*.js", "resume/scripts/*.js"],
-                tasks: ["eslint","uglify"],
+                files: ["**/scripts/*.js", "**/scripts/**/*.js", "!node_modules/**/*.js" ],
+                tasks: ["eslint","browserify","uglify"],
                 options: {
                     spawn: false,
                 },
@@ -29,57 +48,9 @@ module.exports = function(grunt) {
             build: {
                 files: [{
                     expand: true,
-                    cwd: "admin/scripts",
-                    src: "*.js",
-                    dest: "build",
-                    ext: ".min.js"
-                }
-                    ,{
-                    expand: true,
-                    cwd: "blog/scripts",
-                    src: "*.js",
-                    dest: "build",
-                    ext: ".min.js"
-                }
-                    ,{
-                    expand: true,
-                    cwd: "contact/scripts",
-                    src: "*.js",
-                    dest: "build",
-                    ext: ".min.js"
-                }
-                    ,{
-                    expand: true,
-                    cwd: "pagination/scripts",
-                    src: "*.js",
-                    dest: "build",
-                    ext: ".min.js"
-                }
-                    ,{
-                    expand: true,
-                    cwd: "projects/scripts",
-                    src: "*.js",
-                    dest: "build",
-                    ext: ".min.js"
-                },
-                {
-                    expand: true,
-                    cwd: "navbar/scripts",
-                    src: "*.js",
-                    dest: "build",
-                    ext: ".min.js"
-                },{
-                    expand: true,
-                    cwd: "toaster/scripts",
-                    src: "*.js",
-                    dest: "build",
-                    ext: ".min.js"
-                }
-                    ,{
-                    expand: true,
-                    cwd: "./*",
-                    src: "*.js",
-                    dest: "build",
+                    cwd: "./build",
+                    src: "bundle.js",
+                    dest: "./build",
                     ext: ".min.js"
                 }
                 ]

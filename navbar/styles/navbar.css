@@ -1,13 +1,13 @@
 .nav {
-  --main-bg-color: #374048;
+  --main-bg-color: black;
   height: 50px;
   cursor: pointer;
-	width: 100%;
-	padding-top: 0px;
-	text-align: left;
+  width: 100%;
+  padding-top: 0px;
+  text-align: left;
   font-size: 1em;
   background: var(--main-bg-color);
-
+  z-index: 1;
 }
 
 .nav__list {
@@ -18,27 +18,41 @@
   justify-content: space-around;
   align-items: center;
   padding: 0;
+  font-size: 1.5em;
+  margin: 0px;
 }
 
 .nav__brand {
-  width: 200px;
-  font-size: 2em;
+  width: 600px;
+  font-size: 35px;
+  font-weight: bold;
   font-family: 'Source Serif Pro', sans-serif;
   color: white;
   flex-shrink: 1;
+  text-align: left;
+  margin-left: 10px;
+  color: #52bab3;
 }
+
+
 
 .nav__link:hover {
   background-color: white;
-  color: white;
+  font-weight: bold;
 }
 
+.nav__link:hover {
+  color: black;
+}
 
 .nav__link {
   text-decoration: none;
   color: white;
-  font-size: 1.25em;
-  width: 10%;
+  font-size: 1em;
+  width: 25%;
+  height: 100%;
+  padding: 12px;
+  transition: background-color .5s ease-in-out 0s;
 }
 
 .nav__link--selected {
@@ -46,7 +60,7 @@
   text-decoration: none;
   background: purple;
   color: white;
-  font-size: 1.25em;
+  font-size: 1em;
 }
 
 .nav__link--selected:hover {
@@ -55,30 +69,30 @@
 
 /* --- ARROWS --- */
 .nav__link--selected {
-	position: relative;
-	background: var(--main-bg-color);
+    position: relative;
+    background: var(--main-bg-color);
 }
 
 .nav__link--selected:after, .nav__link--selected:before {
-	top: 100%;
-	left: 50%;	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
+    top: 100%;
+    left: 50%;	border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
 }
 
 .nav__link--selected:after {
-	border-top-color: var(--main-bg-color);
-	border-width: 20px;
-	margin-left: -20px;
+    border-top-color: var(--main-bg-color);
+    border-width: 20px;
+    margin-left: -20px;
 }
 
 .nav__list:before {	
-	border-top-color: var(--main-bg-color);
-	border-width: 21px;
-	margin-left: -21px;
+    border-top-color: var(--main-bg-color);
+    border-width: 21px;
+    margin-left: -21px;
 }
 
 /**
