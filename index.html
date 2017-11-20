@@ -1,61 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Welcome to my personal site</title>
-        <link rel="stylesheet" type="text/css" href="styles.css">
-        <link rel="stylesheet" type="text/css" href="../navbar/styles/navbar.css">
-        <link rel="stylesheet" type="text/css" href="about.css">
-        <!--<script src="https://use.fontawesome.com/2e4c1d8960.js"></script>-->
-    </head>
-    <body class="page__index">
+
+<head>
+    <title>Welcome to my personal site</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../navbar/styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="about.css">
+    <link rel="stylesheet" type="text/css" href="./styles/container-styles.css">
+    <link rel="stylesheet" type="text/css" href="../blog/styles/blog.css">
+    <link rel="stylesheet" type="text/css" href="./pagination/styles/pagination.css">
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <!--<script src="https://use.fontawesome.com/2e4c1d8960.js"></script>-->
+</head>
+
+<body class="page__index">
+    <header class="main-header fixed">
+        <nav class="nav">
+        </nav>
+    </header>
+    <main class="main-content">
         <div class="wrap" id="about-wrap">
-            <header class="main-header fixed">
-            <nav class="nav">
-            </nav>
-            </header>
-            <main class="main-content">
-            <!-- image -->
-            <div id="about-image">
-                <div class="about__image-textblock">
-                    <div id="text-block-brand">Krys Mathis</div>
-                    <div id="text-block-tagline">Software Developer</div>
-                    <div class="about__intro">I am a member of <span>cohort 22</span> @ Nashville Software School </div>
-                    <article id="history" class="about__history article first-line section-background">
-                        <p>I chose to become a software developer because I love to learn and solve problems. With my last company, I started developing 'software' with whatever technology I had on hand. I was often the first stop when people encountered system or technical issues or if they had a great idea but didn't know how to implement it. Instead of continuing to give unqualified advice, I decided to leverage NSS to help me make the move to professional software developer.</>               
-                    </article>
+            <section class="aboutContainer" id="about">
+                <!-- image -->
+                <div id="about-image">
+                    <div class="about__image-textblock">
+                        <div id="text-block-brand">Krys Mathis</div>
+                        <div id="text-block-tagline">Software Developer</div>
+                        <div class="about__intro">I am a member of
+                            <span>cohort 22</span> @ Nashville Software School </div>
+                        <article id="history" class="about__history article first-line section-background">
+                            <p>I chose to become a software developer because I love to learn and solve problems. With my last
+                                company, I started developing 'software' with whatever technology I had on hand. I was often
+                                the first stop when people encountered system or technical issues or if they had a great
+                                idea but didn't know how to implement it. Instead of continuing to give unqualified advice,
+                                I decided to leverage NSS to help me make the move to professional software developer.
+                                </>
+                        </article>
+                    </div>
                 </div>
-            </div>
-            
+
                 <article id="intro" class="article">
                 </article>
-                <!-- container cards 
-                <div id="container-cards">
-                    <section id="about-blog" class="about-card card">
-                        <div class="about-card-icon fa fa-bullhorn fa-3x" aria-hidden="true"></div>
-                        <div class="about-card-heading">blog</div>
-                        <div class="about-card-description">Periodic report of my progress</div>
-                    </section>
-                    <section id="about-projects" class="about-card card">
-                        <div class="about-card-icon fa fa-code fa-3x"></div>
-                        <div class="about-card-heading">projects</div>
-                        <div class="about-card-description">Recent projects</div>
-                    </section>
-                    <section id="about-resume" class="about-card card">
-                        <div class="about-card-icon fa fa-rocket fa-3x"></div>
-                        <div class="about-card-heading">blog</div>
-                        <div class="about-card-description">Periodic report of my progress</div>
-                    </section>  
-                </div>
-            -->
-            </main>
-                <footer class="main-footer">
-                    <span>&copy;2017 Krys Mathis</span>
-                </footer>
-        </div> <!-- about-wrap -->  
-        <script src="../lib/moment.js"></script>  
-        <script src="./build/bundle.js"></script>
-        <script src="../navbar/scripts/navbar.js"></script>  
-        <script src="./about.js"></script>
-    </body>
-</html>
+        </div>
+        <!-- about-wrap -->
+        </section>
+        <!-- about section -->
+        <section class="blogContainer" id="blogs">
+            <div class="blog__search-container">
+                Search:
+                <input type="text" value="enter search criteria" class="blog__search-input">
+                <button class="blog__bnt-clear">Clear</button>
+            </div>
+            <section id="blog-posts"></section>
+            <!-- blog posts-->
+            <section class="pagination"></section>
+        </section>
+        <section class="projectsContainer" id="projects"></section>
+        <section class="resumeContainer" id="resume"></section>
+        <section class="contactContainer" id="contact"></section>
 
+    </main>
+    <footer class="main-footer">
+        <span>&copy;2017 Krys Mathis</span>
+    </footer>
+    <script src="../lib/moment.js"></script>
+    <script src="./build/bundle.js"></script>
+    <!-- <script src="../navbar/scripts/navbar.js"></script> -->
+    <!-- <script src="./about.js"></script> -->
+    <!-- <script src="./scripts/blog.js"></script> -->
+    <!-- <script src="./scripts/blog-factory.js"></script> -->
+    <!-- <script src="../pagination/scripts/pagination.js"></script> -->
+    <!-- <script src="../blog/scripts/blog-controller.js"></script> -->
+    <!-- <script src="../blog//scripts/blog-search.js"></script> -->
+</body>
+
+</html>

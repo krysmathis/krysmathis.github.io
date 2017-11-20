@@ -1,3 +1,5 @@
+const Blogger = require("./blogger");
+
 /*
 Create a blog.js file and include it in your blog.html file.
 Build a database object to store the each of your blog articles.
@@ -16,8 +18,7 @@ const blogEntry = {
 }
 */
 
-const blog = JSON.parse(localStorage.getItem("blog")) || {};
-const blogEntriesToCheck = blog.blogEntries || [];
+const blogEntriesToCheck = Blogger.data || [];
 
 const getMaxBlogId = function() {
     /*
@@ -33,16 +34,6 @@ const getMaxBlogId = function() {
 };
 
 const maxBlogId = getMaxBlogId().id;
-
-
-/* 
-Check if the database exists already and that it has the same id #'s as
-the ones here
-*/
-let generateDatabase = false;
-if (blogEntriesToCheck.length === 0 || maxBlogId < blogEntriesToCheck.length) {
-    generateDatabase = true;
-}
 
 // generate an unique id for each blog article
 const blogIdGenerator = function* (start) {
@@ -74,90 +65,8 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
     });
 };
 
-/*
-        Only populate or re-populate local storage if the database does not exist
-        the check is set higher up in the code
-    */
+module.exports = blogObjectFactory;
 
-function populateBlogDB() {
-
-    const blogEntry20171006 = blogObjectFactory(
-        "First Week at NSS",
-        moment("2017-10-16").format("YYYY-MM-DD"),
-        "Krys Mathis",
-        "images/journeybegins.jpg",
-        "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
-        ["footer", "html", "css"]
-    );
-
-    const blogEntry2 = blogObjectFactory(
-        "Inside the Grid",
-        moment("2017-10-27").format("YYYY-MM-DD"),
-        "Krys Mathis",
-        "images/grid.png",
-        "<p>Spent some time experimenting with the css grid over the weekend. My hope is that it will make laying out webpages simpler. So far it's been a big time sink with rather frustrating results.</p><p>You can see the results here: <a href='https://github.com/krysmathis/experiments/tree/master/grid-transforms'>link</a>",
-        ["css"]
-    );
-
-    const blogEntry3 = blogObjectFactory(
-        "3",
-        moment("2017-10-08").format("YYYY-MM-DD"),
-        "Krys Mathis",
-        "images/journeybegins.jpg",
-        "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
-        ["footer", "html", "css"]
-    );
-
-    const blogEntry4 = blogObjectFactory(
-        "4",
-        moment("2017-10-09").format("YYYY-MM-DD"),
-        "Krys Mathis",
-        "images/journeybegins.jpg",
-        "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
-        ["footer", "html", "css"]
-    );
-
-    const blogEntry5 = blogObjectFactory(
-        "5",
-        moment("2017-10-10").format("YYYY-MM-DD"),
-        "Krys Mathis",
-        "images/journeybegins.jpg",
-        "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
-        ["footer", "html", "css"]
-    );
-
-    const blogEntry6 = blogObjectFactory(
-        "6",
-        moment("2017-10-11").format("YYYY-MM-DD"),
-        "Krys Mathis",
-        "images/journeybegins.jpg",
-        "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
-        ["footer", "html", "css"]
-    ); 
-
-    // add the blog articles to the blog entry array (for sorting)
-
-    let blogEntries = [];
-    blogEntries.unshift(blogEntry20171006);
-    blogEntries.unshift(blogEntry2);
-    blogEntries.unshift(blogEntry3);
-    blogEntries.unshift(blogEntry4);
-    blogEntries.unshift(blogEntry5);
-    blogEntries.unshift(blogEntry6);
-
-    // The blog object
-    let Blog = {
-        // add the blog as a sorted object
-        "blogEntries": blogEntries
-    };
-
-    localStorage.setItem("blog", JSON.stringify(Blog));
-}
-    
-    
-if (generateDatabase) {
-    populateBlogDB();
-}
 
 
 

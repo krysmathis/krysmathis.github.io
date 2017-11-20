@@ -2,7 +2,7 @@
   "name": "krysmathis.github.io",
   "version": "1.0.0",
   "description": "personal-site",
-  "main": "about.js",
+  "main": "main.js",
   "directories": {
     "lib": "lib"
   },

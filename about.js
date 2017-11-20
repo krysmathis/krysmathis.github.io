@@ -1,4 +1,4 @@
-updateNavBar("home");
+//updateNavBar("home");
 
 
 // $('document').ready(function() {

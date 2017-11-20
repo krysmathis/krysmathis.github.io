@@ -1,2 +1,2 @@
 // update navbar
-updateNavBar("blog");
+//updateNavBar("blog");

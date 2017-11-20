@@ -1,0 +1,195 @@
+{
+    "contact": [{
+        "id": 1,
+        "service": "GitHub",
+        "handle": "krysmathis",
+        "url": "https://www.github.com/krysmathis",
+        "icon": "../images/github.png",
+        "iconAlt": "email icon"
+    }, {
+        "id": 3,
+        "service": "Twitter",
+        "handle": "coldbuckets",
+        "url": "https://twitter.com/coldbuckets",
+        "icon": "../images/twitter.png",
+        "iconAlt": "twitter bird"
+    }, {
+        "id": 2,
+        "service": "LinkedIn",
+        "handle": "krysmathis",
+        "url": "https://www.linkedin.com/in/krysmathis/",
+        "icon": "../images/linkedin.png",
+        "iconAlt": "linkedin"
+    }, {
+        "id": 0,
+        "service": "Email",
+        "handle": "krysmathis",
+        "url": "mailto:krysmathis@test.com",
+        "icon": "../images/email.png",
+        "iconAlt": "email icon"
+    }],
+    "blogs": [{
+        "id": 12,
+        "headline": "Happy Halloween",
+        "dateAdded": "2017-11-01",
+        "author": "Krys Mathis",
+        "imgHeader": "../images/eagle.jpg",
+        "content": "Started Halloween blog but never finished",
+        "tags": ["tags"]
+    }, {
+        "id": 11,
+        "headline": "Attention Grabber!",
+        "dateAdded": "2017-11-01",
+        "author": "Krys Mathis",
+        "imgHeader": "../images/eagle.jpg",
+        "content": "Another one again to see if pagination changes",
+        "tags": ["tags"]
+    }, {
+        "id": 1,
+        "headline": "First Week at NSS",
+        "dateAdded": "2017-10-16",
+        "author": "Krys Mathis",
+        "imgHeader": "images/journeybegins.jpg",
+        "content": "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
+        "tags": ["footer", "html", "css"]
+    }, {
+        "id": 9,
+        "headline": "Attention Grabber!",
+        "dateAdded": "2017-11-01",
+        "author": "Krys Mathis",
+        "imgHeader": "../images/eagle.jpg",
+        "content": "And another one for the blog articles",
+        "tags": ["tags"]
+    }, {
+        "id": 8,
+        "headline": "Attention Grabber!",
+        "dateAdded": "2017-11-01",
+        "author": "Krys Mathis",
+        "imgHeader": "../images/eagle.jpg",
+        "content": "Then even another one",
+        "tags": ["tags"]
+    }, {
+        "id": 7,
+        "headline": "Attention Grabber!",
+        "dateAdded": "2017-11-01",
+        "author": "Krys Mathis",
+        "imgHeader": "../images/eagle.jpg",
+        "content": "Another one",
+        "tags": ["tags"]
+    }, {
+        "id": 10,
+        "headline": "Attention Grabber!",
+        "dateAdded": "2017-11-01",
+        "author": "Krys Mathis",
+        "imgHeader": "../images/eagle.jpg",
+        "content": "Another one",
+        "tags": ["tags"]
+    }, {
+        "id": 5,
+        "headline": "5",
+        "dateAdded": "2017-10-10",
+        "author": "Krys Mathis",
+        "imgHeader": "images/journeybegins.jpg",
+        "content": "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
+        "tags": ["footer", "html", "css"]
+    }, {
+        "id": 4,
+        "headline": "4",
+        "dateAdded": "2017-10-09",
+        "author": "Krys Mathis",
+        "imgHeader": "images/journeybegins.jpg",
+        "content": "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
+        "tags": ["footer", "html", "css"]
+    }, {
+        "id": 3,
+        "headline": "3",
+        "dateAdded": "2017-10-08",
+        "author": "Krys Mathis",
+        "imgHeader": "images/journeybegins.jpg",
+        "content": "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
+        "tags": ["footer", "html", "css"]
+    }, {
+        "id": 2,
+        "headline": "Inside the Grid",
+        "dateAdded": "2017-10-27",
+        "author": "Krys Mathis",
+        "imgHeader": "images/grid.png",
+        "content": "<p>Spent some time experimenting with the css grid over the weekend. My hope is that it will make laying out webpages simpler. So far it's been a big time sink with rather frustrating results.</p><p>You can see the results here: <a href='https://github.com/krysmathis/experiments/tree/master/grid-transforms'>link</a>",
+        "tags": ["css"]
+    }, {
+        "id": 6,
+        "headline": "6",
+        "dateAdded": "2017-10-11",
+        "author": "Krys Mathis",
+        "imgHeader": "images/journeybegins.jpg",
+        "content": "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
+        "tags": ["footer", "html", "css"]
+    }],
+    "resume": {
+        "jobs": [{
+            "headline": "Forecaster, Number-Cruncher, Leader",
+            "company": "Dollar General",
+            "startDate": "2013-01-01T00:00:00.000Z",
+            "endDate": "2017-09-27T00:00:00.000Z",
+            "title": "Director of Demand Planing",
+            "accomplishments": ["Led an 8 person analytical team in providing planned and ad hoc analysis and recommendations to stakeholders ranging from Analysts to Sr. Executives.", "Oversaw a 12% increase in overall forecast accuracy during my time leading the department.", "Developed custom software application using Python and C# to cluster items based on seasonal trends which enables faster, more frequent review of item seasonality and supports advanced strategies for improving in-stock and inventory turns during seasonal periods."],
+            "skills": ["Leadership", "Forecasting", "Demand Planning"],
+            "companyLogoImg": "../../images/dollargeneral.png"
+        }, {
+            "headline": "System Subject Matter Expert, Project Manager",
+            "company": "Dollar General",
+            "startDate": "2011-01-01T00:00:00.000Z",
+            "endDate": "2013-01-01T00:00:00.000Z",
+            "title": "Sr. Project Manager",
+            "accomplishments": ["Implemented a new Supply Chain system, GOLD, with responsibility for Master Data Management, including capturing requirements, reviewing design documents, training, and process design to support 120,000 items, 11,000 locations and 3,400 vendors.", "Led GOLD user training for 200 employees from the Store Support Center and the Hong Kong office, which was highly rated by participants, based on post-event feedback surveys, and supported the timely rollout of the SCS project."],
+            "skills": ["Project Management", "User Acceptance Testing", "Design", "Training and Development"],
+            "companyLogoImg": "../../images/dollargeneral.png"
+        }, {
+            "headline": "Retail Scientist, Store In-stock Guru",
+            "company": "Dollar General",
+            "startDate": "2009-01-01T00:00:00.000Z",
+            "endDate": "2010-01-02T00:00:00.000Z",
+            "title": "Strategic Planning and Analysis, Sr. Manager",
+            "accomplishments": ["Led over 40 business experiments for Senior Management, leveraging statistical and financial analysis to forecast the expected impact to critical financial measures, such as EBITDA, ROI and EPS.", "Led the company’s Out-of-Stock Reduction initiative which worked cross-functionally to develop, test and implement solutions aimed at improving store in-stocks and increasing sales by $41.5 million."],
+            "skills": ["A B Testing", "Analysis", "Financial Planning", "ROI IRR Analysis"],
+            "companyLogoImg": "../../images/dollargeneral.png"
+        }]
+    },
+    "projects": [{
+        "id": 0,
+        "name": "project one",
+        "description": "In this project...",
+        "dateCompleted": "2017-10-06",
+        "technologies": ["HTML", "CSS", "Javascript"],
+        "teammates": [{
+            "name": "Krys Mathis",
+            "personalSite": ""
+        }],
+        "href": "#",
+        "repository": ""
+    }, {
+        "id": 1,
+        "name": "project two",
+        "description": "In this other project",
+        "dateCompleted": "2017-10-07",
+        "technologies": ["CSS", "HTML"],
+        "teammates": [{
+            "name": "Krys Mathis",
+            "personalSite": ""
+        }],
+        "href": "#",
+        "repository": ""
+    }, {
+        "id": 2,
+        "name": "project three",
+        "description": "In this other project",
+        "dateCompleted": "2017-10-01",
+        "technologies": ["CSS", "HTML"],
+        "teammates": [{
+            "name": "Krys Mathis",
+            "personalSite": ""
+        }],
+        "href": "#",
+        "repository": ""
+    }]
+}

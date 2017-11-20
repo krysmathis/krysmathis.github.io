@@ -25,8 +25,16 @@ module.exports = {
             "error",
             "always"
         ],
-        "no-unused-vars": 
+        "no-unused-vars": [
             "warn"
+        ],
+        "no-console": [
+            "warn"
+        ],
+        "no-debugger": [
+            "warn"
+        ]
+
         
     },
     "globals": {
@@ -38,7 +46,8 @@ module.exports = {
         "isValidPagination": true,
         "blogObjectFactory": true,
         "updatePagination": true,
-        "updateNavBar":true
+        "updateNavBar":true,
+        "$": true
     }
     
     

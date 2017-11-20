@@ -6,11 +6,11 @@ const populateNavBar = (function(brand){
         *   The map will hold the labels and links for the navbar
         **/
     // For testing purposes:
-    navs.set("Home", {"label": "Home", "link": "../index.html"}),
-    navs.set("Projects", {"label": "Projects", "link": "../projects"}),
-    navs.set("Blog", {"label": "Blog", "link": "../blog"}),
-    navs.set("Resume", {"label": "Resume", "link": "../resume"}),
-    navs.set("Contact", {"label": "Contact", "link": "../contact"});
+    navs.set("Home", {"label": "Home", "link": "../index.html", "buttonClass": "btn-nav__home","targetId": "about"}),
+    navs.set("Projects", {"label": "Projects", "link": "../projects", "buttonClass": "btn-nav__projects", "targetId": "projects"}),
+    navs.set("Blog", {"label": "Blog", "link": "#blogs", "buttonClass": "btn-nav__blog", "targetId":"blogs"}),
+    navs.set("Resume", {"label": "Resume", "link": "../resume", "buttonClass": "btn-nav__resume", "targetId": "resume"}),
+    navs.set("Contact", {"label": "Contact", "link": "../contact", "buttonClass": "btn-nav__contact", "targetId": "contact"});
     
     const navBar = document.querySelector(".nav");
     // create the ul element to stick inside the nav
@@ -27,18 +27,33 @@ const populateNavBar = (function(brand){
     newBrandLi.addEventListener("click", () => {
         document.location.href = navs.get("Home").link;
     });
-    
+
+    // scroll to a part of the page and account for the navbar height
+    const goToId = function(nav) {
+        let navBarHeight = navBar.clientHeight;
+        document.getElementById(nav.targetId).scrollIntoView();
+        window.scrollBy(0,-(navBarHeight+10));
+    };
+
     navs.forEach(
         nav => {
             // create a new list element
             let newNavItem = document.createElement("li");
-            newNavItem.className = "nav__link";
+            newNavItem.className = nav.buttonClass + " nav__link";
     
             let newNavItemLabel = document.createTextNode(nav.label);
             newNavItem.appendChild(newNavItemLabel);
             
             newNavItem.addEventListener("click",() => {
-                document.location.href = nav.link;
+                // Scroll down and account for the height of the navbar
+                // *** JQUERY ****
+
+                // let headerHeight = $(".nav").height()+20;
+                goToId(nav);
+                
+                // $("html, body").animate({
+                //     scrollTop: $(nav.targetId).offset().top - headerHeight
+                // }, 200);
             });
     
             newList.appendChild(newNavItem);

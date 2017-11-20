@@ -67,8 +67,6 @@ const updatePagination = function(event) {
         nextEl.dataset.pageNum = clickedPageNumber+1;
     }
     
-    // scroll to the top of the window
-    window.scrollTo(0,0);
     return;
 };
 
@@ -121,6 +119,7 @@ const setPaginationByEls = function (numberOfPages, startPage = 1) {
 // document.querySelector('.pagination').addEventListener("click", updatePagination);
 setPaginationByEls(10,5);
 
+module.exports = {setPaginationByEls, isValidPagination, updatePagination};
 /*
 const Paginator = function() {
     

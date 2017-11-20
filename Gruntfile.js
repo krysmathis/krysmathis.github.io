@@ -28,7 +28,7 @@ module.exports = function(grunt) {
                 livereload: true
             },
             styles: {
-                files: ["styles/**/*.css"]
+                files: ["styles/**/*.css","**/styles/*.css","**/**/styles/*.css"]
             },
             html: {
                 files: ["index.html"]

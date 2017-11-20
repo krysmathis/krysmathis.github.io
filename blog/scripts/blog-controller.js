@@ -1,4 +1,6 @@
 // TODO: verify the database exists
+const setPaginationByEls = require("../../pagination/scripts/pagination");
+
 
 let currentBlogs = [];
 let itemsPerPage = 5;
@@ -182,60 +184,10 @@ document.querySelector(".pagination").addEventListener("click", function(e) {
     // Update the pagination to store the new page #'s
     updatePagination(e);
 
+
 });
 
 getBlogs(""); // returns all blogs
 writeBlogsEl(1); // writes the first page of blogs
 setInitialPagination(); // initiates the pagination div
 
-
-// --- DEPRECATED BUT KEEPING AS A FALLBACK ---
-
-// const writeBlogs = function (pageNumber) {
-    
-//         const blogs = currentBlogs;
-    
-//         const blogsEl = document.getElementById("blog-posts");
-//         blogsEl.innerHTML = "";
-    
-//         // don't display pagination if there are no blogs
-//         if (blogs.length < 1) {
-//             blogsEl.innerHTML = "No blogs found...";
-//             return;
-//         }
-    
-//         // Only display the pages in the current page number
-//         const blogsToDisplay = blogs.slice(
-//             (pageNumber - 1) * itemsPerPage,
-//             pageNumber * itemsPerPage
-//         );  
-            
-//         blogsToDisplay.forEach(function (entry) {
-//             let imageSrc = entry.imgHeader.startsWith("images") ? "../" + entry.imgHeader : entry.imgHeader;
-//             let html = `
-//                 <article class="blog__post">
-//                     <div class="blog__header">
-//                         <div class="blog__headline">${entry.headline}</div>
-//                         <div class="blog__date">${moment(entry.dateAdded).format("YYYY-MM-DD")}</div>
-//                     </div>
-//                     <div class="blog__img-header">
-//                         <img src="${imageSrc}">
-//                     </div>
-//                     <div class="blog__content">
-//                         ${entry.content}
-//                     </div>
-                
-//             `;
-    
-//             html += `<div class="blog__footer project-tag"><ul>`;
-    
-//             entry.tags.forEach((currentTag) => html += `<li>${currentTag}</li>`)
-    
-    
-//             html += "</ul></div></article>";
-//             blogsEl.innerHTML += html;
-    
-//         });
-    
-//     }
-    
