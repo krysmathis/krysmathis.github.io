@@ -1,2 +1,0 @@
-// update navbar
-//updateNavBar("blog");

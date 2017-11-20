@@ -15,65 +15,28 @@ const project = {
 }
 */
 {
-const uniqueProjectIdGenerator = function*() {
-    let i = 0;
-    while (true) {
-        yield i;
-        i++;
-    }
-}
+    const uniqueProjectIdGenerator = function*() {
+        let i = 0;
+        while (true) {
+            yield i;
+            i++;
+        }
+    };
 
-const uniqueProjectIdFactory = uniqueProjectIdGenerator();
+    const uniqueProjectIdFactory = uniqueProjectIdGenerator();
 
-const project = function(name, description, dateCompleted, technologies, teammates, href, repository){
-    return Object.create({},{
-        "id": {value: uniqueProjectIdFactory.next().value, enumerable: true},
-        "name": {value: name, enumerable: true},
-        "description": {value: description, enumerable: true},
-        "dateCompleted": {value: dateCompleted, enumerable: true},
-        "technologies": {value: technologies, enumerable: true},
-        "teammates": {value: teammates, enumerable: true},
-        "href": {value: href, enumerable: true},
-        "repository": {value: repository, enumerable: true}
-    }) 
-}
+    const projectFactory = function(name, description, dateCompleted, technologies, teammates, href, repository){
+        return Object.create({},{
+            "id": {value: uniqueProjectIdFactory.next().value, enumerable: true},
+            "name": {value: name, enumerable: true},
+            "description": {value: description, enumerable: true},
+            "dateCompleted": {value: dateCompleted, enumerable: true},
+            "technologies": {value: technologies, enumerable: true},
+            "teammates": {value: teammates, enumerable: true},
+            "href": {value: href, enumerable: true},
+            "repository": {value: repository, enumerable: true}
+        });
+    };
 
-const project1 = project (
-    "project one",
-    "In this project...",
-    moment("2017-10-06").format("YYYY-MM-DD"),
-    ["HTML", "CSS", "Javascript"],
-    [{"name": "Krys Mathis", "personalSite": ""}],
-    "#",
-    ""
-);
-
-const project2 = project (
-    "project two",
-    "In this other project",
-    moment("2017-10-07").format("YYYY-MM-DD"),
-    ["CSS", "HTML"],
-    [{"name": "Krys Mathis", "personalSite": ""}],
-    "#",
-    ""
-);
-
-const project3 = project (
-    "project three",
-    "In this other project",
-    moment("2017-10-01").format("YYYY-MM-DD"),
-    ["CSS", "HTML"],
-    [{"name": "Krys Mathis", "personalSite": ""}],
-    "#",
-    ""
-);
-
-
-let projects = [project1, project2, project3];
-
-let Projects = {
-    "projects": projects
-}
-
-localStorage.setItem("projects", JSON.stringify(Projects));
+    module.exports = projectFactory;
 }

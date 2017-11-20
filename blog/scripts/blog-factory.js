@@ -1,4 +1,4 @@
-const Blogger = require("./blogger");
+const BlogManager = require("./blogManager");
 
 /*
 Create a blog.js file and include it in your blog.html file.
@@ -18,7 +18,7 @@ const blogEntry = {
 }
 */
 
-const blogEntriesToCheck = Blogger.data || [];
+const blogEntriesToCheck = BlogManager.data || [];
 
 const getMaxBlogId = function() {
     /*

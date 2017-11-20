@@ -2,11 +2,12 @@
 // ETL object for blogs
 
 // callback function for generating pagination
-const {setPaginationByEls, isValidPagination, updatePagination} = require("../../pagination/scripts/pagination");
+//const {setPaginationByEls, isValidPagination, updatePagination} = require("../../pagination/scripts/pagination");
+const Paginator = require("../../pagination/scripts/pagination");
 const getBlogs = $.ajax({url: "https://personal-site-3111d.firebaseio.com/blogs.json"});
+const personalETL = require("../../scripts/personalETL");
 
-
-const Blogger = Object.create(null, {
+const BlogManager = Object.create(null, {
 
     "data": {
         value: [],
@@ -21,7 +22,7 @@ const Blogger = Object.create(null, {
     },
 
     "paginationObj": {
-        value: {},
+        value: Paginator,
         writable: true,
         enumerable: true
     },
@@ -42,22 +43,25 @@ const Blogger = Object.create(null, {
                                 blog.content.toLowerCase().includes(searchCriteria)
                         );
             }
+            this.paginate();
+            this.display(1);
 
         }
     },
     "filterByTag": {
-        value: function(event) {
-            // Get blogs with matching tags
-            const tag = event.target.innerHTML;
-            const matchedBlogPosts = [];
-            this.data.forEach(blog => {
-                blog.tags.forEach(currentTag =>{
+        value: function(tag) {
+            // Get records with matching tags
+            const matchedRecords = [];
+            this.data.forEach(record => {
+                record.tags.forEach(currentTag =>{
                     if (currentTag === tag) 
-                        matchedBlogPosts.push(blog);
+                        matchedRecords.push(record);
                     return;
                 });
             });
-            this.filteredData = matchedBlogPosts;
+            this.filteredData = matchedRecords;
+            this.paginate();
+            this.display(1);
         }
     },
 
@@ -72,7 +76,7 @@ const Blogger = Object.create(null, {
                 blogsEl.removeChild(blogsEl.lastChild);
             }
                 
-            // don't display pagination if there are no blogs
+            // don't display paginate if there are no blogs
             if (blogs.length < 1) {
                 blogsEl.innerHTML = "No blogs found...";
                 return;
@@ -85,6 +89,7 @@ const Blogger = Object.create(null, {
             );  
                         
             blogsToDisplay.forEach( entry => {
+                
                 let imageSrc = entry.imgHeader.startsWith("images") ? "../" + entry.imgHeader : entry.imgHeader;
                         
                 // main element
@@ -141,11 +146,8 @@ const Blogger = Object.create(null, {
                             
                     // add event listener for on click
                     tag.addEventListener("click", (e) => {
-                        this.filterByTag(e);
-                        console.log(this.fiteredData);
-                        Blogger.display(1);
-                        this.pagination(setPaginationByEls);
-                        console.log(this.filteredData);
+                        const tagTxt = e.target.innerHTML;
+                        this.filterByTag(tagTxt);
                     });
                 });
             
@@ -164,20 +166,21 @@ const Blogger = Object.create(null, {
     
     "displayOptions": {
         value: {
-            "itemsPerPage": 5, 
-            "writable": true
-        }
+            "itemsPerPage": 5
+        },
+        "writable": true
     },
 
-    "pagination": {
+    "paginate": {
         // takes a callback function from the pagination object
-        value: function(makePaginator) {
+        value: function() {
             
             const numberOfItems = this.filteredData.length;
             const numberOfPages = Math.ceil(numberOfItems / this.displayOptions.itemsPerPage);
+
+            this.paginationObj.init(numberOfPages,1);
             
-            makePaginator(numberOfPages,1);
-            
+            // determine how to handle the pagination display
             if (numberOfPages > 1) {
                 document.querySelector(".pagination").style.visibility = "";
             } else {
@@ -193,8 +196,6 @@ const Blogger = Object.create(null, {
             } else {
                 this.filterBySearchCriteria("");
             }
-            this.display(1);
-            this.pagination(setPaginationByEls);
         }
     }
 });
@@ -204,22 +205,20 @@ const Blogger = Object.create(null, {
  */
 getBlogs
     .then(result => {
-        Blogger.data = result;
-        Blogger.filterBySearchCriteria("");
-        Blogger.pagination(setPaginationByEls);
-        Blogger.display(1);
+        BlogManager.data = result;
+        BlogManager.filterBySearchCriteria("");
     });
 
 // ---- EVENT LISTENER FOR PAGINATION ----
 document.querySelector(".pagination").addEventListener("click", function(e) {
     
-    if (!isValidPagination(e)) {return;}
-    
+    if (!BlogManager.paginationObj.helpers.isValid(e)) {return;}
     // Update the blog posts
     const pageNumber = e.target.dataset.pageNum;
-    Blogger.display(pageNumber);
+    
+    BlogManager.display(pageNumber);
     // Update the pagination to store the new page #'s
-    updatePagination(e);
+    BlogManager.paginationObj.update(e);
 
 
 });
@@ -234,12 +233,12 @@ searchInput.addEventListener("focus", () => {
 
 searchInput.addEventListener("keyup", function(event) {
     let searchString = event.target.value.toLowerCase();
-    Blogger.search(searchString);
+    BlogManager.search(searchString);
 });
 
 document.querySelector(".blog__bnt-clear").addEventListener("click", ()=> {
     searchInput.value = "";
-    Blogger.search("");
+    BlogManager.search("");
 });
 
-module.export = Blogger;
+module.export = BlogManager;
