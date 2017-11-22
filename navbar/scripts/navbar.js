@@ -6,11 +6,12 @@ const populateNavBar = (function(brand){
         *   The map will hold the labels and links for the navbar
         **/
     // For testing purposes:
-    navs.set("Home", {"label": "Home", "link": "../index.html", "buttonClass": "btn-nav__home","targetId": "about"}),
-    navs.set("Projects", {"label": "Projects", "link": "../projects", "buttonClass": "btn-nav__projects", "targetId": "projects"}),
-    navs.set("Blog", {"label": "Blog", "link": "#blogs", "buttonClass": "btn-nav__blog", "targetId":"blogs"}),
-    navs.set("Resume", {"label": "Resume", "link": "../resume", "buttonClass": "btn-nav__resume", "targetId": "resume"}),
-    navs.set("Contact", {"label": "Contact", "link": "../contact", "buttonClass": "btn-nav__contact", "targetId": "contact"});
+    navs.set("Home", {"label": "Home", "container": "aboutContainer", "link": "../index.html", "buttonClass": "btn-nav__home","targetId": "about"}),
+    navs.set("Projects", {"label": "Projects", "container": "projectsContainer", "link": "../projects", "buttonClass": "btn-nav__projects", "targetId": "projects"}),
+    navs.set("Blog", {"label": "Blog", "container": "blogContainer", "link": "#blogs", "buttonClass": "btn-nav__blog", "targetId":"blogs"}),
+    navs.set("Resume", {"label": "Resume", "container": "resumeContainer", "link": "../resume", "buttonClass": "btn-nav__resume", "targetId": "resume"}),
+    navs.set("Contact", {"label": "Contact", "container": "contactContainer", "link": "../contact", "buttonClass": "btn-nav__contact", "targetId": "contact"});
+    navs.set("Login", {"label": "Login", "container": "loginContainer", "link": "../login", "buttonClass": "btn-nav__login", "targetId": "login"});
     
     const navBar = document.querySelector(".nav");
     // create the ul element to stick inside the nav
@@ -32,7 +33,7 @@ const populateNavBar = (function(brand){
     const goToId = function(nav) {
         let navBarHeight = navBar.clientHeight;
         document.getElementById(nav.targetId).scrollIntoView();
-        window.scrollBy(0,-(navBarHeight+10));
+        window.scrollBy(0,-(navBarHeight+60));
     };
 
     navs.forEach(
@@ -47,6 +48,16 @@ const populateNavBar = (function(brand){
             newNavItem.addEventListener("click",() => {
                 // Scroll down and account for the height of the navbar
                 // *** JQUERY ****
+
+                
+                
+                navs.forEach(n =>{
+                    if (n.label === nav.label) {
+                        $(`.${n.container}`).show();
+                    } else {
+                        $(`.${n.container}`).hide();
+                    }
+                });
 
                 // let headerHeight = $(".nav").height()+20;
                 goToId(nav);
@@ -133,5 +144,6 @@ const addNavbarMenuEventListeners = function() {
 module.exports = function populateNavComponents(brand) {
     populateNavBar(brand);
     addNavbarMenuEventListeners();
+
 };
 
