@@ -11,7 +11,7 @@ const populateNavBar = (function(brand){
     navs.set("Blog", {"label": "Blog", "container": "blogContainer", "link": "#blogs", "buttonClass": "btn-nav__blog", "targetId":"blogs"}),
     navs.set("Resume", {"label": "Resume", "container": "resumeContainer", "link": "../resume", "buttonClass": "btn-nav__resume", "targetId": "resume"}),
     navs.set("Contact", {"label": "Contact", "container": "contactContainer", "link": "../contact", "buttonClass": "btn-nav__contact", "targetId": "contact"});
-    navs.set("Login", {"label": "Login", "container": "loginContainer", "link": "../login", "buttonClass": "btn-nav__login", "targetId": "login"});
+    navs.set("Login", {"label": "Login", "container": "loginContainer", "link": "../login", "buttonClass": "btn-nav__login", "targetId": "admin"});
     
     const navBar = document.querySelector(".nav");
     // create the ul element to stick inside the nav
