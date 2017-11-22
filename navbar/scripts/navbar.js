@@ -99,7 +99,7 @@ const populateNavBar = (function(brand){
             menuList.appendChild(menuItem);
             menuItem.addEventListener("click",() => {
                 navs.forEach(n =>{
-                    
+
                     if (n.label === nav.label) {
                         $(`.${n.container}`).show();
                     } else {

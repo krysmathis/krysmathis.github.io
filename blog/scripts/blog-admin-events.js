@@ -81,7 +81,7 @@ const addUpdateBlogArticleToDb = function () {
     
     
 document.querySelector(".blogForm__btnGoToBlog").addEventListener("click",  () => {
-    window.location.href = "../blog/index.html";
+    //window.location.href = "../blog/index.html";
 });
     
 // Click on the edit button
