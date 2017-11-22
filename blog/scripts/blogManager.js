@@ -6,9 +6,9 @@ const Paginator = require("../../pagination/scripts/pagination");
 const PersonalETL = require("../../scripts/personalETL");
 const displayBlogs = require("./blog-controller");
 const AdminManager = require("../../admin/scripts/admin-controller");
-const eventListeners = require("./blog-admin-events");
+//const addEvents = require("./blog-admin-events");
 
-const BlogManager = Object.create(PersonalETL, {
+const BlogManager = module.exports = Object.create(PersonalETL, {
     
     "load": {
         value: function() {
@@ -128,7 +128,7 @@ const BlogManager = Object.create(PersonalETL, {
             // }
         }
     },
-    
+
 });
 
 /**
@@ -171,5 +171,3 @@ document.querySelector(".blog__bnt-clear").addEventListener("click", ()=> {
 // ----- EVENT LISTENERS FOR ADMIN FORM ---- //
 
 console.log("blog manager from blm", BlogManager);
-
-module.exports = BlogManager;

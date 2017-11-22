@@ -1,5 +1,6 @@
 const {showSuccess, showErrors, getMissingParts} = require("../../admin/scripts/admin-blog-form-validation");
 const BlogManager = require("./blogManager");
+const blogObjectFactory = require("./blog-factory");
 
 let editMode = false;
 let currentBlog = {};
@@ -25,6 +26,11 @@ const setEditMode = (bool) => {
     }
 };
 
+// sets the current blog
+const getCurrentBlog = blogId => {
+    currentBlog = {"id": blogId, "detail": BlogManager.data[blogId]};
+    console.log("current blog", currentBlog);
+};
 
 const addUpdateBlogArticleToDb = function () {
     
@@ -57,11 +63,20 @@ const addUpdateBlogArticleToDb = function () {
             tags
         );
         /*         
-                Add the article to the blog array, then add it to the db in
-                Add it to local storage 
-                */
+        Add the article to the blog array, then add it to the db in
+        Add it to local storage 
+        */
         BlogManager.add(newBlogArticle);
     }
+
+    headlineEl.value = ""; //headline
+    dateEl.value = "";
+    authorEl.value = ""; //author
+    imageEl.value = ""; // imgheader
+    contentEl.value = ""; //content
+    tagsEl.value = "";
+
+
 };
     
     
@@ -70,19 +85,18 @@ document.querySelector(".blogForm__btnGoToBlog").addEventListener("click",  () =
 });
     
 // Click on the edit button
-document.querySelector(".blogList__body").addEventListener("click", e => {
+document.querySelector(".blogList").addEventListener("click", e => {
         
     if (e.target.className === "blogList__btn-edit") {
         const blogId = e.target.dataset.blogId;
-        console.log("state of blog manager", BlogManager);
-        // getCurrentBlog(blogId);
-        // // populate the blog form
-        // tagsEl.value = currentBlog.detail.tags.join(", ");
-        // headlineEl.value = currentBlog.detail.headline;
-        // authorEl.value = currentBlog.detail.author;
-        // dateEl.value = currentBlog.detail.dateAdded;
-        // imageEl.value = currentBlog.detail.imgHeader;
-        // contentEl.value = currentBlog.detail.content;
+        getCurrentBlog(blogId);
+        // populate the blog form
+        tagsEl.value = currentBlog.detail.tags.join(", ");
+        headlineEl.value = currentBlog.detail.headline;
+        authorEl.value = currentBlog.detail.author;
+        dateEl.value = currentBlog.detail.dateAdded;
+        imageEl.value = currentBlog.detail.imgHeader;
+        contentEl.value = currentBlog.detail.content;
         setEditMode(true);
     }
         

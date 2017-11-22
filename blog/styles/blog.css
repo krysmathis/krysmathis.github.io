@@ -147,5 +147,13 @@
 	outline: 0;	
 }
 
+.blogList {
+	margin: 0 auto;
+}
 
+.blogList__entry {
+	border: 1px solid black;
+	width: 100%;
+
+}
 

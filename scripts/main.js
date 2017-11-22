@@ -5,6 +5,10 @@ const ResumeManager= require("../resume/scripts/resume");
 const ProjectManager = require("../projects/scripts/projects");
 const ContactManager = require("../contact/scripts/contact");
 
+// add the admin events
+const adminEvents = require("../blog/scripts/blog-admin-events");
+
+console.log("blogger", BlogManager);
 
 navbar("Krys Mathis");
 console.log("Project Manager", ProjectManager);

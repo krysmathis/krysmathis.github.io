@@ -23,17 +23,17 @@ const RunAdmin = function (blogData) {
         sortedBlogs
             .forEach(entry => {
                 html += `
-				<tr class="blogList__entry">
-					<th class="blogList__headline">${entry.blogDetail.headline}</th>
-					<td class="blogList__preview">${entry.blogDetail.content.substring(0,30).replace(/<(?:.|\n)*?>/gm, "")}</td>
-					<td class="blogList__date">${entry.blogDetail.dateAdded}</td>
-					<td class="blogList__button-row"><button class="blogList__btn-edit" data-blog-id="${entry.id}">Edit</button></td>
-					<td class="blogList__button-row"><button class="blogList__btn-delete" data-blog-id="${entry.id}">Delete</button></td>
-				</tr>
+				<article class="blogList__entry">
+					<div class="blogList__headline">${entry.blogDetail.headline}</th>
+					<div class="blogList__preview">${entry.blogDetail.content.substring(0,30).replace(/<(?:.|\n)*?>/gm, "")}</div>
+					<div class="blogList__date">${entry.blogDetail.dateAdded}</div>
+					<div class="blogList__button-row"><button class="blogList__btn-edit" data-blog-id="${entry.id}">Edit</button></div>
+					<div class="blogList__button-row"><button class="blogList__btn-delete" data-blog-id="${entry.id}">Delete</button></td>
+				</article>
 				`;
             });
 
-        document.querySelector(".blogList__body").innerHTML = html;
+        document.querySelector(".blogList").innerHTML = html;
     };
 
     // Init blog list
