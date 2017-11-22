@@ -98,7 +98,15 @@ const populateNavBar = (function(brand){
             menuItem.className = "menu-list__item";
             menuList.appendChild(menuItem);
             menuItem.addEventListener("click",() => {
-                document.location.href = nav.link;
+                navs.forEach(n =>{
+                    
+                    if (n.label === nav.label) {
+                        $(`.${n.container}`).show();
+                    } else {
+                        $(`.${n.container}`).hide();
+                    }
+                });
+                goToId(nav);
             });
         }
     );
