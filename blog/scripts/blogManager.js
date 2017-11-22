@@ -2,27 +2,66 @@
 // ETL object for blogs
 
 // callback function for generating pagination
-//const {setPaginationByEls, isValidPagination, updatePagination} = require("../../pagination/scripts/pagination");
 const Paginator = require("../../pagination/scripts/pagination");
-const getBlogs = $.ajax({url: "https://personal-site-3111d.firebaseio.com/blogs.json"});
-const personalETL = require("../../scripts/personalETL");
+const PersonalETL = require("../../scripts/personalETL");
+const displayBlogs = require("./blog-controller");
+const AdminManager = require("../../admin/scripts/admin-controller");
+const eventListeners = require("./blog-admin-events");
 
-const BlogManager = Object.create(null, {
-
-    "data": {
-        value: [],
-        writable: true,
-        enumerable: true
+const BlogManager = Object.create(PersonalETL, {
+    
+    "load": {
+        value: function() {
+            $.ajax({url: "https://personal-site-3111d.firebaseio.com/blogs.json"})
+                .then(result => {
+                    this.data = result;
+                    this.filteredData = result;
+                    this.filterBySearchCriteria("");
+                    AdminManager(this.data);
+                    // blogAdmin update goes here
+                    //blogAdministrator.update();
+                });
+        }
     },
 
-    "filteredData": {
-        value: [],
-        writable: true,
-        enumerable: true
+    "add": {
+        value: function(obj) {
+            $.ajax({
+                url: "https://personal-site-3111d.firebaseio.com/blogs/.json",
+                method: "POST",
+                data: JSON.stringify(obj)
+            }).then(() => {
+                this.load();
+            });
+    
+        }
+    },
+
+    "update": {
+        value: function(pid, obj) {
+            $.ajax({
+                url: `https://personal-site-3111d.firebaseio.com/blogs/${pid}/.json`,
+                method: "PUT",
+                data: JSON.stringify(obj)
+            }).then(() => {
+                this.load();
+            });
+        }
+    },
+
+    "delete": {
+        value: function(pid) {
+            $.ajax({
+                url: `https://personal-site-3111d.firebaseio.com/blogs/${pid}/.json`,
+                method: "DELETE"
+            }).then(r => {
+                this.load();
+            });
+        }
     },
 
     "paginationObj": {
-        value: Paginator,
+        value: Paginator(document.querySelector(".pagination")),
         writable: true,
         enumerable: true
     },
@@ -30,14 +69,14 @@ const BlogManager = Object.create(null, {
     "filterBySearchCriteria": {
         value: function(searchCriteria) {
             // sort in descending order
-            const sortedBlogEntries = this.data.sort((a, b) => moment(b.dateAdded) - moment(a.dateAdded));
+            //const sortedBlogEntries = this.data.sort((a, b) => moment(b.dateAdded) - moment(a.dateAdded));
             if (searchCriteria === undefined || searchCriteria === "") {
                 // just return the sorted blogs
-                this.filteredData = sortedBlogEntries;
+                this.filteredData = this.data;
             } else {
                 // return the filtered blogs
                 this.filteredData =
-                        sortedBlogEntries.filter(
+                        this.data.filter(
                             blog =>
                                 blog.headline.toLowerCase().includes(searchCriteria) ||
                                 blog.content.toLowerCase().includes(searchCriteria)
@@ -48,119 +87,9 @@ const BlogManager = Object.create(null, {
 
         }
     },
-    "filterByTag": {
-        value: function(tag) {
-            // Get records with matching tags
-            const matchedRecords = [];
-            this.data.forEach(record => {
-                record.tags.forEach(currentTag =>{
-                    if (currentTag === tag) 
-                        matchedRecords.push(record);
-                    return;
-                });
-            });
-            this.filteredData = matchedRecords;
-            this.paginate();
-            this.display(1);
-        }
-    },
 
     "display": {
-        value: function(pageNumber) {
-
-            const blogs = this.filteredData;
-            
-            // Clear out all existing blog elements
-            const blogsEl = document.getElementById("blog-posts");
-            while (blogsEl.hasChildNodes()) {
-                blogsEl.removeChild(blogsEl.lastChild);
-            }
-                
-            // don't display paginate if there are no blogs
-            if (blogs.length < 1) {
-                blogsEl.innerHTML = "No blogs found...";
-                return;
-            }
-                
-            // Only display the pages in the current page number
-            const blogsToDisplay = blogs.slice(
-                (pageNumber - 1) * this.displayOptions.itemsPerPage,
-                pageNumber * this.displayOptions.itemsPerPage
-            );  
-                        
-            blogsToDisplay.forEach( entry => {
-                
-                let imageSrc = entry.imgHeader.startsWith("images") ? "../" + entry.imgHeader : entry.imgHeader;
-                        
-                // main element
-                let blogPost = document.createElement("article");
-                blogPost.className = "blog__post";
-            
-                let blogHeader = document.createElement("div");
-                blogHeader.className = "blog__header";
-            
-                let blogHeadline = document.createElement("div");
-                blogHeadline.className = "blog__headline";
-                let blogHeadlineText = document.createTextNode(entry.headline);
-                blogHeadline.appendChild(blogHeadlineText);
-            
-                let blogDate = document.createElement("div");
-                blogDate.className = "blog__date";
-                let blogDateText = document.createTextNode(moment(entry.dateAdded).format("YYYY-MM-DD"));
-                blogDate.appendChild(blogDateText);
-            
-                // append to the blogHeader div
-                blogHeader.appendChild(blogHeadline);
-                blogHeader.appendChild(blogDate);
-                            
-                // append to main div
-                blogPost.appendChild(blogHeader);
-                        
-                // Img div
-                let blogImgContainer = document.createElement("div");
-                blogImgContainer.className = "blog__img-header";
-                // Image
-                let blogImg = document.createElement("img");
-                blogImg.src = imageSrc;
-                blogImgContainer.appendChild(blogImg);
-                blogPost.appendChild(blogImgContainer);
-            
-                // Content
-                let blogContent = document.createElement("div");
-                blogContent.className = "blog__content";
-                blogContent.innerHTML = entry.content;
-                blogPost.appendChild(blogContent);
-            
-                // Tags Container
-                let blogTags = document.createElement("div");
-                blogTags.className = "blog__footer project-tag";
-                let blogTagList = document.createElement("ul");
-                        
-                // do the tags
-                entry.tags.forEach(currentTag => 
-                {
-                    let tag = document.createElement("li");
-                    tag.className = "blog__tag";
-                    tag.appendChild(document.createTextNode(currentTag));
-                    blogTagList.appendChild(tag);
-                            
-                    // add event listener for on click
-                    tag.addEventListener("click", (e) => {
-                        const tagTxt = e.target.innerHTML;
-                        this.filterByTag(tagTxt);
-                    });
-                });
-            
-                blogTags.appendChild(blogTagList);
-                blogPost.appendChild(blogTags);
-            
-            
-                // for loop for adding the tags
-                blogsEl.appendChild(blogPost);
-            });
-            
-            
-        },
+        value: displayBlogs,
         enumerable: true
     },
     
@@ -171,24 +100,6 @@ const BlogManager = Object.create(null, {
         "writable": true
     },
 
-    "paginate": {
-        // takes a callback function from the pagination object
-        value: function() {
-            
-            const numberOfItems = this.filteredData.length;
-            const numberOfPages = Math.ceil(numberOfItems / this.displayOptions.itemsPerPage);
-
-            this.paginationObj.init(numberOfPages,1);
-            
-            // determine how to handle the pagination display
-            if (numberOfPages > 1) {
-                document.querySelector(".pagination").style.visibility = "";
-            } else {
-                document.querySelector(".pagination").style.visibility = "hidden";
-            }
-        }
-    },
-
     "search": {
         value: function(searchString) {
             if (searchString.length >=3) {
@@ -196,18 +107,34 @@ const BlogManager = Object.create(null, {
             } else {
                 this.filterBySearchCriteria("");
             }
+        },
+        writable: true,
+        enumerable: true
+    },
+
+    "paginate": {
+        // takes a callback function from the pagination object
+        value: function() {
+            
+            // const numberOfItems = Object.keys(this.filteredData).length;
+            // const numberOfPages = Math.ceil(numberOfItems / this.displayOptions.itemsPerPage);  
+            // this.paginationObj.init(numberOfPages,1);
+            
+            // // determine how to handle the pagination display
+            // if (numberOfPages > 1) {
+            //     //document.querySelector(".pagination").style.visibility = "visible";
+            // } else {
+            //     //document.querySelector(".pagination").style.visibility = "hidden";
+            // }
         }
-    }
+    },
+    
 });
 
 /**
  * Init for the blog page
  */
-getBlogs
-    .then(result => {
-        BlogManager.data = result;
-        BlogManager.filterBySearchCriteria("");
-    });
+//BlogManager.load();
 
 // ---- EVENT LISTENER FOR PAGINATION ----
 document.querySelector(".pagination").addEventListener("click", function(e) {
@@ -241,4 +168,8 @@ document.querySelector(".blog__bnt-clear").addEventListener("click", ()=> {
     BlogManager.search("");
 });
 
-module.export = BlogManager;
+// ----- EVENT LISTENERS FOR ADMIN FORM ---- //
+
+console.log("blog manager from blm", BlogManager);
+
+module.exports = BlogManager;

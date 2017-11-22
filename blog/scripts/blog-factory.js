@@ -52,7 +52,7 @@ const blogObjectFactory = function (headline, dateAdded, author, imgHeader, cont
     const currentId = blogIdFactory.next().value;
     
     return Object.create({},{
-        "id": {value: id || currentId, enumerable: true},
+        // "id": {value: id || currentId, enumerable: true},
         "headline": {value: headline, enumerable: true},
         "dateAdded": {value: dateAdded, enumerable: true},
         "author": {value: author, enumerable: true},

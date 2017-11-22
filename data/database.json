@@ -21,7 +21,6 @@
         "icon": "../images/linkedin.png",
         "iconAlt": "linkedin"
     }, {
-        "id": 0,
         "service": "Email",
         "handle": "krysmathis",
         "url": "mailto:krysmathis@test.com",
@@ -29,7 +28,6 @@
         "iconAlt": "email icon"
     }],
     "blogs": [{
-        "id": 12,
         "headline": "Happy Halloween",
         "dateAdded": "2017-11-01",
         "author": "Krys Mathis",
@@ -37,7 +35,6 @@
         "content": "Started Halloween blog but never finished",
         "tags": ["tags"]
     }, {
-        "id": 11,
         "headline": "Attention Grabber!",
         "dateAdded": "2017-11-01",
         "author": "Krys Mathis",
@@ -45,7 +42,6 @@
         "content": "Another one again to see if pagination changes",
         "tags": ["tags"]
     }, {
-        "id": 1,
         "headline": "First Week at NSS",
         "dateAdded": "2017-10-16",
         "author": "Krys Mathis",
@@ -53,7 +49,6 @@
         "content": "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
         "tags": ["footer", "html", "css"]
     }, {
-        "id": 9,
         "headline": "Attention Grabber!",
         "dateAdded": "2017-11-01",
         "author": "Krys Mathis",
@@ -61,7 +56,6 @@
         "content": "And another one for the blog articles",
         "tags": ["tags"]
     }, {
-        "id": 8,
         "headline": "Attention Grabber!",
         "dateAdded": "2017-11-01",
         "author": "Krys Mathis",
@@ -69,7 +63,6 @@
         "content": "Then even another one",
         "tags": ["tags"]
     }, {
-        "id": 7,
         "headline": "Attention Grabber!",
         "dateAdded": "2017-11-01",
         "author": "Krys Mathis",
@@ -77,7 +70,6 @@
         "content": "Another one",
         "tags": ["tags"]
     }, {
-        "id": 10,
         "headline": "Attention Grabber!",
         "dateAdded": "2017-11-01",
         "author": "Krys Mathis",
@@ -85,7 +77,6 @@
         "content": "Another one",
         "tags": ["tags"]
     }, {
-        "id": 5,
         "headline": "5",
         "dateAdded": "2017-10-10",
         "author": "Krys Mathis",
@@ -93,7 +84,6 @@
         "content": "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
         "tags": ["footer", "html", "css"]
     }, {
-        "id": 4,
         "headline": "4",
         "dateAdded": "2017-10-09",
         "author": "Krys Mathis",
@@ -101,7 +91,6 @@
         "content": "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
         "tags": ["footer", "html", "css"]
     }, {
-        "id": 3,
         "headline": "3",
         "dateAdded": "2017-10-08",
         "author": "Krys Mathis",
@@ -109,7 +98,6 @@
         "content": "<p>Started my journey to becoming a software developer. Is it just me or are they stressing that we won't understand anything they say for weeks? It's nice to be around people with the same goal. We're starting at different points, but we're going to end up at the same place, same skills. One more observation, seems to be a lot of memes and animated GIFs going on around here. Must mean we'll need a sense of humor to make it where we want to go.</p>",
         "tags": ["footer", "html", "css"]
     }, {
-        "id": 2,
         "headline": "Inside the Grid",
         "dateAdded": "2017-10-27",
         "author": "Krys Mathis",
@@ -117,7 +105,6 @@
         "content": "<p>Spent some time experimenting with the css grid over the weekend. My hope is that it will make laying out webpages simpler. So far it's been a big time sink with rather frustrating results.</p><p>You can see the results here: <a href='https://github.com/krysmathis/experiments/tree/master/grid-transforms'>link</a>",
         "tags": ["css"]
     }, {
-        "id": 6,
         "headline": "6",
         "dateAdded": "2017-10-11",
         "author": "Krys Mathis",

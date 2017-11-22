@@ -1,1 +1,0 @@
-updateNavBar("projects");

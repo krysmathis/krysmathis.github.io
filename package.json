@@ -26,6 +26,7 @@
     "grunt-browserify": "^5.2.0",
     "grunt-contrib-uglify": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-notify": "^0.4.5",
     "gruntify-eslint": "^4.0.0"
   },
   "dependencies": {}

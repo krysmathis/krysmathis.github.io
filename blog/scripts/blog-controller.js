@@ -1,110 +1,36 @@
-// TODO: verify the database exists
-const setPaginationByEls = require("../../pagination/scripts/pagination");
+const displayBlogs = function (pageNumber) {
 
-
-let currentBlogs = [];
-let itemsPerPage = 5;
-
-
-// function to return the blogs to show
-const getBlogs = function (searchCriteria) {
-
-    const blogDB = JSON.parse(localStorage.getItem("blog")) || {};
-    const blogEntries = blogDB.blogEntries || [];
-
-    // sort in descending order
-    const sortedBlogEntries = blogEntries.sort((a, b) => moment(b.dateAdded) - moment(a.dateAdded));
-    
-    let filteredBlogEntries = [];    
-    if (searchCriteria === undefined || searchCriteria === "") {
-        // just return the sorted blogs
-        filteredBlogEntries = sortedBlogEntries;
-    } else {
-        // return the filtered blogs
-        filteredBlogEntries =
-                sortedBlogEntries.filter(
-                    blog =>
-                        blog.headline.toLowerCase().includes(searchCriteria) ||
-                        blog.content.toLowerCase().includes(searchCriteria)
-                );
+    // sort the data
+    const unsortedBlogs = [];
+    for (let key in this.filteredData) {
+        let currentBlog = this.filteredData[key];
+        unsortedBlogs.push(currentBlog);
     }
-    
-    // set the global variable  
-    currentBlogs = filteredBlogEntries;
-    //setInitialPagination();
-    return filteredBlogEntries;
-        
-};
-
-// Get blogs with matching tags
-const getBlogsMatchedTags = function(tag) {
-    const allBlogs = getBlogs("");
-    const matchedBlogPosts = [];
-    allBlogs.forEach(blog => {
-        blog.tags.forEach(currentTag =>{
-            if (currentTag === tag) 
-                matchedBlogPosts.push(blog);
-            return;
-        });
-    });
-    return matchedBlogPosts;
-};
-
-// Update the current blogs based on the selected tag
-const filterByTag = e => {
-    currentBlogs = getBlogsMatchedTags(e.target.innerHTML);
-    writeBlogsEl(1);
-    setInitialPagination();
-};
-
-/*
-    Set the initial pagination once you have filtered your blog entries
-    This call the pagination
-*/
-const setInitialPagination = function() {
-   
-    const numberOfItems = currentBlogs.length;
-    const numberOfPages = Math.ceil(numberOfItems / itemsPerPage);
-    
-    setPaginationByEls(numberOfPages,1);
-    
-
-    if (numberOfPages > 1) {
-        document.querySelector(".pagination").style.visibility = "";
-    } else {
-        document.querySelector(".pagination").style.visibility = "hidden";
-    }
-    
-};
-
-
-
-
-const writeBlogsEl = function (pageNumber) {
-    
-    const blogs = currentBlogs;
+    const blogs = unsortedBlogs.sort((a, b) => moment(b.dateAdded) - moment(a.dateAdded));
 
     // Clear out all existing blog elements
     const blogsEl = document.getElementById("blog-posts");
     while (blogsEl.hasChildNodes()) {
         blogsEl.removeChild(blogsEl.lastChild);
     }
-    
-    // don't display pagination if there are no blogs
+
+    // don't display paginate if there are no blogs
     if (blogs.length < 1) {
         blogsEl.innerHTML = "No blogs found...";
         return;
     }
-    
+
     // Only display the pages in the current page number
     const blogsToDisplay = blogs.slice(
-        (pageNumber - 1) * itemsPerPage,
-        pageNumber * itemsPerPage
-    );  
-            
-    blogsToDisplay.forEach(function (entry) {
+        (pageNumber - 1) * this.displayOptions.itemsPerPage,
+        pageNumber * this.displayOptions.itemsPerPage
+    );
+
+    // go through the data here
+    blogsToDisplay.forEach(entry => {
+
         let imageSrc = entry.imgHeader.startsWith("images") ? "../" + entry.imgHeader : entry.imgHeader;
-            
+
         // main element
         let blogPost = document.createElement("article");
         blogPost.className = "blog__post";
@@ -125,10 +51,10 @@ const writeBlogsEl = function (pageNumber) {
         // append to the blogHeader div
         blogHeader.appendChild(blogHeadline);
         blogHeader.appendChild(blogDate);
-                
+
         // append to main div
         blogPost.appendChild(blogHeader);
-            
+
         // Img div
         let blogImgContainer = document.createElement("div");
         blogImgContainer.className = "blog__img-header";
@@ -148,17 +74,19 @@ const writeBlogsEl = function (pageNumber) {
         let blogTags = document.createElement("div");
         blogTags.className = "blog__footer project-tag";
         let blogTagList = document.createElement("ul");
-            
+
         // do the tags
-        entry.tags.forEach(currentTag => 
-        {
+        entry.tags.forEach(currentTag => {
             let tag = document.createElement("li");
             tag.className = "blog__tag";
             tag.appendChild(document.createTextNode(currentTag));
             blogTagList.appendChild(tag);
-                
+
             // add event listener for on click
-            tag.addEventListener("click", filterByTag);
+            tag.addEventListener("click", (e) => {
+                const tagTxt = e.target.innerHTML;
+                this.filterByTag(tagTxt);
+            });
         });
 
         blogTags.appendChild(blogTagList);
@@ -168,26 +96,6 @@ const writeBlogsEl = function (pageNumber) {
         // for loop for adding the tags
         blogsEl.appendChild(blogPost);
     });
-    
 };
 
-
-
-// ---- EVENT LISTENER FOR PAGINATION ----
-document.querySelector(".pagination").addEventListener("click", function(e) {
-    
-    if (!isValidPagination(e)) {return;}
-    
-    // Update the blog posts
-    const pageNumber = e.target.dataset.pageNum;
-    writeBlogsEl(pageNumber);
-    // Update the pagination to store the new page #'s
-    updatePagination(e);
-
-
-});
-
-getBlogs(""); // returns all blogs
-writeBlogsEl(1); // writes the first page of blogs
-setInitialPagination(); // initiates the pagination div
-
+module.exports = displayBlogs;

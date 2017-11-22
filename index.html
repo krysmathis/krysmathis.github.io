@@ -8,11 +8,11 @@
     <link rel="stylesheet" type="text/css" href="about.css">
     <link rel="stylesheet" type="text/css" href="./styles/container-styles.css">
     <link rel="stylesheet" type="text/css" href="../blog/styles/blog.css">
+    <link rel="stylesheet" type="text/css" href="../projects/styles/projects.css">
+    <link rel='stylesheet' type="text/css" href='../admin/styles/admin.css'>
     <link rel="stylesheet" type="text/css" href="./pagination/styles/pagination.css">
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
     <!--<script src="https://use.fontawesome.com/2e4c1d8960.js"></script>-->
 </head>
 
@@ -22,6 +22,9 @@
         </nav>
     </header>
     <main class="main-content">
+            <div class="messageBlock__container">
+                    <div class="messageBlock">Edit Mode!</div>
+                  </div>
         <div class="wrap" id="about-wrap">
             <section class="aboutContainer" id="about">
                 <!-- image -->
@@ -37,7 +40,6 @@
                                 the first stop when people encountered system or technical issues or if they had a great
                                 idea but didn't know how to implement it. Instead of continuing to give unqualified advice,
                                 I decided to leverage NSS to help me make the move to professional software developer.
-                                </>
                         </article>
                     </div>
                 </div>
@@ -59,9 +61,77 @@
             <section class="pagination"></section>
         </section>
         <section class="projectsContainer" id="projects"></section>
-        <section class="resumeContainer" id="resume"></section>
-        <section class="contactContainer" id="contact"></section>
+        <section class="searchBar">
+            Search:
+            <input type="text" value="enter search criteria" class="searchBar__input">
+        </section>
+        <section id="projects">
 
+        </section>
+        <section class="resumeContainer" id="resume">
+            <section id="resume-jobs">
+                <!-- jobs from script -->
+            </section>
+            <aside>summary</aside>
+            <section class="education">
+            </section>
+        </section>
+        <section class="contactContainer" id="contact">
+            <h2 class="social-links-header">Reach out to me</h2>
+            <main id="social-links">
+                <!-- populated from db -->
+            </main>
+            </div>
+            <!-- wrap -->
+        </section>
+        <section class="blogAdminContainer" id="blogAdmin">
+                <h1>Create a Blog Entry</h1>
+                <section class="blogForm">
+                  <label>Define your headline</label>
+                  <input type="text" value="Attention Grabber!" name="blog-headline" class="blogForm__headline">
+          
+                  <label>Author</label>
+                  <input type="text" value="Krys Mathis" name="blog-author" class="blogForm__author">
+          
+                  <label>Date</label>
+                  <input type="date" value="" name="blog-date" class="blogForm__date">
+          
+                  <label>Content</label>
+                  <textarea value="Enter contents here. HTML is OK."name="blog-content" class="blogForm__content"></textarea>
+          
+                  <label>Image</label>
+                  <input type="text" value="../images/eagle.jpg" name="blog-image" class="blogForm__image">
+          
+                  <label>Tags</label>
+                  <input type="text" value="tags" name="blog-tags" class="blogForm__tags">
+                  <div class="blogForm__buttons">
+                      <button class="blogForm__btnSave">Save</button>
+                      <button class="blogForm__btnGoToBlog">Go To Blogs</button>
+                  </div>
+                </section>
+                  <!--- this will hold a list of the blogs to edit -->`
+                  <table class="blogList">
+                      <colgroup>
+                        <col style="width:35%">
+                        <col style="width:35%">
+                        <col style="width:15%">
+                        <col style="width:15%">
+                      </colgroup>
+                      <caption class="blogList__caption">Edit Existing Blog Articles</caption>
+                      <thead class="blogList__headers">
+                          <tr class="blogList__headerRow">
+                          <th>Title</th>
+                          <th>Snapshot</th>
+                          <th>Date</th>
+                          <th>Edit?</th>
+                          </tr>
+                      </thead>
+                      <tbody class="blogList__body">
+          
+                      </tbody>
+                      </table>
+
+        </section>
     </main>
     <footer class="main-footer">
         <span>&copy;2017 Krys Mathis</span>

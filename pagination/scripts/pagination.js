@@ -4,16 +4,18 @@
         JS: You'll need to send in the number of pages to display
 */
 
-const Paginator = 
+const Paginator = function(paginationEl) {
+    
+    const _paginationEl = paginationEl;
 
-    Object.create(null, {
+    return Object.create(null, {
         
         "init": {
             value: function (numberOfPages, startPage = 1) {
-                const paginationEl = document.querySelector(".pagination");
+                //const paginationEl = document.querySelector(".pagination");
                 // reset the pagination by removing all the child nodes
-                while (paginationEl.hasChildNodes()) {
-                    paginationEl.removeChild(paginationEl.lastChild);
+                while (_paginationEl.hasChildNodes()) {
+                    _paginationEl.removeChild(_paginationEl.lastChild);
                 }
                 /*
                         ============================================================
@@ -27,7 +29,7 @@ const Paginator =
                 const prevText = document.createTextNode("<");
                 prev.appendChild(prevText);
             
-                paginationEl.appendChild(prev);
+                _paginationEl.appendChild(prev);
             
                 // create an element to represent each page
                 for (let i = 0; i < numberOfPages; i++) {
@@ -36,7 +38,7 @@ const Paginator =
                     link.dataset.pageNum=`${i+startPage}`;
                     link.className="pagination__page";
                     link.appendChild(document.createTextNode(`${i+startPage}`));
-                    paginationEl.appendChild(link);
+                    _paginationEl.appendChild(link);
                
                 }
                    
@@ -46,7 +48,7 @@ const Paginator =
                 next.className="pagination__next";
                 const nextText = document.createTextNode(">");
                 next.appendChild(nextText);
-                paginationEl.appendChild(next);
+                _paginationEl.appendChild(next);
                     
                 // set the previous page selector to invisible and the first element to selected
                 document.querySelector(".pagination__previous").style.visibility = "hidden";
@@ -113,8 +115,16 @@ const Paginator =
                     return isValid;
                 }
             }
+        }, 
+        "paginationSettings": {
+            value: {
+                maxPagesToDisplay: 5
+            },
+            writable: true
         }
     });
+};
+
 
 
 module.exports = Paginator;
