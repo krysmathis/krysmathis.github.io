@@ -11,7 +11,7 @@ const populateNavBar = (function(brand){
     navs.set("Blog", {"label": "Blog", "container": "blogContainer", "link": "#blogs", "buttonClass": "btn-nav__blog", "targetId":"blogs"}),
     navs.set("Resume", {"label": "Resume", "container": "resumeContainer", "link": "../resume", "buttonClass": "btn-nav__resume", "targetId": "resume"}),
     navs.set("Contact", {"label": "Contact", "container": "contactContainer", "link": "../contact", "buttonClass": "btn-nav__contact", "targetId": "contact"});
-    navs.set("Login", {"label": "Login", "container": "loginContainer", "link": "../login", "buttonClass": "btn-nav__login", "targetId": "admin"});
+    navs.set("Login", {"label": "Login", "container": "loginContainer", "link": "../login", "buttonClass": "btn-nav__login", "targetId": ""});
     
     const navBar = document.querySelector(".nav");
     // create the ul element to stick inside the nav
@@ -32,8 +32,10 @@ const populateNavBar = (function(brand){
     // scroll to a part of the page and account for the navbar height
     const goToId = function(nav) {
         let navBarHeight = navBar.clientHeight;
-        document.getElementById(nav.targetId).scrollIntoView();
-        window.scrollBy(0,-(navBarHeight+60));
+        if (nav.targetId.length > 0) {
+            document.getElementById(nav.targetId).scrollIntoView();
+            window.scrollBy(0,-(navBarHeight+60));
+        }
     };
 
     navs.forEach(
@@ -49,8 +51,6 @@ const populateNavBar = (function(brand){
                 // Scroll down and account for the height of the navbar
                 // *** JQUERY ****
 
-                
-                
                 navs.forEach(n =>{
                     if (n.label === nav.label) {
                         $(`.${n.container}`).show();
@@ -147,11 +147,14 @@ const addNavbarMenuEventListeners = function() {
     window.addEventListener("resize", () => {
         menu.style.display = "none";
     });
+
 };
 
 module.exports = function populateNavComponents(brand) {
     populateNavBar(brand);
     addNavbarMenuEventListeners();
+    $(".section-container").hide();
+    $(".aboutContainer").show();
 
 };
 

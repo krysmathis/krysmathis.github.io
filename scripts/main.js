@@ -15,11 +15,8 @@ var config = {
 };
 firebase.initializeApp(config);
   
-
-
-
 const navbar = require("../navbar/scripts/navbar");
-
+const navbarUpdate = require("../admin/scripts/admin-validate-user-event");
 
 
 
