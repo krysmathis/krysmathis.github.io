@@ -116,16 +116,16 @@ const BlogManager = module.exports = Object.create(PersonalETL, {
         // takes a callback function from the pagination object
         value: function() {
             
-            // const numberOfItems = Object.keys(this.filteredData).length;
-            // const numberOfPages = Math.ceil(numberOfItems / this.displayOptions.itemsPerPage);  
-            // this.paginationObj.init(numberOfPages,1);
+            const numberOfItems = Object.keys(this.filteredData).length;
+            const numberOfPages = Math.ceil(numberOfItems / this.displayOptions.itemsPerPage);  
+            this.paginationObj.init(numberOfPages,1);
             
-            // // determine how to handle the pagination display
-            // if (numberOfPages > 1) {
-            //     //document.querySelector(".pagination").style.visibility = "visible";
-            // } else {
-            //     //document.querySelector(".pagination").style.visibility = "hidden";
-            // }
+            // determine how to handle the pagination display
+            if (numberOfPages > 1) {
+                //document.querySelector(".pagination").style.visibility = "visible";
+            } else {
+                //document.querySelector(".pagination").style.visibility = "hidden";
+            }
         }
     },
 

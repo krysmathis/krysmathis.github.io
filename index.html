@@ -7,10 +7,13 @@
     <link rel="stylesheet" type="text/css" href="../navbar/styles/navbar.css">
     <link rel="stylesheet" type="text/css" href="about.css">
     <link rel="stylesheet" type="text/css" href="./styles/container-styles.css">
-    <link rel="stylesheet" type="text/css" href="../blog/styles/blog.css">
+    <link rel="stylesheet" type="text/css" href="./blog/styles/blog.css">
+    <link rel="stylesheet" type="text/css" href="./admin/styles/admin.css">
+    <link rel='stylesheet' type="text/css" href="/styles/login-styles.css">
+    <link rel="stylesheet" type="text/css" href="../projects/styles/search.css">
     <link rel="stylesheet" type="text/css" href="../projects/styles/projects.css">
-    <link rel='stylesheet' type="text/css" href='../admin/styles/admin.css'>
     <link rel="stylesheet" type="text/css" href="./pagination/styles/pagination.css">
+    <link rel="stylesheet" type="text/css" href="./toaster/styles/toaster.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
     <!--<script src="https://use.fontawesome.com/2e4c1d8960.js"></script>-->
@@ -21,12 +24,12 @@
         <nav class="nav">
         </nav>
     </header>
-    <main class="main-content">
-            <div class="messageBlock__container">
-                    <div class="messageBlock">Edit Mode!</div>
-                  </div>
-        <div class="wrap" id="about-wrap">
-            <section class="aboutContainer" id="about">
+    < class="main-content">
+        <div class="messageBlock__container">
+            <div class="messageBlock">Edit Mode!</div>
+        </div>
+        <section class="aboutContainer section-container" id="about">
+            <div class="wrap" id="about-wrap">
                 <!-- image -->
                 <div id="about-image">
                     <div class="about__image-textblock">
@@ -46,11 +49,11 @@
 
                 <article id="intro" class="article">
                 </article>
-        </div>
-        <!-- about-wrap -->
+            </div>
+            <!-- about-wrap -->
         </section>
         <!-- about section -->
-        <section class="blogContainer" id="blogs">
+        <section class="blogContainer section-container" id="blogs">
             <div class="blog__search-container">
                 Search:
                 <input type="text" value="enter search criteria" class="blog__search-input">
@@ -60,15 +63,16 @@
             <!-- blog posts-->
             <section class="pagination"></section>
         </section>
-        <section class="projectsContainer" id="projects"></section>
-        <section class="searchBar">
-            Search:
-            <input type="text" value="enter search criteria" class="searchBar__input">
-        </section>
-        <section id="projects">
+        <section class="projectsContainer section-container" id="projects">
+            <section class="searchBar">
+                Search:
+                <input type="text" value="enter search criteria" class="searchBar__input">
+            </section>
+            <section id="projectList">
 
+            </section>
         </section>
-        <section class="resumeContainer" id="resume">
+        <section class="resumeContainer section-container" id="resume">
             <section id="resume-jobs">
                 <!-- jobs from script -->
             </section>
@@ -76,7 +80,7 @@
             <section class="education">
             </section>
         </section>
-        <section class="contactContainer" id="contact">
+        <section class="contactContainer section-container" id="contact">
             <h2 class="social-links-header">Reach out to me</h2>
             <main id="social-links">
                 <!-- populated from db -->
@@ -84,47 +88,73 @@
             </div>
             <!-- wrap -->
         </section>
-        <section class="blogAdminContainer" id="blogAdmin">
+        <section class="loginContainer section-container" id="admin">
+            <section class="loginAdmin">
+                <div class="login__page-wrapper">
+                    <div class="login__container">
+                        <!-- <form name="login" class="login__form"> -->
+                        <div class="login__username-container">
+                            <div class="login__username-label">email:</div>
+                            <input class="login__username" type="text" autofocus>
+                        </div>
+                        <div class="login__username-email">
+                            <div class="login__email-label">password:</div>
+                            <input class="login__email" type="password">
+                        </div>
+                        <div class="login__button-container">
+                            <button class="login__button-login">Login</button>
+                            <button class="login__button-create">Create Account</button>
+                        </div>
+                        <div class="login__user-message"></div>
+                        <!-- </form> -->
+                    </div>
+                </div>
+            </section>
+            <section class="blogAdminContainer section-container" id="admin-blog">
                 <h1>Create a Blog Entry</h1>
                 <section class="blogForm">
-                  <label>Define your headline</label>
-                  <input type="text" value="Attention Grabber!" name="blog-headline" class="blogForm__headline">
-          
-                  <label>Author</label>
-                  <input type="text" value="Krys Mathis" name="blog-author" class="blogForm__author">
-          
-                  <label>Date</label>
-                  <input type="date" value="" name="blog-date" class="blogForm__date">
-          
-                  <label>Content</label>
-                  <textarea value="Enter contents here. HTML is OK."name="blog-content" class="blogForm__content"></textarea>
-          
-                  <label>Image</label>
-                  <input type="text" value="../images/eagle.jpg" name="blog-image" class="blogForm__image">
-          
-                  <label>Tags</label>
-                  <input type="text" value="tags" name="blog-tags" class="blogForm__tags">
-                  <div class="blogForm__buttons">
-                      <button class="blogForm__btnSave">Save</button>
-                      <button class="blogForm__btnGoToBlog">Go To Blogs</button>
-                  </div>
+                    <label>Define your headline</label>
+                    <input type="text" value="Attention Grabber!" name="blog-headline" class="blogForm__headline">
+
+                    <label>Author</label>
+                    <input type="text" value="Krys Mathis" name="blog-author" class="blogForm__author">
+
+                    <label>Date</label>
+                    <input type="date" value="" name="blog-date" class="blogForm__date">
+
+                    <label>Content</label>
+                    <textarea value="Enter contents here. HTML is OK." name="blog-content" class="blogForm__content"></textarea>
+
+                    <label>Image</label>
+                    <input type="text" value="../images/eagle.jpg" name="blog-image" class="blogForm__image">
+
+                    <label>Tags</label>
+                    <input type="text" value="tags" name="blog-tags" class="blogForm__tags">
+                    <div class="blogForm__buttons">
+                        <button class="blogForm__btnSave">Save</button>
+                        <button class="blogForm__btnGoToBlog">Go To Blogs</button>
+                    </div>
                 </section>
-                  <!--- this will hold a list of the blogs to edit -->`
+                <!--- this will hold a list of the blogs to edit -->`
                 <section class="blogList"></section>
+            </section>
         </section>
-    </main>
-    <footer class="main-footer">
-        <span>&copy;2017 Krys Mathis</span>
-    </footer>
-    <script src="../lib/moment.js"></script>
-    <script src="./build/bundle.js"></script>
-    <!-- <script src="../navbar/scripts/navbar.js"></script> -->
-    <!-- <script src="./about.js"></script> -->
-    <!-- <script src="./scripts/blog.js"></script> -->
-    <!-- <script src="./scripts/blog-factory.js"></script> -->
-    <!-- <script src="../pagination/scripts/pagination.js"></script> -->
-    <!-- <script src="../blog/scripts/blog-controller.js"></script> -->
-    <!-- <script src="../blog//scripts/blog-search.js"></script> -->
+        <section class="toaster__container"></section>
+        </main>
+        <footer class="main-footer">
+            <span>&copy;2017 Krys Mathis</span>
+        </footer>
+        <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
+        <script src="../lib/moment.js"></script>
+        <script src="./build/bundle.js"></script>
+        <!-- <script src="../navbar/scripts/navbar.js"></script> -->
+        <!-- <script src="./about.js"></script> -->
+        <!-- <script src="./scripts/blog.js"></script> -->
+        <!-- <script src="./scripts/blog-factory.js"></script> -->
+        <!-- <script src="../pagination/scripts/pagination.js"></script> -->
+        <!-- <script src="../blog/scripts/blog-controller.js"></script> -->
+        <!-- <script src="../blog//scripts/blog-search.js"></script> -->
 </body>
 
 </html>

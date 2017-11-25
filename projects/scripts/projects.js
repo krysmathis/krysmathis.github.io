@@ -42,7 +42,7 @@ const ProjectManager = Object.create(PersonalETL, {
                 pageNumber * this.displayOptions.itemsPerPage);
             // );  
 
-            const projectsHTML = document.getElementById("projects");
+            const projectsHTML = document.getElementById("projectList");
             projectsHTML.innerHTML = "";
 
             let sortedProjects = this.filteredData.sort((a, b) => moment(b.dateCompleted) - moment(a.dateCompleted));
