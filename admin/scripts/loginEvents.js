@@ -18,7 +18,6 @@ const toaster = Toaster();
 // function to navigate through login
 const addEvents = () => {
 
-    
     document.addEventListener("click", (event) => {
 
         // page elements to toggle visible and invisible
@@ -116,7 +115,17 @@ const addEvents = () => {
             //     toaster.makeToast("username/email already exists",7000);
             //     usernameEl.focus();
             // }
+
+
         }
+        
+        // event handler for login button
+        $(".btn-nav__login").on("click", () => {
+            $(".section-container").hide();
+            $(".loginContainer").show();
+            $(".loginAdmin").show();
+    
+        });
 
 
           
