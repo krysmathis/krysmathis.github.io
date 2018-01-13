@@ -4,14 +4,23 @@
         JS: You'll need to send in the number of pages to display
 */
 
-const Paginator = function(paginationEl) {
+const Paginator = function(config) {
     
-    const _paginationEl = paginationEl;
+    const _paginationEl = config.paginationEl;
+    let numberOfPages = config.defaultPages;
+    
 
     return Object.create(null, {
-        
-        "init": {
-            value: function (numberOfPages, startPage = 1) {
+    
+        "paginationInit": {
+
+            
+            value: function (startPage = 1) {
+                // check if there is filtered data available and then recalcualte
+                if (this.filteredData) {
+                    let numberOfItems = Object.keys(this.filteredData).length;
+                    numberOfPages = Math.ceil(numberOfItems / config.displayOptions.itemsPerPage); 
+                }
                 //const paginationEl = document.querySelector(".pagination");
                 // reset the pagination by removing all the child nodes
                 while (_paginationEl.hasChildNodes()) {
@@ -53,12 +62,21 @@ const Paginator = function(paginationEl) {
                 // set the previous page selector to invisible and the first element to selected
                 document.querySelector(".pagination__previous").style.visibility = "hidden";
                 document.querySelector(".pagination__page").className = "pagination__page--selected";
-            }
+                
+                // determine how to handle the pagination display when there is only 1 page
+                if (numberOfPages > 1) {
+                    document.querySelector(".pagination").style.visibility = "visible";
+                } else {
+                    document.querySelector(".pagination").style.visibility = "hidden";
+                }
+            
+            },
+            enumerable: true
 
         },
-        "update": {
+        "paginationUpdate": {
             value: function(event) {
-                if (!this.helpers.isValid(event)) {
+                if (!this.paginationHelpers.isValid(event)) {
                     return;
                 }
             
@@ -99,9 +117,10 @@ const Paginator = function(paginationEl) {
                     nextEl.style.visibility = "";
                     nextEl.dataset.pageNum = clickedPageNumber+1;
                 }
-            }
+            },
+            enumerable: true
         },
-        "helpers": {
+        "paginationHelpers": {
             value: {
 
                 "isValid": function(event) {
@@ -113,13 +132,15 @@ const Paginator = function(paginationEl) {
                     });
                         
                     return isValid;
-                }
-            }
+                },
+            },
+            enumerable: true
         }, 
         "paginationSettings": {
             value: {
                 maxPagesToDisplay: 5
             },
+            enumerable: true,
             writable: true
         }
     });

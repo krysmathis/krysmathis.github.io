@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,iBAAkB;EACd,SAAS,EAAE,GAAG",
+"sources": ["../sass/_resume.scss"],
+"names": [],
+"file": "main.css"
+}

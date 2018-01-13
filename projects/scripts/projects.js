@@ -1,18 +1,30 @@
 const Paginator = require("../../pagination/scripts/pagination");
 const PersonalETL = require("../../scripts/personalETL");
+const ProjectSearch = require("./projects-search");
 
 const ProjectManager = Object.create(PersonalETL, {
     
     "load": {
         value: function() {
-            const getProjects = $.ajax({
+            $.ajax({
                 url: "https://personal-site-3111d.firebaseio.com/projects.json"
-            });
-            getProjects
-                .then(result => {
+            }).then(result => {
+                // from firebase it could either be an array or an object
+                if (Array.isArray(result)) {
                     this.data = result;
-                    this.filterBySearchCriteria("");
-                });
+                } else {
+                    this.data = Object.keys(result)
+                        .map(key => {
+                            // adding an id field here
+                            result[key].id = key;
+                            return result[key];
+                        });
+                }
+
+                this.filterBySearchCriteria("");
+                // Initialize the event listeners for the projects
+                ProjectSearch(this);
+            });
         }
     },
 
@@ -25,7 +37,18 @@ const ProjectManager = Object.create(PersonalETL, {
     "filterBySearchCriteria": {
         value: function (searchCriteria) {
             this.filteredData = this.data.filter(function(proj){
-                return proj.description.toLowerCase().includes(searchCriteria) || proj.name.toLowerCase().includes(searchCriteria);
+                
+                let inTechnologies = false;
+                proj.technologies.forEach(t => {
+                    if (t.toLowerCase().includes(searchCriteria)) {
+                        inTechnologies = true;
+                    }
+                });
+                
+                return proj.description.toLowerCase().includes(searchCriteria) || 
+                       proj.name.toLowerCase().includes(searchCriteria) ||
+                       inTechnologies;
+                       
             });
             this.display(1);
             this.paginate();

@@ -28,7 +28,7 @@ const RunAdmin = function (blogData) {
 					<div class="blogList__preview">${entry.blogDetail.content.substring(0,30).replace(/<(?:.|\n)*?>/gm, "")}</div>
 					<div class="blogList__date">${entry.blogDetail.dateAdded}</div>
 					<div class="blogList__button-row"><button class="blogList__btn-edit" data-blog-id="${entry.id}">Edit</button></div>
-					<div class="blogList__button-row"><button class="blogList__btn-delete" data-blog-id="${entry.id}">Delete</button></td>
+					<div class="blogList__button-row"><button class="blogList__btn-delete" data-blog-id="${entry.blogDetail.id}">Delete</button></td>
 				</article>
 				`;
             });

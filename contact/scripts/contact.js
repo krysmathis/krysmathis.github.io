@@ -17,7 +17,7 @@ const ContactManager = Object.create(PersonalETL, {
         value: function() {
 
             const socialLinks = document.getElementById("social-links");
-            
+            socialLinks.innerHTML = "";
             this.filteredData.forEach(contactType => {
                 socialLinks.innerHTML += 
                     `<div><a href="${contactType.url}"><img src="${contactType.icon}" alt="${contactType.iconAlt}" class="social-img"></a></div>`;

@@ -8,144 +8,46 @@ const displayBlogs = require("./blog-controller");
 const AdminManager = require("../../admin/scripts/admin-controller");
 //const addEvents = require("./blog-admin-events");
 
-const BlogManager = module.exports = Object.create(PersonalETL, {
+const BlogManager = module.exports = function() {
     
-    "load": {
-        value: function() {
-            $.ajax({url: "https://personal-site-3111d.firebaseio.com/blogs.json"})
-                .then(result => {
-                    this.data = result;
-                    this.filteredData = result;
-                    this.filterBySearchCriteria("");
-                    AdminManager(this.data);
-                    // blogAdmin update goes here
-                    //blogAdministrator.update();
-                });
-        }
-    },
-
-    "add": {
-        value: function(obj) {
-            $.ajax({
-                url: "https://personal-site-3111d.firebaseio.com/blogs/.json",
-                method: "POST",
-                data: JSON.stringify(obj)
-            }).then(() => {
-                this.load();
-            });
-    
-        }
-    },
-
-    "update": {
-        value: function(pid, obj) {
-            $.ajax({
-                url: `https://personal-site-3111d.firebaseio.com/blogs/${pid}/.json`,
-                method: "PUT",
-                data: JSON.stringify(obj)
-            }).then(() => {
-                this.load();
-            });
-        }
-    },
-
-    "delete": {
-        value: function(pid) {
-            $.ajax({
-                url: `https://personal-site-3111d.firebaseio.com/blogs/${pid}/.json`,
-                method: "DELETE"
-            }).then(r => {
-                this.load();
-            });
-        }
-    },
-
-    "paginationObj": {
-        value: Paginator(document.querySelector(".pagination")),
-        writable: true,
-        enumerable: true
-    },
-
-    "filterBySearchCriteria": {
-        value: function(searchCriteria) {
-            // sort in descending order
-            //const sortedBlogEntries = this.data.sort((a, b) => moment(b.dateAdded) - moment(a.dateAdded));
-            if (searchCriteria === undefined || searchCriteria === "") {
-                // just return the sorted blogs
-                this.filteredData = this.data;
-            } else {
-                // return the filtered blogs
-                this.filteredData =
-                        this.data.filter(
-                            blog =>
-                                blog.headline.toLowerCase().includes(searchCriteria) ||
-                                blog.content.toLowerCase().includes(searchCriteria)
-                        );
-            }
-            this.paginate();
-            this.display(1);
-
-        }
-    },
-
-    "display": {
-        value: displayBlogs,
-        enumerable: true
-    },
-    
-    "displayOptions": {
-        value: {
-            "itemsPerPage": 5
+    const config = {
+        "displayOptions": {
+            itemsPerPage: 5
         },
-        "writable": true
-    },
+        "defaultPages": 3,
+        "paginationEl": document.querySelector(".pagination"),
+        "searchableProperties": ["headline", "content"],
+        "dbConnection": "https://personal-site-3111d.firebaseio.com/blogs"
+    };
+    
+    const dataFactory = require("./databaseManager");
+    const transformer = require("./transformer");
+    const blogDisplayer = require("./blog-controller");
+    const paginator = require("../../pagination/scripts/pagination");
 
-    "search": {
-        value: function(searchString) {
-            if (searchString.length >=3) {
-                this.filterBySearchCriteria(searchString);
-            } else {
-                this.filterBySearchCriteria("");
-            }
-        },
-        writable: true,
-        enumerable: true
-    },
+    return Object.assign({},
+        dataFactory(config),
+        transformer(config),
+        blogDisplayer(config),
+        paginator(config)
 
-    "paginate": {
-        // takes a callback function from the pagination object
-        value: function() {
-            
-            const numberOfItems = Object.keys(this.filteredData).length;
-            const numberOfPages = Math.ceil(numberOfItems / this.displayOptions.itemsPerPage);  
-            this.paginationObj.init(numberOfPages,1);
-            
-            // determine how to handle the pagination display
-            if (numberOfPages > 1) {
-                //document.querySelector(".pagination").style.visibility = "visible";
-            } else {
-                //document.querySelector(".pagination").style.visibility = "hidden";
-            }
-        }
-    },
+    );
 
-});
 
-/**
- * Init for the blog page
- */
-//BlogManager.load();
+};
+
+const blogManager = BlogManager();
 
 // ---- EVENT LISTENER FOR PAGINATION ----
 document.querySelector(".pagination").addEventListener("click", function(e) {
     
-    if (!BlogManager.paginationObj.helpers.isValid(e)) {return;}
+    if (!blogManager.paginationHelpers.isValid(e)) {return;}
     // Update the blog posts
     const pageNumber = e.target.dataset.pageNum;
     
-    BlogManager.display(pageNumber);
+    blogManager.displayBlogs(pageNumber);
     // Update the pagination to store the new page #'s
-    BlogManager.paginationObj.update(e);
+    blogManager.paginationUpdate(e);
 
 
 });
@@ -160,14 +62,22 @@ searchInput.addEventListener("focus", () => {
 
 searchInput.addEventListener("keyup", function(event) {
     let searchString = event.target.value.toLowerCase();
-    BlogManager.search(searchString);
+    blogManager.search(searchString);
+    blogManager.displayBlogs(1);
+    blogManager.paginationInit(1);
 });
 
 document.querySelector(".blog__bnt-clear").addEventListener("click", ()=> {
     searchInput.value = "";
-    BlogManager.search("");
+    blogManager.search("");
+    blogManager.displayBlogs(1);
+    blogManager.paginationInit();
 });
 
 // ----- EVENT LISTENERS FOR ADMIN FORM ---- //
+const adminEvents = require("./blog-admin-events");
+console.log("blog manager from blm", blogManager);
+adminEvents(blogManager);
 
-console.log("blog manager from blm", BlogManager);
+    
+module.exports = blogManager;

@@ -1,21 +1,16 @@
 .loginAdmin {
     background-color: lightgray;
-    height: 100vh;
+    height: 60vh;
     width: 100%;
-    /* display: flex; */
+    display: flex;
     flex-basis: rows;
     justify-content: center;
     align-items: center;
 }
-.login__username-label,
+.login__password-label,
 .login__email-label {
     margin-bottom: 10px;
     font-weight: bold;
-}
-.login__username {
-    width: 100%;
-    font-size: 1em;
-    padding: 5px;
 }
 
 .login__email {
@@ -23,11 +18,18 @@
     padding: 5px;
     width: 100%;
 }
+
+.login__password {
+    width: 100%;
+    font-size: 1em;
+    padding: 5px;
+}
+
 .login__container {
     background-color: white;
     border: px solid white;
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

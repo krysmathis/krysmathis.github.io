@@ -56,12 +56,19 @@ module.exports = function(grunt) {
                 ]
             }
         },
+        sass: {
+            dist: {
+                files: {
+                    "./styles/main.css": ["./sass/main.scss","./sass/*.scss"]
+                }
+            }
+        },
         notify_hooks: {
             options: {
                 enabled: true,
                 max_jshint_notifications: 5, // maximum number of notifications from jshint output 
                 title: "Project Name", // defaults to the name in package.json, or will use project directory's name 
-                success: false, // whether successful grunt executions should be notified automatically 
+                success: true, // whether successful grunt executions should be notified automatically 
                 duration: 3 // the duration of notification in seconds, for `notify-send only 
             }
         }
@@ -73,9 +80,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("gruntify-eslint");
     grunt.loadNpmTasks("grunt-browserify");
     grunt.loadNpmTasks("grunt-notify");
+    grunt.loadNpmTasks("grunt-contrib-sass");
 
     
     // Default task(s).
-    grunt.registerTask("default", ["uglify", "watch","eslint","browserify", "notify_hooks"]);
+    grunt.registerTask("default", ["uglify", "watch","eslint","browserify", "sass", "notify_hooks"]);
   
 };
