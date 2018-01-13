@@ -75,8 +75,9 @@ document.querySelector(".blog__bnt-clear").addEventListener("click", ()=> {
 });
 
 // ----- EVENT LISTENERS FOR ADMIN FORM ---- //
-
+const adminEvents = require("./blog-admin-events");
 console.log("blog manager from blm", blogManager);
+adminEvents(blogManager);
 
     
 module.exports = blogManager;

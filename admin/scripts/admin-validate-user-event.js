@@ -34,6 +34,7 @@ const updateNavBasedOnUserStatus = function() {
         $(".loginContainer").show();
         $(".loginAdmin").hide();
         $(".blogAdminContainer").show();
+        $(".projectsEntryContainer").show();
     };
         
     const logoutFunction = () => {

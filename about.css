@@ -1,6 +1,6 @@
 #about-wrap {
     display: grid;
-    min-height: 100vh; 
+    min-height: 70vh; 
     grid-template-rows: 50px 50vh auto  50px; 
     grid-template-columns: 1fr;
     grid-template-areas: 

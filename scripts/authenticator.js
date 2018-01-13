@@ -29,7 +29,7 @@ const Authenticator = Object.create(null, {
     "init": {
         value: function() {
             firebase.initializeApp(config);
-            navBar.init();
+            // navBar.init();
             $(".section-container").hide();
             $(".aboutContainer").show();
 
@@ -48,9 +48,7 @@ const Authenticator = Object.create(null, {
                 const password = $(".login__password").val();
                 this.createNewUser(email, password);
             });
-
             userStatusObserver.init();
-
         }
     },
 
@@ -95,16 +93,6 @@ const Authenticator = Object.create(null, {
 
         }
     },
-
-    "logout": {
-        value: function () {
-            firebase.auth().signOut().then(function () {
-                // TODO: remove admin and logout and replace login button
-            }, function (error) {
-                // An error happened.
-            });
-        }
-    }
 
 });
 

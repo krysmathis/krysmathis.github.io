@@ -56,6 +56,13 @@ module.exports = function(grunt) {
                 ]
             }
         },
+        sass: {
+            dist: {
+                files: {
+                    "./styles/main.css": ["./sass/main.scss","./sass/*.scss"]
+                }
+            }
+        },
         notify_hooks: {
             options: {
                 enabled: true,
@@ -73,9 +80,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("gruntify-eslint");
     grunt.loadNpmTasks("grunt-browserify");
     grunt.loadNpmTasks("grunt-notify");
+    grunt.loadNpmTasks("grunt-contrib-sass");
 
     
     // Default task(s).
-    grunt.registerTask("default", ["uglify", "watch","eslint","browserify", "notify_hooks"]);
+    grunt.registerTask("default", ["uglify", "watch","eslint","browserify", "sass", "notify_hooks"]);
   
 };

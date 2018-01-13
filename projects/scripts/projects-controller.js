@@ -36,7 +36,7 @@ function updateProjectsInDOM(searchString) {
         
         for (let i = 0; i < project.technologies.length; i++) {
             let tag = project.technologies[i];
-            tagHTML += `<li>${tag}</li>`   
+            tagHTML += `<li>${tag}</li>`;   
         }
 
         // create the teammate string
@@ -67,6 +67,6 @@ function updateProjectsInDOM(searchString) {
     }
 }
 
-updateProjectsInDOM();
-
+//updateProjectsInDOM();
+module.exports = updateProjectsInDOM;
 

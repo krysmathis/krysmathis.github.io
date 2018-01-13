@@ -1,3 +1,5 @@
+const firebase = require("firebase");
+
 const DataFactory = function(config) {
     
     return Object.create(null, {
@@ -13,7 +15,7 @@ const DataFactory = function(config) {
             writable: true,
             enumerable: true
         },  
-    
+
         "load": {
             value: function() {
                 return $.ajax({
@@ -36,38 +38,56 @@ const DataFactory = function(config) {
     
         "add": {
             value: function(obj) {
-                return $.ajax({
-                    url: `${this.dbConnection}/.json`,
-                    method: "POST",
-                    data: JSON.stringify(obj)
-                }).then(() => {
-                    this.load();
-                });
+                return firebase.auth().currentUser.getIdToken(true)
+                    .then(idToken => {
+                        return $.ajax({
+                            url: `${this.connection}/.json?auth=${idToken}`,
+                            method: "POST",
+                            data: JSON.stringify(obj)
+                        }).then(() => {
+                            console.log("record added successfully");
+                            this.load();
+                        });
+                    });
             },
             enumerable: true
         },
-    
+        
+
         "update": {
             value: function(pid, obj) {
-                return $.ajax({
-                    url: `${this.dbConnection}/${pid}/.json`,
-                    method: "PUT",
-                    data: JSON.stringify(obj)
-                }).then(() => {
-                    this.load();
-                });
+                return firebase.auth().currentUser.getIdToken(true)
+                    .then(idToken => {
+                        return $.ajax({
+                            url: `${this.connection}/${pid}/.json?auth=${idToken}`,
+                            method: "PUT",
+                            data: JSON.stringify(obj)
+                        }).then(() => {
+                            this.load();
+                        });
+                    }
+                    );
             },
             enumerable: true
         },
-    
+        "retrieveById": {
+            value: function(id) {
+                return this.data[id];
+            },
+            enumerable: true
+        },
         "delete": {
             value: function(pid) {
-                return $.ajax({
-                    url: `${this.dbConnection}/${pid}/.json`,
-                    method: "DELETE"
-                }).then(r => {
-                    this.load();
-                });
+                return firebase.auth().currentUser.getIdToken(true)
+                    .then(idToken => {
+                        return $.ajax({
+                            url: `${this.connection}/${pid}/.json?auth=${idToken}`,
+                            method: "DELETE"
+                        }).then(r => {
+                            this.load();
+                        });
+
+                    });
             },
             enumerable: true
         },

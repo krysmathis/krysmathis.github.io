@@ -21,6 +21,7 @@ const ResumeManager = Object.create(PersonalETL, {
         value: function() {
             
             const jobsSection = document.getElementById("resume-jobs");
+            jobsSection.innerHTML = "";
             // loop through the array of job objects
             let jobs = this.filteredData.jobs;
             for (let i = 0; i < jobs.length; i++) {
@@ -42,7 +43,7 @@ const ResumeManager = Object.create(PersonalETL, {
                     <span class="resume__date">${moment(job.startDate).format("YYYY")}-${moment(job.endDate).format("YYYY")}</span>
                   </header>
                   <img src="${job.companyLogoImg}"
-                  <h3 class="resume__job-title">${job.title}<h3>
+                  <h3 class="resume__job-title">${job.title}</h3>
                   <ul class="resume__job-list">
                     ${resumeBullets}
                   </ul>

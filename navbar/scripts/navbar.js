@@ -1,9 +1,8 @@
 const firebase = require("firebase");
+const authenticator = require("../../scripts/authenticator");
 
 const displaySection = function(sectionContainerToShow) {
-    navs.forEach(nav => {
-        $(".section-container").hide();
-    });
+    $(".section-container").hide();
     $(`.${sectionContainerToShow}`).show();
 };
 
@@ -27,8 +26,8 @@ navs.set("Home", {
     "link": "../index.html",
     "buttonClass": "btn-nav__home",
     "targetId": "about",
-    "action": () => displaySection(this.container)
-
+    "action": function() {
+        displaySection(this.container);}
 }),
 navs.set("Projects", {
     "label": "Projects",
@@ -36,7 +35,11 @@ navs.set("Projects", {
     "link": "../projects",
     "buttonClass": "btn-nav__projects",
     "targetId": "projects",
-    "action": () => displaySection(this.container)
+    "action": function() {
+        const projects = require("../../projects/scripts/projects");
+        projects.load();
+        displaySection(this.container);
+    }
 }),
 navs.set("Blog", {
     "label": "Blog",
@@ -44,7 +47,14 @@ navs.set("Blog", {
     "link": "#blogs",
     "buttonClass": "btn-nav__blog",
     "targetId": "blogs",
-    "action": () => displaySection(this.container)
+    "action": function() {
+        displaySection(this.container);
+        const blogManager = require("../../blog/scripts/blogManager");
+        blogManager.load().then(() => { 
+            blogManager.displayBlogs(1);
+            blogManager.paginationInit(1);
+        });
+    }
 }),
 navs.set("Resume", {
     "label": "Resume",
@@ -52,7 +62,11 @@ navs.set("Resume", {
     "link": "../resume",
     "buttonClass": "btn-nav__resume",
     "targetId": "resume",
-    "action": () => displaySection(this.container)
+    "action": function() {
+        displaySection(this.container);
+        const ResumeManager= require("../../resume/scripts/resume");
+        ResumeManager.load();
+    }
 }),
 navs.set("Contact", {
     "label": "Contact",
@@ -60,15 +74,22 @@ navs.set("Contact", {
     "link": "../contact",
     "buttonClass": "btn-nav__contact",
     "targetId": "contact",
-    "action": () => displaySection(this.container)
+    "action": function() {
+        displaySection(this.container);
+        const ContactManager = require("../../contact/scripts/contact");
+        ContactManager.load();
+    }
 });
 navs.set("Login", {
     "label": "Login",
-    "container": "loginContainer",
+    "container": "loginAdmin",
     "link": "../login",
     "buttonClass": "btn-nav__login",
     "targetId": "",
-    "action": () => displaySection(this.container),
+    "action": function() {
+        displaySection(this.container);
+        $(".adminContainer").show();
+    },
     "requiresAuth": true,
     "displayIfActiveUser": false
 });
@@ -83,8 +104,23 @@ navs.set("Admin", {
         navs.forEach(() => {
             $(".section-container").hide();
         });
-        $(".loginContainer").show();
+        $(".adminContainer").show();
         $(".blogAdminContainer").show();
+        $(".projectsEntryContainer").show();
+        $(".projectsEntryList").show();
+
+        const blogManager = require("../../blog/scripts/blogManager");
+        const projectsController = require("../../projects/scripts/projectsAdminController");
+        const createBlogList = require("../../admin/scripts/admin-controller");
+        const projectsAdminEventListenerAdd = require("../../projects/scripts/projectsAdminEvents");
+        blogManager.load().then( function() {
+            createBlogList(blogManager.data);
+        });
+        projectsController.generateForm();
+        projectsController.generateList();
+        projectsAdminEventListenerAdd();
+
+        
     },
     "requiresAuth": true,
     "displayIfActiveUser": true
@@ -96,7 +132,17 @@ navs.set("Logout", {
     "buttonClass": "btn-nav__logout",
     "targetId": "",
     "requiresAuth": true,
-    "displayIfActiveUser": true
+    "displayIfActiveUser": true,
+    "action": function() {
+        firebase.auth().signOut().then(function () {
+            // TODO: remove admin and logout and replace login button
+            $(".blogAdminContainer").hide();
+            $(".section-container").hide();
+            $(".aboutContainer").show();
+        }, function (error) {
+            // An error happened.
+        });
+    }
 });
 
 
@@ -108,22 +154,18 @@ const navBar = Object.create(null, {
         enumerable: true
     },
 
-    "init": {
-        value: () => {
-            let user = firebase.auth().currentUser;
-
-            //this.populateNavBar(user);
-            //this.populuateNavList(user);
+    "update": {
+        value: function(user) {
+            this.populateNavBar(user);
+            this.populateNavList(user);
             addNavbarMenuEventListeners();
-            
         },
         enumerable: true
     },
-
     "populateNavBar": { 
         value: function(user) {
-        
             const navBar = document.querySelector(".nav");
+            navBar.innerHTML = "";
             // create the ul element to stick inside the nav
             const newList = document.createElement("ul");
             newList.className = "nav__list";
@@ -132,16 +174,30 @@ const navBar = Object.create(null, {
             newBrandLi.className = "nav__brand";
     
             const brandText = document.createTextNode(this.brand);
+            newBrandLi.addEventListener("click", navs.get("Home").action);
             newBrandLi.appendChild(brandText);
             newList.appendChild(newBrandLi);
     
             newBrandLi.addEventListener("click", () => {
                 document.location.href = navs.get("Home").link;
             });
-    
-            navs.forEach(
+            
+            const filteredNavs = [];
+            navs.forEach(n => {
+                if (!n.hasOwnProperty("requiresAuth")){
+                    filteredNavs.push(n);
+                }
+                if (n.hasOwnProperty("requiresAuth") && user && n.displayIfActiveUser) {
+                    filteredNavs.push(n);
+                }
+                if (n.hasOwnProperty("requiresAuth") && !user && !n.displayIfActiveUser) {
+                    filteredNavs.push(n);
+                }
+            });
+            filteredNavs.forEach(
                 nav => {
-                // create a new list element
+
+                    // create a new list element
                     let newNavItem = document.createElement("li");
                     newNavItem.className = nav.buttonClass + " nav__link";
     
@@ -152,22 +208,8 @@ const navBar = Object.create(null, {
 
                         if (nav.hasOwnProperty("action")) {
                             nav.action();
-                        } else {
-                            $(".section-container").hide();
-                            $(`.${nav.container}`).show();
-                            goToId(nav);
                         }
                     
-                        // handle those actions related to login
-                        if (nav.hasOwnProperty("displayIfActiveUser")) {
-                            if (nav.displayIfActiveUser && user) {
-                                nav.show();
-                            } else {
-                                nav.hide();
-                            }
-
-                        }
-
                     });
 
                     // set the options
@@ -180,7 +222,7 @@ const navBar = Object.create(null, {
         }, enumerable: true
     },
 
-    "populuateNavList": {
+    "populateNavList": {
         value: function(user) {
             // Hamburger Menu
             const hamburgerMenu = document.createElement("div");
@@ -198,7 +240,19 @@ const navBar = Object.create(null, {
             menuList.className = "menu-list__list";
             menu.appendChild(menuList);
         
-            navs.forEach(
+            const filteredNavs = [];
+            navs.forEach(n => {
+                if (!n.hasOwnProperty("requiresAuth")){
+                    filteredNavs.push(n);
+                }
+                if (n.hasOwnProperty("requiresAuth") && user && n.displayIfActiveUser) {
+                    filteredNavs.push(n);
+                }
+                if (n.hasOwnProperty("requiresAuth") && !user && !n.displayIfActiveUser) {
+                    filteredNavs.push(n);
+                }
+            });
+            filteredNavs.forEach(
                 nav => {
                     let menuItem = document.createElement("li");
                     menuItem.innerHTML = `${nav.label}`;
@@ -214,10 +268,10 @@ const navBar = Object.create(null, {
                             goToId(nav);
                         }
                     });
-        
-                    navBar.appendChild(menu);
-        
                 });
+            const navBar = document.querySelector(".nav");
+            navBar.appendChild(menu);
+    
 
         },
         enumerable: true
