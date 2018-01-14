@@ -7,33 +7,7 @@
     <title>Document</title>
     
 </head>
-<body>
-    This is where the login will go! And will lead to the other stuff
-    <section class="adminContainer section-container" id="admin">
-        <section class="loginAdmin section-container">
-            <div class="login__page-wrapper">
-                <div class="login__container">
-                    <!-- <form name="login" class="login__form"> -->
-                    <div class="login__username-container">
-                        <div class="login__email-label">email:</div>
-                        <input class="login__email" value="krys@krys.com" type="text" autofocus>
-                    </div>
-                    <div class="login__password-container">
-                        <div class="login__password-label">password:</div>
-                        <input class="login__password" value="admin*" type="password">
-                    </div>
-                    <div class="login__button-container">
-                        <button class="login__button-login">Login</button>
-                        <button class="login__button-create">Create Account</button>
-                    </div>
-                    <div class="login__user-message"></div>
-                    <!-- </form> -->
-                </div>
-            </div>
-        </section>
-        <section class="toaster__container"></section>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-        <script src="../build/bundle.js"></script>
+<body onload="loadingActions();"    >
+       <script src="./scripts/loadingEvents.js"></script>
 </body>
 </html>

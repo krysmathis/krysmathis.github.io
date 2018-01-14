@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAAA,iBAAkB;EACd,SAAS,EAAE,GAAG",
-"sources": ["../sass/_resume.scss"],
+"mappings": "AAAA,iBAAkB;EACd,SAAS,EAAE,GAAG;;ACDlB,iBAAkB;EACd,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,aAAa;EAC9B,aAAa,EAAE,IAAI;;AAGvB,uBAAwB;EACpB,gBAAgB,EAAC,OAAO;;ACL5B,kBAAmB;EACf,OAAO,EAAE,IAAI",
+"sources": ["../sass/_resume.scss","../sass/_projectsAdmin.scss","../sass/main.scss"],
 "names": [],
 "file": "main.css"
 }

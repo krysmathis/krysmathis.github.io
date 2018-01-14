@@ -19,23 +19,6 @@
 	font-size: 1em;
 }
 
-
-.project-detail {
-	margin: 0 auto;
-	margin-bottom: 30px;
-	padding-top: 0px;	
-	padding-left: 100px;
-	width: 85%;
-	min-height: 80px;
-	padding-bottom: 10px;
-	position: relative;
-
-}
-.project-tag ul li{
-	margin: 0;
-	text-align: center;
-}
-
 .project-tag li {
 	display: inline-block;
 	list-style-type: none;
@@ -77,14 +60,6 @@
 .project-detail li {
 	list-style-position: outside;
 	margin-left: 1em;
-	
-
 }
 
-.project-detail img {
-	float: left;
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	position: absolute; right: -15px; top: 25px;
-}
+

@@ -30,14 +30,16 @@ const projectsUpdateController = (config) => {
                     const projectList = $(".projectEntry__list--container");
                     // initialize the project list with a blank set of data
                     projectList[0].innerHTML = "";
-                    const ul = $("<ol>");
+                    const ul = $("<ul class='list-group'>");
 
                     let c = 0;
                     data.forEach(d=> {
-                        ul.append(`<li>
-                        ${ d.description }
-                        <button class="projectEntry__update btn btn-primary" data-id="${d.id}" data-seq="${c}">Edit</button>
-                        <button class="projectEntry__delete btn btn-danger" data-id="${d.id}">Delete</button>
+                        ul.append(`<li class="projectEntry__li list-group-item">
+                        ${ d.name } ${ d.description }
+                        <div>
+                            <button class="projectEntry__update btn btn-primary" data-id="${d.id}" data-seq="${c}">Edit</button>
+                            <button class="projectEntry__delete btn btn-danger" data-id="${d.id}">Delete</button>
+                        </div>
                         </li>`);
                         c++;
                     });

@@ -92,23 +92,25 @@ const ProjectManager = Object.create(PersonalETL, {
                     teammates += `<a href="${teammate.personalSite}">${teammate.name}</a>`;
                 }
 
-                //let html = "";
+                
                 projectsHTML.innerHTML += `
-                        <article class="project-detail ${technology.toLowerCase()}">
-                            <h3 class="project-title">${project.name}</h3>
-                            <p class="project-description">${project.description}</p>
-                            <p class="project-completed-date">Date completed: ${moment(project.dateCompleted).format("YYYY-MM-DD")}</p>
-                            <br class="project-href"><a href="${project.href}">link</a> | <a href="${project.repository}">repository</a>
-                            <div class="project-tag">
-                                <p></p>
-                                <ul>
-                                    ${tagHTML}
-                                </ul>
-                            </div>
-                        </article>
+                    <article class="project-detail">
+                        <img class="project-img" src="${project.screenshot}">
+                        <div class="project_img_divider"></div>
+                    <div class="project-detail__text">
+                        <h3 class="project-title">${project.name}</h3>
+                        <p class="project-description">${project.description}</p>
+                        <p class="project-completed-date">Date completed: ${moment(project.dateCompleted).format("YYYY-MM-DD")}</p>
+                        <br class="project-href"><a href="${project.href}">link</a> | <a href="${project.repository}">repository</a>
+                        <div class="project-tag">
+                            <p></p>
+                            <ul>
+                                ${tagHTML}
+                            </ul>
+                        </div>
+                    </div>
+                </article>
                     `;
-
-
             }
         
 

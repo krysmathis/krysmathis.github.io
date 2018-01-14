@@ -5,6 +5,7 @@
     <title>Welcome to my personal site</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" type="text/css" href="../navbar/styles/navbar.css">
     <link rel="stylesheet" type="text/css" href="about.css">
@@ -30,27 +31,7 @@
             <div class="messageBlock">Edit Mode!</div>
         </div>
         <section class="aboutContainer section-container" id="about">
-            <div class="wrap" id="about-wrap">
-                <!-- image -->
-                <div id="about-image">
-                    <div class="about__image-textblock">
-                        <div id="text-block-brand">Krys Mathis</div>
-                        <div id="text-block-tagline">Software Developer</div>
-                        <div class="about__intro">I am a member of
-                            <span>cohort 22</span> @ Nashville Software School </div>
-                        <article id="history" class="about__history article first-line section-background">
-                            <p>I chose to become a software developer because I love to learn and solve problems. With my last
-                                company, I started developing 'software' with whatever technology I had on hand. I was often
-                                the first stop when people encountered system or technical issues or if they had a great
-                                idea but didn't know how to implement it. Instead of continuing to give unqualified advice,
-                                I decided to leverage NSS to help me make the move to professional software developer.
-                        </article>
-                    </div>
-                </div>
-
-                <article id="intro" class="article">
-                </article>
-            </div>
+           
             <!-- about-wrap -->
         </section>
         <!-- about section -->
@@ -69,14 +50,14 @@
                 Search:
                 <input type="text" value="enter search criteria" class="searchBar__input">
             </section>
-            <section id="projectList"></section>
-
+            <div class="row"    id="projectList"></div>
         </section>
         <section class="projectsEntryContainer section-container" id="projectsEntry__container">HELLO hello hello hello hello  
         </section>
-        <section class="projectsEntryList section-container" id="projectEntry__list">Projects List
+        <section class="projectsEntryList section-container" id="projectEntry__list">
             <button class="projectEntry__add btn btn-primary" id="projectEntry__add">Add</button>
             <button class="projectEntry__record-update btn btn-primary" id="projectEntry__record-update" style="display:none;">Update</button>
+            <h3>Projects List</h3>
             <div class="projectEntry__list--container"></div>
         </section>
         <section class="resumeContainer section-container" id="resume">

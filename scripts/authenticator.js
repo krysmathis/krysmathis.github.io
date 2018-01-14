@@ -31,6 +31,8 @@ const Authenticator = Object.create(null, {
             firebase.initializeApp(config);
             // navBar.init();
             $(".section-container").hide();
+            const aboutController = require("../about/scripts/controllers/aboutController");
+            aboutController.init();
             $(".aboutContainer").show();
 
             // this will handle the event listeners for the login buton

@@ -99,7 +99,7 @@ const adminEventListeners = (blogManager) => {
     // Click on the edit button
     document.querySelector(".blogList").addEventListener("click", e => {
             
-        if (e.target.className === "blogList__btn-edit") {
+        if (e.target.classList.contains("blogList__btn-edit")) {
             const blogId = e.target.dataset.blogId;
             getCurrentBlog(blogId,blogManager);
             // populate the blog form
@@ -112,7 +112,7 @@ const adminEventListeners = (blogManager) => {
             setEditMode(true);
         }
             
-        if (e.target.className === "blogList__btn-delete") {
+        if (e.target.classList.contains("blogList__btn-delete")) {
             const blogId = e.target.dataset.blogId;
             blogManager.delete(blogId).then(() => {
                 blogManager.load().then(() => {

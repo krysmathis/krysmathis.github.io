@@ -1,0 +1,10 @@
+.projectEntry__li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.projectEntry__li:hover {
+    background-color:#52bab3;
+}

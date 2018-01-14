@@ -14,6 +14,7 @@ const state = {
     repo: null,
     teammates: null,
     technologies: null,
+    screenshot: ""
 };
 // the edit button send a database record and have the state set
 function setState(obj) {
@@ -26,6 +27,7 @@ function setState(obj) {
     document.querySelector(".projectInput__teammates").value = obj.teammates || "";
     // * TODO: convert array to string here
     document.querySelector(".projectInput__technologies").value = obj.technologies.join(" ") || "";
+    document.querySelector(".projectInput__sceenshot").value = obj.screenshot || "";
 }
 
 function getState() {
@@ -38,6 +40,7 @@ function getState() {
     state.teammates = document.querySelector(".projectInput__teammates").value;
     const technologyBase = document.querySelector(".projectInput__technologies");
     state.technologies = technologyBase.value.split(" ");
+    state.screenshot = document.querySelector(".projectInput__sceenshot").value;
 }
 
 function clearState() {
@@ -50,6 +53,7 @@ function clearState() {
     state.repo = "";
     state.teammates = "";
     state.technologies = [];
+    state.screenshot = "";
 
 }
 

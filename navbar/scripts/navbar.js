@@ -27,6 +27,8 @@ navs.set("Home", {
     "buttonClass": "btn-nav__home",
     "targetId": "about",
     "action": function() {
+        const aboutController = require("../../about/scripts/controllers/aboutController");
+        aboutController.init();
         displaySection(this.container);}
 }),
 navs.set("Projects", {
@@ -162,6 +164,10 @@ const navBar = Object.create(null, {
         },
         enumerable: true
     },
+    "activeAdminRequest": {
+        value: () => {return localStorage.getItem("admin") !== null ? true : false;},
+        enumerable: true,
+    },
     "populateNavBar": { 
         value: function(user) {
             const navBar = document.querySelector(".nav");
@@ -182,15 +188,20 @@ const navBar = Object.create(null, {
                 document.location.href = navs.get("Home").link;
             });
             
+            const activeAdminRequest = this.activeAdminRequest();
             const filteredNavs = [];
             navs.forEach(n => {
+                
+
                 if (!n.hasOwnProperty("requiresAuth")){
                     filteredNavs.push(n);
                 }
-                if (n.hasOwnProperty("requiresAuth") && user && n.displayIfActiveUser) {
+
+                if (activeAdminRequest && n.hasOwnProperty("requiresAuth") && user && n.displayIfActiveUser) {
                     filteredNavs.push(n);
                 }
-                if (n.hasOwnProperty("requiresAuth") && !user && !n.displayIfActiveUser) {
+
+                if (activeAdminRequest && n.hasOwnProperty("requiresAuth") && !user && !n.displayIfActiveUser) {
                     filteredNavs.push(n);
                 }
             });
@@ -239,16 +250,18 @@ const navBar = Object.create(null, {
             const menuList = document.createElement("ul");
             menuList.className = "menu-list__list";
             menu.appendChild(menuList);
-        
+            
+            const activeAdminRequest = this.activeAdminRequest();
             const filteredNavs = [];
+
             navs.forEach(n => {
                 if (!n.hasOwnProperty("requiresAuth")){
                     filteredNavs.push(n);
                 }
-                if (n.hasOwnProperty("requiresAuth") && user && n.displayIfActiveUser) {
+                if (activeAdminRequest && n.hasOwnProperty("requiresAuth") && user && n.displayIfActiveUser) {
                     filteredNavs.push(n);
                 }
-                if (n.hasOwnProperty("requiresAuth") && !user && !n.displayIfActiveUser) {
+                if (activeAdminRequest && n.hasOwnProperty("requiresAuth") && !user && !n.displayIfActiveUser) {
                     filteredNavs.push(n);
                 }
             });

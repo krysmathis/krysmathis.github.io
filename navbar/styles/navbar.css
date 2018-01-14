@@ -139,6 +139,9 @@
   padding: 25px; 
   color: black;
   text-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .menu-list__item:nth-child(even) {
   background-color: grey;
