@@ -1,0 +1,40 @@
+.footer {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: $secondary;
+  color: $white;
+}
+
+.copyright {
+  font-size: .8em;
+}
+
+.social-links {
+  padding-right: 20px;
+}
+
+/* <---- FOOTERS -----> */
+.main-footer {
+
+  display: flex;
+  justify-content: space-between;
+
+	padding-top: 15px;
+	color: white;
+	text-align: left;
+	height: 60px;
+	font-size: 1.5em;
+	background: #2C3E50;
+	width: 100%;
+	
+	position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+	padding: 5px;
+	z-index: 100;
+}
+
+.main-footer span {
+	padding-left: 50px;
+}

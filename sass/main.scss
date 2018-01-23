@@ -1,6 +1,24 @@
+@import "variables";
+@import "mixins";
 @import "resume";
 @import "projectsAdmin";
+@import "header";
+@import "bootstrap-overrides";
+@import "contact";
+@import "footer";
+@import "global";
+@import "masthead";
+@import "navbar";
+@import "portfolio";
+@import "about";
+
 
 .section-container {
     display: none;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }

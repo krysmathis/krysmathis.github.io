@@ -112,7 +112,7 @@ const adminEventListeners = (blogManager) => {
             setEditMode(true);
         }
             
-        if (e.target.classList.contains("blogList__btn-delete")) {
+        if (e.target.classList  .contains("blogList__btn-delete")) {
             const blogId = e.target.dataset.blogId;
             blogManager.delete(blogId).then(() => {
                 blogManager.load().then(() => {

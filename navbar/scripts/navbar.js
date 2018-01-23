@@ -43,33 +43,33 @@ navs.set("Projects", {
         displaySection(this.container);
     }
 }),
-navs.set("Blog", {
-    "label": "Blog",
-    "container": "blogContainer",
-    "link": "#blogs",
-    "buttonClass": "btn-nav__blog",
-    "targetId": "blogs",
-    "action": function() {
-        displaySection(this.container);
-        const blogManager = require("../../blog/scripts/blogManager");
-        blogManager.load().then(() => { 
-            blogManager.displayBlogs(1);
-            blogManager.paginationInit(1);
-        });
-    }
-}),
-navs.set("Resume", {
-    "label": "Resume",
-    "container": "resumeContainer",
-    "link": "../resume",
-    "buttonClass": "btn-nav__resume",
-    "targetId": "resume",
-    "action": function() {
-        displaySection(this.container);
-        const ResumeManager= require("../../resume/scripts/resume");
-        ResumeManager.load();
-    }
-}),
+// navs.set("Blog", {
+//     "label": "Blog",
+//     "container": "blogContainer",
+//     "link": "#blogs",
+//     "buttonClass": "btn-nav__blog",
+//     "targetId": "blogs",
+//     "action": function() {
+//         displaySection(this.container);
+//         const blogManager = require("../../blog/scripts/blogManager");
+//         blogManager.load().then(() => { 
+//             blogManager.displayBlogs(1);
+//             blogManager.paginationInit(1);
+//         });
+//     }
+// }),
+// navs.set("Resume", {
+//     "label": "Resume",
+//     "container": "resumeContainer",
+//     "link": "../resume",
+//     "buttonClass": "btn-nav__resume",
+//     "targetId": "resume",
+//     "action": function() {
+//         displaySection(this.container);
+//         const ResumeManager= require("../../resume/scripts/resume");
+//         ResumeManager.load();
+//     }
+// }),
 navs.set("Contact", {
     "label": "Contact",
     "container": "contactContainer",
@@ -158,8 +158,9 @@ const navBar = Object.create(null, {
 
     "update": {
         value: function(user) {
+            // update function will populate the nav bar based on 
+            // the status of the user
             this.populateNavBar(user);
-            this.populateNavList(user);
             addNavbarMenuEventListeners();
         },
         enumerable: true
@@ -170,24 +171,20 @@ const navBar = Object.create(null, {
     },
     "populateNavBar": { 
         value: function(user) {
-            const navBar = document.querySelector(".nav");
+
+            const navBar = document.querySelector("#navbarResponsive");
             navBar.innerHTML = "";
             // create the ul element to stick inside the nav
             const newList = document.createElement("ul");
-            newList.className = "nav__list";
+            newList.className = "nav__list navbar-nav ml-auto";
+            newList.id="navbarResponsive";
     
-            const newBrandLi = document.createElement("li");
-            newBrandLi.className = "nav__brand";
-    
-            const brandText = document.createTextNode(this.brand);
-            newBrandLi.addEventListener("click", navs.get("Home").action);
-            newBrandLi.appendChild(brandText);
-            newList.appendChild(newBrandLi);
-    
-            newBrandLi.addEventListener("click", () => {
-                document.location.href = navs.get("Home").link;
+            document.querySelector(".navbar-brand").addEventListener("click", function() {
+                const aboutController = require("../../about/scripts/controllers/aboutController");
+                aboutController.init();
+                displaySection("aboutContainer");
             });
-            
+
             const activeAdminRequest = this.activeAdminRequest();
             const filteredNavs = [];
             navs.forEach(n => {
@@ -210,7 +207,7 @@ const navBar = Object.create(null, {
 
                     // create a new list element
                     let newNavItem = document.createElement("li");
-                    newNavItem.className = nav.buttonClass + " nav__link";
+                    newNavItem.className = nav.buttonClass + " nav__link nav-item mx-0 mx-lg-1";
     
                     let newNavItemLabel = document.createTextNode(nav.label);
                     newNavItem.appendChild(newNavItemLabel);

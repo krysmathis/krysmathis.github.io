@@ -20,13 +20,14 @@
   padding: 0;
   font-size: 1.5em;
   margin: 0px;
+  width: 100%;
 }
 
 .nav__brand {
   width: 600px;
   font-size: 35px;
   font-weight: bold;
-  font-family: 'Source Serif Pro', sans-serif;
+
   color: white;
   flex-shrink: 1;
   text-align: left;
@@ -156,10 +157,6 @@
     display: block;
     right: 15px;
 
-  }
-
-  .nav__link {
-    display: none;
   }
 
   .nav {

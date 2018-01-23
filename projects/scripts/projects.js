@@ -94,19 +94,23 @@ const ProjectManager = Object.create(PersonalETL, {
 
                 
                 projectsHTML.innerHTML += `
-                    <article class="project-detail">
-                        <img class="project-img" src="${project.screenshot}">
-                        <div class="project_img_divider"></div>
-                    <div class="project-detail__text">
-                        <h3 class="project-title">${project.name}</h3>
-                        <p class="project-description">${project.description}</p>
-                        <p class="project-completed-date">Date completed: ${moment(project.dateCompleted).format("YYYY-MM-DD")}</p>
-                        <br class="project-href"><a href="${project.href}">link</a> | <a href="${project.repository}">repository</a>
-                        <div class="project-tag">
-                            <p></p>
-                            <ul>
-                                ${tagHTML}
-                            </ul>
+                <article class="project-detail row">
+                <div class="col-md-8">
+                    <h3 class="project-title">${project.name}</h3>
+                        <img class="project-img img-fluid" src="${project.screenshot}">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="project-detail__text">
+                            <p class="project-description">${project.description}</p>
+                            <p class="project-completed-date">Date completed: ${moment(project.dateCompleted).format("YYYY-MM-DD")}</p>
+                            <br class="project-href"><a href="${project.href}">link</a> | <a href="${project.repo}">repository</a>
+                            <div class="project-tag">
+                            
+                                <p></p>
+                                <ul>
+                                    ${tagHTML}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </article>
