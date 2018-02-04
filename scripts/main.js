@@ -5,8 +5,6 @@ authenticator.init();
 //require("firebase/storage");
 
 //const adminEvents = require("../blog/scripts/blog-admin-events");
-$( window.location ).bind(
-    "change",()=> {
-        alert("location changed");
-    }
-);
+
+
+    

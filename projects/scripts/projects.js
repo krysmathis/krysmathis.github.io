@@ -92,12 +92,20 @@ const ProjectManager = Object.create(PersonalETL, {
                     teammates += `<a href="${teammate.personalSite}">${teammate.name}</a>`;
                 }
 
-                
+            
                 projectsHTML.innerHTML += `
-                <article class="project-detail row">
-                <div class="col-md-8">
+                    <article class="project-detail row">
                     <h3 class="project-title">${project.name}</h3>
-                        <img class="project-img img-fluid" src="${project.screenshot}">
+                    <div class="col-md-8">
+                    <a class="portfolio-item d-block mx-auto" href="#${project.modalId}">
+                    <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                        <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                        <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img class="project-img img-fluid" src="${project.screenshot}">
+                    </a>
+
                     </div>
                     <div class="col-md-4">
                         <div class="project-detail__text">
@@ -116,7 +124,17 @@ const ProjectManager = Object.create(PersonalETL, {
                 </article>
                     `;
             }
-        
+            // Modal popup$(function () {
+            $(".portfolio-item").magnificPopup({
+                type: "inline",
+                preloader: false,
+                focus: "#username",
+                modal: true
+            });
+            $(document).on("click", ".portfolio-modal-dismiss", function(e) {
+                e.preventDefault();
+                $.magnificPopup.close();
+            });
 
 
         },
