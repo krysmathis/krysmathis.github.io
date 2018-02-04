@@ -1,0 +1,16 @@
+.technology__icon {
+    width: 50px;
+    height: 50px;
+    margin: .25rem;
+}
+
+.technology__icon path {
+    fill: #2A3E51;
+}
+
+
+.technology__container {
+    display: flex;
+    flex-direction: row;
+}
+

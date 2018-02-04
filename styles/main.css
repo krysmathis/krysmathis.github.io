@@ -47,7 +47,22 @@
   color: white;
   font-size: 1em;
   font-family: 'Roboto', sans-serif;
-  text-shadow: 2px 2px 10px #5A5A5A; }
+  text-shadow: 2px 2px 10px #5A5A5A;
+  min-height: 150px; }
+
+.header__container {
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: .75em; }
+
+.header__name {
+  text-align: left;
+  margin: 0 auto !important; }
+
+.header__contact-icons {
+  font-size: 2em; }
 
 a {
   color: #52bab3; }
@@ -150,7 +165,6 @@ form .row:first-child .floating-label-form-group {
   font-size: 1.5em;
   background: #2C3E50;
   width: 100%;
-  position: fixed;
   bottom: 0;
   left: 0;
   margin: 0;
@@ -207,13 +221,27 @@ hr.star-dark:after {
   background-color: white; }
 
 section {
-  padding: 6rem 0; }
+  padding: 1rem 0;
+  margin-bottom: 1em;
+  border-radius: 15px;
+  background-color: white; }
   section h2 {
-    font-size: 2.25rem;
-    line-height: 2rem; }
+    line-height: 2rem;
+    text-align: left; }
   @media (min-width: 992px) {
     section h2 {
-      font-size: 3rem;
+      line-height: 2.5rem; } }
+
+aside {
+  padding: 1rem 0;
+  margin-bottom: 1em;
+  border-radius: 15px;
+  background-color: white; }
+  aside h2 {
+    line-height: 2rem;
+    text-align: left; }
+  @media (min-width: 992px) {
+    aside h2 {
       line-height: 2.5rem; } }
 
 .btn-xl {
@@ -254,6 +282,9 @@ header.masthead {
       line-height: 4rem; }
     header.masthead h2 {
       font-size: 1.75em; } }
+.navbar {
+  display: none; }
+
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -276,7 +307,7 @@ header.masthead {
     font-size: 80%;
     padding: 0.8rem; }
 
-@media (min-width: 992px) {
+@media (min-width: 0px) {
   #mainNav {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
@@ -353,6 +384,9 @@ header.masthead {
 .about__divider {
   display: flex;
   justify-content: center; }
+
+.about__text {
+  text-align: left; }
 
 /* ======= Sections======= */
 .sections-wrapper {
@@ -554,7 +588,8 @@ header.masthead {
   font-size: 16px;
   position: relative;
   margin-top: 0;
-  margin-bottom: 10; }
+  margin-bottom: 10;
+  text-align: left; }
 
 .skills .skillset .level-title .level-label {
   color: #ccd1d6;
@@ -670,8 +705,23 @@ header.masthead {
 .list ul li a:hover {
   color: #49515a; }
 
+.technology__icon {
+  width: 50px;
+  height: 50px;
+  margin: .25rem; }
+
+.technology__icon path {
+  fill: #2A3E51; }
+
+.technology__container {
+  display: flex;
+  flex-direction: row; }
+
 .admin-container {
   display: none; }
+
+.section-container {
+  padding: 1.5em; }
 
 .flex-center {
   display: flex;

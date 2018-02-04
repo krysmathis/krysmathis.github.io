@@ -13,12 +13,15 @@
 @import "portfolio";
 @import "about";
 @import "sections";
+@import "technology";
 
 .admin-container {
     display: none;
 }
 
-
+.section-container {
+    padding: 1.5em;
+}
 
 .flex-center {
     display: flex;

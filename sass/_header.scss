@@ -10,5 +10,25 @@
 	font-size: 1em;
 	font-family: 'Roboto', sans-serif;
 	text-shadow: 2px 2px 10px #5A5A5A;
+	min-height: 150px;
 
 }
+
+.header__container {
+	display: flex;
+	align-items: left;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: .75em;
+}
+
+.header__name {
+	text-align: left;
+	margin: 0 auto !important;
+} 
+
+.header__contact-icons {
+	font-size: 2em;
+}
+
+
