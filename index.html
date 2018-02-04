@@ -35,98 +35,51 @@
 <body class="page__index">
     <header class="main-header fixed container-fluid">
             <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
-                    <div class="container">
-                      <a class="navbar-brand js-scroll-trigger" href="#">Krys Mathis</a>
-                      <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        Menu
-                        <i class="fa fa-bars"></i>
-                      </button>
-                      <div class="collapse navbar-collapse" id="navbarResponsive">
-                      </div>
-                    </div>
-                  </nav>
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#">Krys Mathis</a>
+                <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fa fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                </div>
+            </div>
+            </nav>
     </header>
     <main class="container main-content">
+        <!-- this section is hidden unless in admin mode -->
         <div class="messageBlock__container">
             <div class="messageBlock">Edit Mode!</div>
         </div>
-        <section class="aboutContainer section-container" id="about">
-            <!-- about-wrap -->
-        </section>
-        <!-- about section -->
-        <section class="blogContainer section-container" id="blogs">
-            <div class="blog__search-container">
-                Search:
-                <input type="text" value="enter search criteria" class="blog__search-input">
-                <button class="blog__bnt-clear">Clear</button>
+        <div class="row">
+            <div class="primary col-md-8 col-sm-12 col-xs-12">
+            <section class="aboutContainer section-container " id="about">
+                <!-- about-wrap -->
+            </section>
+                <!-- about section -->
+        
+            <section class="projectsContainer section-container" id="projects">
+                <h2 class="section-heading text-uppercase">Portfolio</h2>
+                <section class="searchBar">
+                    Search:
+                    <input type="text" value="enter search criteria" class="searchBar__input">
+                </section>
+                <div class="row"    id="projectList"></div>
+            </section>
             </div>
-            <section id="blog-posts"></section>
-            <!-- blog posts-->
-            <section class="pagination"></section>
-        </section>
-        <section class="projectsContainer section-container" id="projects">
-            <h2 class="section-heading text-uppercase">Portfolio</h2>
-            <section class="searchBar">
-                Search:
-                <input type="text" value="enter search criteria" class="searchBar__input">
-            </section>
-            <div class="row"    id="projectList"></div>
-        </section>
-        <section class="projectsEntryContainer section-container" id="projectsEntry__container">HELLO hello hello hello hello  
-        </section>
-        <section class="projectsEntryList section-container" id="projectEntry__list">
-            <button class="projectEntry__add btn btn-primary" id="projectEntry__add">Add</button>
-            <button class="projectEntry__record-update btn btn-primary" id="projectEntry__record-update" style="display:none;">Update</button>
-            <h3>Projects List</h3>
-            <div class="projectEntry__list--container"></div>
-        </section>
-        <section class="resumeContainer section-container" id="resume">
-            <section id="resume-jobs">
-                <!-- jobs from script -->
-            </section>
-            <aside>summary</aside>
-            <section class="education">
-            </section>
-        </section>
-        <section class="contactContainer section-container" id="contact">
-            <h2 class="social-links-header">Reach out to me</h2>
-            <div id="social-links">
-                <!-- populated from db -->
-            </div>
-            <!-- wrap -->
-        </section>
-
-        <section class="blogAdminContainer section-container" id="admin-blog">
-            <h1>Create a Blog Entry</h1>
-            <section class="blogForm">
-                <label>Define your headline</label>
-                <input type="text" value="Attention Grabber!" name="blog-headline" class="blogForm__headline">
-
-                <label>Author</label>
-                <input type="text" value="Krys Mathis" name="blog-author" class="blogForm__author">
-
-                <label>Date</label>
-                <input type="date" value="" name="blog-date" class="blogForm__date">
-
-                <label>Content</label>
-                <textarea value="Enter contents here. HTML is OK." name="blog-content" class="blogForm__content"></textarea>
-
-                <label>Image</label>
-                <input type="text" value="../images/eagle.jpg" name="blog-image" class="blogForm__image">
-
-                <label>Tags</label>
-                <input type="text" value="tags" name="blog-tags" class="blogForm__tags">
-                <div class="blogForm__buttons">
-                    <button class="blogForm__btnSave">Save</button>
-                    <button class="blogForm__btnGoToBlog">Go To Blogs</button>
+        <!-- Contacts -->
+        <div class="secondary col-md-4 col-sm-12 col-xs-12">
+            <adide class="contactContainer section-container" id="contact">
+                <h2 class="social-links-header">Reach out to me</h2>
+                <div id="social-links">
+                    <!-- populated from db -->
                 </div>
-            </section>
-            <!--- this will hold a list of the blogs to edit -->`
-            <section class="blogList"></section>
-        </section>
-        </section>
-        <section class="adminContainer section-container" id="admin">
-            <section class="loginAdmin section-container">
+                <!-- wrap -->
+            </adide>
+        </div>  
+    </div> <!--end of initial row -->
+        <section class="adminContainer admin-container" id="admin">
+            <section class="loginAdmin admin-container">
                 <div class="login__page-wrapper">
                     <div class="login__container">
                         <!-- <form name="login" class="login__form"> -->
@@ -147,6 +100,64 @@
                     </div>
                 </div>
             </section>
+                    <!-- Admin -->
+        <section class="projectsEntryContainer admin-container" id="projectsEntry__container">HELLO hello hello hello hello  
+            </section>
+            <section class="projectsEntryList admin-container" id="projectEntry__list">
+                <button class="projectEntry__add btn btn-primary" id="projectEntry__add">Add</button>
+                <button class="projectEntry__record-update btn btn-primary" id="projectEntry__record-update" style="display:none;">Update</button>
+                <h3>Projects List</h3>
+                <div class="projectEntry__list--container"></div>
+            </section>
+            <section class="resumeContainer admin-container" id="resume">
+                <section id="resume-jobs">
+                    <!-- jobs from script -->
+                </section>
+                <aside>summary</aside>
+                <section class="education">
+                </section>
+            </section>
+    
+            <section class="blogAdminContainer admin-container" id="admin-blog">
+                <h1>Create a Blog Entry</h1>
+                <section class="blogForm">
+                    <label>Define your headline</label>
+                    <input type="text" value="Attention Grabber!" name="blog-headline" class="blogForm__headline">
+    
+                    <label>Author</label>
+                    <input type="text" value="Krys Mathis" name="blog-author" class="blogForm__author">
+    
+                    <label>Date</label>
+                    <input type="date" value="" name="blog-date" class="blogForm__date">
+    
+                    <label>Content</label>
+                    <textarea value="Enter contents here. HTML is OK." name="blog-content" class="blogForm__content"></textarea>
+    
+                    <label>Image</label>
+                    <input type="text" value="../images/eagle.jpg" name="blog-image" class="blogForm__image">
+    
+                    <label>Tags</label>
+                    <input type="text" value="tags" name="blog-tags" class="blogForm__tags">
+                    <div class="blogForm__buttons">
+                        <button class="blogForm__btnSave">Save</button>
+                        <button class="blogForm__btnGoToBlog">Go To Blogs</button>
+                    </div>
+                </section>
+                <!--- this will hold a list of the blogs to edit -->`
+                <section class="blogList"></section>
+                <section class="blogContainer admin-container" id="blogs">
+                        <div class="blog__search-container">
+                            Search:
+                            <input type="text" value="enter search criteria" class="blog__search-input">
+                            <button class="blog__bnt-clear">Clear</button>
+                        </div>
+                        <section id="blog-posts"></section>
+                        <!-- blog posts-->
+                        <section class="pagination"></section>
+                    </section>
+            </section>
+            </section>
+    
         </section>
         <section class="toaster__container"></section>
     </main>
@@ -170,7 +181,7 @@
               <div class="col-lg-8 mx-auto">
                 <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
                 <hr class="star-dark mb-5">
-                <img class="img-fluid mb-5" src="img/portfolio/cabin.png" alt="">
+                <img class="img-fluid mb-5" src="" alt="">
                 <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
                 <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                   <i class="fa fa-close"></i>
@@ -194,7 +205,6 @@
     <script src="../lib/moment.js"></script>
     <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     <!-- Custom scripts for template elements -->
-    <script src="js/freelancer.min.js"></script>
     <script src="./build/bundle.js"></script>
 </body>
 

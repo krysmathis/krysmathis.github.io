@@ -30,10 +30,19 @@ const Authenticator = Object.create(null, {
         value: function() {
             firebase.initializeApp(config);
             // navBar.init();
-            $(".section-container").hide();
+            $(".admin-container").hide();
+            $(".section-container").show();
+            // init the about controller
             const aboutController = require("../about/scripts/controllers/aboutController");
             aboutController.init();
-            $(".aboutContainer").show();
+            
+            // init the projects controller
+            const projectController = require("../projects/scripts/projects");
+            projectController.load();
+            
+            const contactController = require("../contact/scripts/contact");
+            contactController.load();
+            // here we will init the different components
 
             // this will handle the event listeners for the login buton
             const btnLogin = document.querySelector(".login__button-login");

@@ -68,20 +68,6 @@ const addEvents = () => {
                   
             }
 
-            // if (!validateEmail(email)) {
-            //     toaster.makeToast("please enter a valid email",5000)
-            //     toaster.makeToast("Oops...",2000)
-            //     emailEl.focus();
-            //     return;
-            // }
-            // if (login(username, email)) {
-            //     dashboardInit();
-            // } else {
-            //     //display inline error message
-            //     //message.innerHTML = "username/email does not exist"
-            //     toaster.makeToast("username/email does not exist",7000);
-            //     usernameEl.focus();
-            // }
         }
 
 
@@ -101,21 +87,6 @@ const addEvents = () => {
                     // ...
                 });
             }
-
-            // if (!validateEmail(email)) {
-            //     toaster.makeToast("please enter your emaill");
-            //     emailEl.focus();
-            //     return;
-            // }
-
-            // if (createNewUser(username, email)) {
-            //     dashboardInit();
-            // } else {
-            //     // your username or email matches an existing user
-            //     toaster.makeToast("username/email already exists",7000);
-            //     usernameEl.focus();
-            // }
-
 
         }
         

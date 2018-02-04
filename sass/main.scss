@@ -12,11 +12,13 @@
 @import "navbar";
 @import "portfolio";
 @import "about";
+@import "sections";
 
-
-.section-container {
+.admin-container {
     display: none;
 }
+
+
 
 .flex-center {
     display: flex;

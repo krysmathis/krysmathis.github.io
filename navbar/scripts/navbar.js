@@ -2,8 +2,9 @@ const firebase = require("firebase");
 const authenticator = require("../../scripts/authenticator");
 
 const displaySection = function(sectionContainerToShow) {
-    $(".section-container").hide();
+    $(".section-container").show();
     $(`.${sectionContainerToShow}`).show();
+
 };
 
 // scroll to a part of the page and account for the navbar height
@@ -138,8 +139,8 @@ navs.set("Logout", {
     "action": function() {
         firebase.auth().signOut().then(function () {
             // TODO: remove admin and logout and replace login button
-            $(".blogAdminContainer").hide();
-            $(".section-container").hide();
+            $(".admin-container").hide();
+            $(".section-container").show();
             $(".aboutContainer").show();
         }, function (error) {
             // An error happened.
@@ -161,7 +162,6 @@ const navBar = Object.create(null, {
             // update function will populate the nav bar based on 
             // the status of the user
             this.populateNavBar(user);
-            addNavbarMenuEventListeners();
         },
         enumerable: true
     },
