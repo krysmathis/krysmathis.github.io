@@ -92,23 +92,33 @@ const ProjectManager = Object.create(PersonalETL, {
                     teammates += `<a href="${teammate.personalSite}">${teammate.name}</a>`;
                 }
 
-            
+                
+                // <div class="media">
+                // <img class="mr-3" src="..." alt="Generic placeholder image">
+                // <div class="media-body">
+                //     <h5 class="mt-0">Media heading</h5>
+                //     Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                // </div>
+                // </div>
+
                 projectsHTML.innerHTML += `
-                    <article class="project-detail row">
-                    <h3 class="project-title">${project.name}</h3>
-                    <div class="col-md-8">
-                    <a class="portfolio-item d-block mx-auto" href="#${project.modalId}">
-                    <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                    
+                
+                    <article class="project-detail">
+                    <div class="row">
+                    <div class="col-md-12">
+                        <a class="portfolio-item d-block mx-auto" href="#${project.modalId}">
+                        <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                         <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                         <i class="fa fa-search-plus fa-3x"></i>
                         </div>
+                        </div>
+                        <img class="project-img img-fluid" src="${project.screenshot}">
+                        </a>
                     </div>
-                    <img class="project-img img-fluid" src="${project.screenshot}">
-                    </a>
-
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-12">
                         <div class="project-detail__text">
+                            <h3 class="project-title">${project.name}</h3>
                             <p class="project-description">${project.description}</p>
                             <p class="project-completed-date">Date completed: ${moment(project.dateCompleted).format("YYYY-MM-DD")}</p>
                             <br class="project-href"><a href="${project.href}">link</a> | <a href="${project.repo}">repository</a>
@@ -121,6 +131,7 @@ const ProjectManager = Object.create(PersonalETL, {
                             </div>
                         </div>
                     </div>
+                    </div> <!-- end row -->
                 </article>
                     `;
             }

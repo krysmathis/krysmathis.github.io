@@ -186,6 +186,7 @@ const navBar = Object.create(null, {
             });
 
             const activeAdminRequest = this.activeAdminRequest();
+
             const filteredNavs = [];
             navs.forEach(n => {
                 

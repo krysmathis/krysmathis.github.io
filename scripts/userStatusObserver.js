@@ -9,10 +9,8 @@ const userStatusObserver = Object.create(null, {
         value: function() {
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
-                    navbar.update(user);
-                } else {
-                    navbar.update(false);
-                }
+                    navbar.activeAdminRequest() ? navbar.update(user) : null;
+                } 
             });
         }
     }

@@ -32,6 +32,15 @@ const Authenticator = Object.create(null, {
             // navBar.init();
             $(".admin-container").hide();
             $(".section-container").show();
+
+            // if admin is set-up then show the navbar
+            const navbar = require("../navbar/scripts/navbar");
+            
+            if (navbar.activeAdminRequest()) {
+                navbar.populateNavBar();
+            } else {
+                document.getElementById("mainNav").style.display = "none";
+            }
             // init the about controller
             const aboutController = require("../about/scripts/controllers/aboutController");
             aboutController.init();

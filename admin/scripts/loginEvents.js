@@ -3,9 +3,7 @@
  * The purpose of this function is to navigate the user through the login
  * process.
  */
-// const login = require("./login");
-// const createNewUser = require("./createNewUser");
-// const dashboardInit = require("../dashboardInit");
+
 const Toaster = require("../../toaster/scripts/toaster");
 const firebase = require("firebase");
 
@@ -36,10 +34,6 @@ const addEvents = () => {
         const email = document.querySelector(".login__email").value;
         const emailEl = document.querySelector(".login__email");
 
-        // function validateEmail(email) {
-        //     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        //     return re.test(email);
-        // }
 
         // handle the login button errors
         if (event.target === btnLogin) {
