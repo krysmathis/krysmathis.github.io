@@ -6,6 +6,7 @@ const userStatusObserver = require("./userStatusObserver");
 const navBar = require("../navbar/scripts/navbar");
 const GitHubActivity = require("../lib/github-activity");
 const Toaster = require("../toaster/scripts/toaster");
+const GitHubCalendar = require("github-calendar");
 
 const toaster = Toaster();
 // config values for firebase site
@@ -55,22 +56,7 @@ const Authenticator = Object.create(null, {
             const resumeController = require("../resume/scripts/resume");
             resumeController.load();
             // here we will init the different components
-           
-            function updateFeed(username) {
-                GitHubActivity.feed({ username: username, selector: "#feed" });
-            }
-          
-            $(document).ready(function() {
-                updateFeed("krysmathis");
-          
-                $("#update").click(function() { updateFeed($("#username").val()); });
-                $("#username").keypress(function(e) {
-                    if (e.which === 13) {
-                        updateFeed($("#username").val());
-                    }
-                });
-            });
-            
+            GitHubCalendar(document.querySelector("#feed"), "krysmathis", {summary_text:"GitHub Repo Chart",responsive: true});
 
             // this will handle the event listeners for the login buton
             const btnLogin = document.querySelector(".login__button-login");

@@ -31,5 +31,7 @@
     "grunt-notify": "^0.4.5",
     "gruntify-eslint": "^4.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "github-calendar": "^1.2.1"
+  }
 }
