@@ -104,7 +104,6 @@ article p {
 	font-family: 'Roboto', sans-serif;
 	font-size: 1.5em;
 	font-weight: bold;
-	height: 30px;
 	padding-bottom: 10px;
 	border-bottom: 1px solid black;
 	padding-bottom: 5px;
@@ -116,8 +115,6 @@ article p {
 	position: relative;
 }
 .professional-experience {
-	background-color: white;
-	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
 	position: relative;
 	padding: 10px;
 	padding-left: 50px;
@@ -232,7 +229,6 @@ article p {
 #social-links div {
 	text-align: center;
 	display: block;
-	margin-left: 20px;
 }
 
 

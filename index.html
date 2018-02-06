@@ -12,6 +12,8 @@
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- Github Activity -->
+    <link rel="stylesheet" href="./lib/github-activity.css">
 
     <!-- Plugin CSS -->
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
@@ -32,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../projects/styles/projects.css">
     <link rel="stylesheet" type="text/css" href="./pagination/styles/pagination.css">
     <link rel="stylesheet" type="text/css" href="./toaster/styles/toaster.css">
+    
 
 </head>
 
@@ -75,14 +78,23 @@
                 <!-- about section -->
         
             <section class="projectsContainer section-container" id="projects">
-                <h2 class="section-heading">Portfolio</h2>
+                <h2 class="section-heading">Recent Projects</h2>
                 <section class="searchBar">
                     Search:
                     <input type="text" value="enter search criteria" class="searchBar__input">
                 </section>
                 <div class="row" id="projectList"></div>
             </section>
-            </div>
+            
+            <section class="resumeContainer section-container" id="experience">
+                <h2 class="section-heading">Professional Experience</h2>
+                <div id="resume-jobs"></div>
+                
+            </section>
+            <section class="githubContainer section-container" id="github">
+                    <div id="feed"></div>
+            </section>
+        </div>
         <!-- Contacts -->
         <div class="secondary col-md-4 col-sm-12 col-xs-12">
             <aside class="contactContainer section-container" id="contact">
@@ -251,10 +263,13 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
         crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
+    <script type="text/javascript" src="./lib/github-activity.js"></script>
     <script src="../lib/moment.js"></script>
     <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     <!-- Custom scripts for template elements -->
     <script src="./build/bundle.js"></script>
+   
 </body>
 
 </html>

@@ -4,7 +4,7 @@ require("firebase/auth");
 require("firebase/database");
 const userStatusObserver = require("./userStatusObserver");
 const navBar = require("../navbar/scripts/navbar");
-
+const GitHubActivity = require("../lib/github-activity");
 const Toaster = require("../toaster/scripts/toaster");
 
 const toaster = Toaster();
@@ -51,7 +51,26 @@ const Authenticator = Object.create(null, {
             
             const contactController = require("../contact/scripts/contact");
             contactController.load();
+
+            const resumeController = require("../resume/scripts/resume");
+            resumeController.load();
             // here we will init the different components
+           
+            function updateFeed(username) {
+                GitHubActivity.feed({ username: username, selector: "#feed" });
+            }
+          
+            $(document).ready(function() {
+                updateFeed("krysmathis");
+          
+                $("#update").click(function() { updateFeed($("#username").val()); });
+                $("#username").keypress(function(e) {
+                    if (e.which === 13) {
+                        updateFeed($("#username").val());
+                    }
+                });
+            });
+            
 
             // this will handle the event listeners for the login buton
             const btnLogin = document.querySelector(".login__button-login");

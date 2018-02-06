@@ -44,33 +44,33 @@ navs.set("Projects", {
         displaySection(this.container);
     }
 }),
-// navs.set("Blog", {
-//     "label": "Blog",
-//     "container": "blogContainer",
-//     "link": "#blogs",
-//     "buttonClass": "btn-nav__blog",
-//     "targetId": "blogs",
-//     "action": function() {
-//         displaySection(this.container);
-//         const blogManager = require("../../blog/scripts/blogManager");
-//         blogManager.load().then(() => { 
-//             blogManager.displayBlogs(1);
-//             blogManager.paginationInit(1);
-//         });
-//     }
-// }),
-// navs.set("Resume", {
-//     "label": "Resume",
-//     "container": "resumeContainer",
-//     "link": "../resume",
-//     "buttonClass": "btn-nav__resume",
-//     "targetId": "resume",
-//     "action": function() {
-//         displaySection(this.container);
-//         const ResumeManager= require("../../resume/scripts/resume");
-//         ResumeManager.load();
-//     }
-// }),
+navs.set("Blog", {
+    "label": "Blog",
+    "container": "blogContainer",
+    "link": "#blogs",
+    "buttonClass": "btn-nav__blog",
+    "targetId": "blogs",
+    "action": function() {
+        displaySection(this.container);
+        const blogManager = require("../../blog/scripts/blogManager");
+        blogManager.load().then(() => { 
+            blogManager.displayBlogs(1);
+            blogManager.paginationInit(1);
+        });
+    }
+}),
+navs.set("Resume", {
+    "label": "Resume",
+    "container": "resumeContainer",
+    "link": "../resume",
+    "buttonClass": "btn-nav__resume",
+    "targetId": "resume",
+    "action": function() {
+        displaySection(this.container);
+        const ResumeManager= require("../../resume/scripts/resume");
+        ResumeManager.load();
+    }
+}),
 navs.set("Contact", {
     "label": "Contact",
     "container": "contactContainer",
