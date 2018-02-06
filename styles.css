@@ -234,17 +234,6 @@ article p {
 
 
 
-@media (min-width: 320px) and (max-width: 568px) {
-  #menu ul {
-    display: none;
-  }
-
-  .main-header {
-	  background:  linear-gradient(to right,black, darkgrey);
-  }
-
-}
-
 
 @media (max-width: 769px) {
   #menu select, #menu button {

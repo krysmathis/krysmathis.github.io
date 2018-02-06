@@ -107,10 +107,7 @@ const ProjectManager = Object.create(PersonalETL, {
                     <article class="project-detail">
                     <div class="row">
                     <div class="col-md-12">
-                        <a class="portfolio-item d-block mx-auto" href="#${project.modalId}">
-                        <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                        <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                        <i class="fa fa-search-plus fa-3x"></i>
+                       
                         </div>
                         </div>
                         <img class="project-img img-fluid" src="${project.screenshot}">
@@ -120,7 +117,7 @@ const ProjectManager = Object.create(PersonalETL, {
                         <div class="project-detail__text">
                             <h3 class="project-title">${project.name}</h3>
                             <p class="project-description">${project.description}</p>
-                            <p class="project-completed-date">Date completed: ${moment(project.dateCompleted).format("YYYY-MM-DD")}</p>
+                            <p class="project-completed-date">Date completed: ${project.completeDate}</p>
                             <br class="project-href"><a href="${project.href}">link</a> | <a href="${project.repo}">repository</a>
                             <div class="project-tag">
                             
