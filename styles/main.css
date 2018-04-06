@@ -64,7 +64,7 @@
 /*
 	On mobile the header looked a little off
 */
-@media (max-width: 537px) {
+@media (max-width: 768px) {
   .primary {
     margin-top: 20px !important; }
 
