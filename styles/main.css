@@ -61,6 +61,28 @@
   flex-direction: column;
   margin-top: .75em; }
 
+/*
+	On mobile the header looked a little off
+*/
+@media (max-width: 537px) {
+  .primary {
+    margin-top: 20px !important; }
+
+  .main-content {
+    margin-top: 60px !important; }
+
+  .main-header {
+    min-height: 0px; }
+
+  .header__name {
+    font-size: .95em !important; }
+
+  .header__title {
+    font-size: .95em !important;
+    margin-right: 20px; }
+
+  .header__container {
+    flex-direction: row !important; } }
 .header__name {
   text-align: left;
   margin: 0 auto !important; }

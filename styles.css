@@ -49,6 +49,11 @@ body {
 	min-height: 100%;
 }
 
+@media (max-width: 400px) {
+	.main-content {
+		margin-top: 0px !important;
+	}
+}
 
 select {
 	width: 84%;
